@@ -1,19 +1,22 @@
 package com.betacom.eCommerce.classes.dto.request;
 
-public class RamRequest {
+public class RamRequest extends ProductRequest{
     private Integer id;
-    private Integer idProdotto;
+    private Boolean cart;
+    private Boolean contained;
 
-    public Integer getIdProdotto()
-    {
-        return idProdotto;
+    public Boolean getCart() {
+        return cart;
     }
-
-    public void setIdProdotto(Integer idProdotto)
-    {
-        this.idProdotto=idProdotto;
+    public void setCart(Boolean cart) {
+        this.cart = cart;
     }
-
+    public Boolean getContained() {
+        return contained;
+    }
+    public void setContained(Boolean contained) {
+        this.contained = contained;
+    }
     public Integer getId() {
         return id;
     }

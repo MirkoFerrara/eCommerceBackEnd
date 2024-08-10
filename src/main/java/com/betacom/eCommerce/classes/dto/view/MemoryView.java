@@ -2,10 +2,27 @@ package com.betacom.eCommerce.classes.dto.view;
 
 public class MemoryView extends ProductView {
     private Integer id;
+    private Integer idProdotto;
+    private Boolean cart;
+    private Boolean contained;
 
-    private Boolean cart ;
+    public Integer getIdProdotto()
+    {
+        return idProdotto;
+    }
 
-    private Boolean contained ;
+    public void setIdProdotto(Integer idProdotto)
+    {
+        this.idProdotto=idProdotto;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public Boolean getContained() {
         return contained;
@@ -21,15 +38,5 @@ public class MemoryView extends ProductView {
 
     public void setCart(Boolean cart) {
         this.cart = cart;
-    }
-
-
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 }

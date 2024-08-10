@@ -2,8 +2,19 @@ package com.betacom.eCommerce.classes.dto.view;
 
 public class GpuView extends ProductView{
     private Integer id;
-    private Boolean cart ;
-    private Boolean contained ;
+    private Integer idProdotto;
+    private Boolean cart;
+    private Boolean contained;
+
+    public Integer getIdProdotto()
+    {
+        return idProdotto;
+    }
+
+    public void setIdProdotto(Integer idProdotto)
+    {
+        this.idProdotto=idProdotto;
+    }
 
     public Integer getId() {
         return id;
@@ -13,19 +24,19 @@ public class GpuView extends ProductView{
         this.id = id;
     }
 
-    public Boolean getCart() {
-        return cart;
-    }
-
-    public void setCart(Boolean cart) {
-        this.cart = cart;
-    }
-
     public Boolean getContained() {
         return contained;
     }
 
     public void setContained(Boolean contained) {
         this.contained = contained;
+    }
+
+    public Boolean getCart() {
+        return cart;
+    }
+
+    public void setCart(Boolean cart) {
+        this.cart = cart;
     }
 }

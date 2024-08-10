@@ -1,17 +1,15 @@
 package com.betacom.eCommerce.classes.dto.request;
 
-public class SmartphoneRequest {
+public class SmartphoneRequest extends ProductRequest{
   private Integer id;
-  private Integer idProdotto;
+  private Boolean contained;
 
-    public Integer getIdProdotto()
-    {
-        return idProdotto;
+    public Boolean getContained() {
+        return contained;
     }
 
-    public void setIdProdotto(Integer idProdotto)
-    {
-        this.idProdotto=idProdotto;
+    public void setContained(Boolean contained) {
+        this.contained = contained;
     }
 
     public Integer getId() {

@@ -10,7 +10,8 @@ import java.util.List;
 
 @Service
 public interface iGpuService {
-    public void create(GpuRequest req);
-    public void remove(Integer id);
+    public void create(GpuRequest req)  throws Exception;
+    public void update(GpuRequest req)  throws Exception;
+    public void remove(Integer id)  throws Exception;
     public List<GpuView>list();
 }

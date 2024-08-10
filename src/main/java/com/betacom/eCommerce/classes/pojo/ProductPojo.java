@@ -12,6 +12,8 @@ import java.util.List;
 
     private String model ;
 
+    private String item ; // es : Smartphone , Tv , Pc , Ram ....
+
     private String brand ;
 
     private Float price ;
@@ -19,6 +21,14 @@ import java.util.List;
     private String description ;
 
     private String colour ;
+
+    public String getItem() {
+        return item;
+    }
+
+    public void setItem(String item) {
+        this.item = item;
+    }
 
     @OneToMany(mappedBy="product", fetch = FetchType.EAGER)
     private List<MousePojo> mouse ;

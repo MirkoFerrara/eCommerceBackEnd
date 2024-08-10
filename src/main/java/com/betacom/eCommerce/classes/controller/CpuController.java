@@ -1,22 +1,22 @@
 package com.betacom.eCommerce.classes.controller;
 
-import com.betacom.eCommerce.classes.dto.request.KeyboardRequest;
+import com.betacom.eCommerce.classes.dto.request.CpuRequest;
 import com.betacom.eCommerce.classes.response.ResponseBase;
-import com.betacom.eCommerce.interfaces.iService.iKeyboardService;
+import com.betacom.eCommerce.interfaces.iService.iCpuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/keyboard")
-public class KeyboardController {
+@RequestMapping("/cpu")
+public class CpuController {
 
     @Autowired
-    private iKeyboardService service;
+    private iCpuService service;
 
     @PostMapping("/create")
-    public ResponseBase create(KeyboardRequest req){
+    public ResponseBase create(CpuRequest req){
         ResponseBase resp = new ResponseBase();
         resp.setRc(true);
         try{

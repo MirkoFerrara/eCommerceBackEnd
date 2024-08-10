@@ -1,22 +1,22 @@
 package com.betacom.eCommerce.classes.controller;
 
-import com.betacom.eCommerce.classes.dto.request.KeyboardRequest;
+import com.betacom.eCommerce.classes.dto.request.MonitorRequest;
 import com.betacom.eCommerce.classes.response.ResponseBase;
-import com.betacom.eCommerce.interfaces.iService.iKeyboardService;
+import com.betacom.eCommerce.interfaces.iService.iMonitorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/keyboard")
-public class KeyboardController {
+@RequestMapping("/monitor")
+public class MonitorController {
 
     @Autowired
-    private iKeyboardService service;
+    private iMonitorService service;
 
     @PostMapping("/create")
-    public ResponseBase create(KeyboardRequest req){
+    public ResponseBase create(MonitorRequest req){
         ResponseBase resp = new ResponseBase();
         resp.setRc(true);
         try{
