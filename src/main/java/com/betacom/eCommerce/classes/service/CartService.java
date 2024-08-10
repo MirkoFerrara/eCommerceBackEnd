@@ -154,6 +154,14 @@ public class CartService implements iCartService{
         }
     }
 
+    /* Funzione per confermare l'acquisto o rimuovere un oggetto dal carrello :
+    * 1 caso : viene confermato l'acquisto , quindi si elimina la riga
+    *           dal carrello e dalla tabella del prodotto acquistato
+    *
+    * 2 caso : viene rimosso dal carrello un oggetto , quindi viene
+    *           eliminata la riga nel carrello , e viene reimpostato a false
+    *           il campo che indica se un prodotto è all'interno del carrello
+    * */
     public void removeFromCart(CartRequest req) throws Exception {
 
         if (req.getConfirm())
