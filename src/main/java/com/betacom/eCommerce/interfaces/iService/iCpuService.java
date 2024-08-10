@@ -9,7 +9,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 public interface iCpuService {
-    public void create(CpuRequest req);
-    public void remove(Integer id);
+    public void create(CpuRequest req) throws Exception;
+    public void update(CpuRequest req)  throws Exception;
+    public void remove(Integer id)  throws Exception;
     public List<CpuView> list();
 }

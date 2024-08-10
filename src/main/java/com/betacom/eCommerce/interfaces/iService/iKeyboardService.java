@@ -9,7 +9,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 @Service
 public interface iKeyboardService {
-    public void create(KeyboardRequest req);
-    public void remove(Integer id);
+    public void create(KeyboardRequest req)  throws Exception;
+    public void update(KeyboardRequest req)  throws Exception;
+    public void remove(Integer id)  throws Exception;
     public List<KeyboardView> list();
 }

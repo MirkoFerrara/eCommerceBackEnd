@@ -9,9 +9,6 @@ public class ProductView {
     private String description;
     private String colour;
 
-    public ProductView(){
-
-    }
 
     public String getModel() {
         return model;

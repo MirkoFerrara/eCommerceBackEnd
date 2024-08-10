@@ -9,7 +9,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 @Service
 public interface iLaptopService {
-    public void create(LaptopRequest req);
-    public void remove(Integer id);
+    public void create(LaptopRequest req) throws Exception;
+    public void update(LaptopRequest req)throws Exception;
+    public void remove(Integer id)throws Exception;
     public List<LaptopView> list();
 }

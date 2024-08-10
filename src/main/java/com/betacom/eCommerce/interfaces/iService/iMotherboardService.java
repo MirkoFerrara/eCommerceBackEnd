@@ -8,7 +8,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 public interface iMotherboardService {
-    public void create(MotherboardRequest req);
-    public void remove(Integer id);
+    public void create(MotherboardRequest req)throws Exception;
+    public void update(MotherboardRequest req)throws Exception;
+    public void remove(Integer id)throws Exception;
     public List<MotherboardView> list();
 }

@@ -8,7 +8,8 @@ import com.betacom.eCommerce.classes.dto.view.PcView;
 import java.util.List;
 
 public interface iPcService {
-    public void create(PcRequest req);
-    public void remove(Integer id);
+    public void create(PcRequest req) throws Exception;
+    public void update(PcRequest req)throws Exception;
+    public void remove(Integer id)throws Exception;
     public List<PcView> list();
 }
