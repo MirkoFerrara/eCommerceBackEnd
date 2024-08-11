@@ -1,20 +1,10 @@
 package com.betacom.eCommerce.classes.dto.view;
 
 public class CpuView extends ProductView{
-    private Integer id;
-    private Integer idProdotto;
     private Boolean cart;
     private Boolean contained;
 
-    public Integer getIdProdotto()
-    {
-        return idProdotto;
-    }
-
-    public void setIdProdotto(Integer idProdotto)
-    {
-        this.idProdotto=idProdotto;
-    }
+    private Integer id;
 
     public Integer getId() {
         return id;

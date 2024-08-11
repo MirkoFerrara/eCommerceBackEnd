@@ -8,6 +8,7 @@ public class CpuPojo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id ;
+
     @ManyToOne
     @JoinColumn(name = "idProduct")
     private ProductPojo product ;

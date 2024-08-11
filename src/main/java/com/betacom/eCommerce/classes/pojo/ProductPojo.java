@@ -5,7 +5,8 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name="product")public class ProductPojo {
+@Table(name="product")
+public class ProductPojo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id ;

@@ -13,5 +13,5 @@ public interface iTvService {
     public void update(TvRequest req) throws Exception;
     public void remove(Integer id) throws Exception;
     public List<TvView> list();
-
+    public TvView getById(Integer id);
 }

@@ -2,13 +2,20 @@ package com.betacom.eCommerce.classes.dto.view;
 
 public class ProductView {
 
-
+    private Integer idProduct;
     private String model;
     private String brand;
     private Float price;
     private String description;
     private String colour;
 
+    public Integer getIdProduct() {
+        return idProduct;
+    }
+
+    public void setIdProduct(Integer idProduct) {
+        this.idProduct = idProduct;
+    }
 
     public String getModel() {
         return model;

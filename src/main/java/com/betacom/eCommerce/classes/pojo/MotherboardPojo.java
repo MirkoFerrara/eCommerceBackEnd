@@ -14,6 +14,16 @@ public class MotherboardPojo {
 
     private Boolean cart ;
 
+    private Boolean contained ;
+
+    public Boolean getContained() {
+        return contained;
+    }
+
+    public void setContained(Boolean contained) {
+        this.contained = contained;
+    }
+
     public Boolean getCart() {
         return cart;
     }

@@ -4,7 +4,7 @@ public class CartView extends ProductView{
     private Integer id;
     private Integer idUser;
 
-    public Integer getId() {
+    public Integer getIdCart() {
         return id;
     }
 

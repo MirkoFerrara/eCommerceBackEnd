@@ -3,9 +3,8 @@ package com.betacom.eCommerce.classes.service;
 import com.betacom.eCommerce.classes.dto.request.GpuRequest;
 import com.betacom.eCommerce.classes.dto.view.CpuView;
 import com.betacom.eCommerce.classes.dto.view.GpuView;
-import com.betacom.eCommerce.classes.pojo.CpuPojo;
-import com.betacom.eCommerce.classes.pojo.GpuPojo;
-import com.betacom.eCommerce.classes.pojo.ProductPojo;
+import com.betacom.eCommerce.classes.dto.view.MotherboardView;
+import com.betacom.eCommerce.classes.pojo.*;
 import com.betacom.eCommerce.interfaces.iRepository.iGpuRepository;
 import com.betacom.eCommerce.interfaces.iRepository.iProductRepository;
 import com.betacom.eCommerce.interfaces.iRepository.iUserRepository;
@@ -29,52 +28,50 @@ public class GpuService implements iGpuService {
     private iProductService productService;
     @Override
     public void create(GpuRequest req) throws Exception {
-        Optional<GpuPojo> opt=gpuRepo.findById(req.getId());
-        if(opt.isPresent())
-            throw new Exception("la Gpu con quell'id  esiste gia");
 
         GpuPojo pojo=new GpuPojo();
-        pojo.setId(req.getId());
 
         Optional<ProductPojo> product=productRepo.findById(req.getId());
 
         pojo.setProduct(product.get());
+
         pojo.setCart(req.getCart());
         pojo.setContained(req.getContained());
 
         gpuRepo.save(pojo);
-
     }
 
     @Override
     public void update(GpuRequest req) throws Exception {
-       /* Optional<GpuPojo>opt=gpuRepo.findById(req.getId());
-        if(opt.isEmpty())
-            throw new Exception("la cpu non è presente");
-        opt.get().setId(req.getId());
-        opt.get().setCart(req.getCart());*/
-        productService.update(req);
+        GpuPojo pojo = gpuRepo.findById(req.getId()).get();
+        pojo.setCart(req.getCart());
+        ProductPojo product=productRepo.findById(req.getId()).get();
+        pojo.setProduct(product);
+        pojo.setContained(req.getContained());
+        gpuRepo.save(pojo);
     }
 
     @Override
     public void remove(Integer id) throws Exception {
-        Optional<GpuPojo>opt=gpuRepo.findById(id);
-        if(opt.isEmpty())
-            throw new Exception("cpu non presente");
-        gpuRepo.delete(opt.get());
+        gpuRepo.delete(gpuRepo.findById(id).get());
+
     }
+
 
     @Override
     public List<GpuView> list() {
-//        List<GpuPojo> pojo = gpuRepo.findAll();
-//        return transformInView(pojo);
-        return null ;
+        List<GpuPojo> pojo = gpuRepo.findAll();
+        List<GpuPojo> filteredPojo = pojo.stream()
+                .filter(item -> !item.getContained())
+                .toList();
+        return transformInView(filteredPojo);
     }
 
-    private List<GpuView> transformInView(List<GpuPojo> gpu) {
-        return gpu.stream().map(s -> {
+    private List<GpuView> transformInView(List<GpuPojo> pojo) {
+        return pojo.stream().map(s -> {
             GpuView view = new GpuView();
             view.setId(s.getId());
+            view.setIdProduct(s.getProduct().getId());
             view.setBrand(s.getProduct().getBrand());
             view.setColour(s.getProduct().getColour());
             view.setDescription(s.getProduct().getDescription());
@@ -82,6 +79,23 @@ public class GpuService implements iGpuService {
             view.setModel(s.getProduct().getModel());
             return view;
         }).collect(Collectors.toList());
+    }
+
+    @Override
+    public GpuView getById(Integer id) {
+        return transformInView(gpuRepo.findById(id).get());
+    }
+
+    private GpuView transformInView(GpuPojo pojo) {
+            GpuView view = new GpuView();
+            view.setId(pojo.getId());
+            view.setIdProduct(pojo.getProduct().getId());
+            view.setBrand(pojo.getProduct().getBrand());
+            view.setColour(pojo.getProduct().getColour());
+            view.setDescription(pojo.getProduct().getDescription());
+            view.setPrice(pojo.getProduct().getPrice());
+            view.setModel(pojo.getProduct().getModel());
+            return view;
     }
 
 }

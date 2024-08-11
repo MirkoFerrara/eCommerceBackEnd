@@ -8,7 +8,10 @@ import com.betacom.eCommerce.interfaces.iRepository.*;
 import com.betacom.eCommerce.interfaces.iService.iCartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -162,6 +165,7 @@ public class CartService implements iCartService{
     *           eliminata la riga nel carrello , e viene reimpostato a false
     *           il campo che indica se un prodotto è all'interno del carrello
     * */
+    @Override
     public void removeFromCart(CartRequest req) throws Exception {
 
         if (req.getConfirm())
@@ -187,27 +191,21 @@ public class CartService implements iCartService{
     }
 
     @Override
-    public void update(CartRequest req) throws Exception {
-
-        Optional<CartPojo>cart=cartRepo.findById(req.getId());
-
-        Optional<UserPojo> user=userRepo.findById(req.getIdUser());
-
-        Optional<ProductPojo> product=productRepo.findById(req.getIdProduct());
-        cart.get().setUser(user.get());
-        cart.get().setProduct(product.get());
-
-    }
-    @Override
     public void remove(Integer id) throws Exception {
-        Optional<CartPojo> opt = cartRepo.findById(id);
-        if (opt.isEmpty())
-            throw new Exception("l'id passato non è associato ad alcun carrello");
-        cartRepo.delete(opt.get());
+        cartRepo.delete(cartRepo.findById(id).get());
     }
+
     @Override
-    public List<CartView> list() {
-        List<CartPojo>cart=cartRepo.findAll();
-        return transformInView(cart);
+    public List<CartView> list(Integer id) throws Exception {
+
+        List<CartPojo>cart = cartRepo.findAll();
+        List<CartPojo> filteredList = cart.stream()
+                .filter(item -> item.getUser().getId() == id )
+                .toList();
+
+        if(filteredList.isEmpty())
+            throw new Exception("La lista è vuota");
+
+        return transformInView(filteredList);
     }
 }

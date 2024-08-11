@@ -30,4 +30,11 @@ public class MousePojo {
         this.id = id;
     }
 
+    public ProductPojo getProduct() {
+        return product;
+    }
+
+    public void setProduct(ProductPojo product) {
+        this.product = product;
+    }
 }

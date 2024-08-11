@@ -1,9 +1,7 @@
 package com.betacom.eCommerce.classes.service;
 
 import com.betacom.eCommerce.classes.dto.request.UserRequest;
-import com.betacom.eCommerce.classes.dto.view.GpuView;
 import com.betacom.eCommerce.classes.dto.view.UserView;
-import com.betacom.eCommerce.classes.pojo.GpuPojo;
 import com.betacom.eCommerce.classes.pojo.UserPojo;
 import com.betacom.eCommerce.interfaces.iRepository.iUserRepository;
 import com.betacom.eCommerce.interfaces.iRepository.iProductRepository;
@@ -24,22 +22,44 @@ public class UserService implements iUserService {
 
     @Override
     public void create(UserRequest req) {
-
+        UserPojo pojo=new UserPojo();
+        pojo.setEmail(req.getEmail());
+        pojo.setPassword(req.getPassword());
+        pojo.setRole(req.getRole().equalsIgnoreCase("ADMIN"));
+        userRepo.save(pojo);
     }
 
     @Override
     public void update(UserRequest req) {
-
+        UserPojo pojo = userRepo.findById(req.getId()).get();
+        pojo.setEmail(req.getEmail());
+        pojo.setPassword(req.getPassword());
+        pojo.setRole(req.getRole().equalsIgnoreCase("ADMIN"));
+        userRepo.save(pojo);
     }
 
     @Override
     public void remove(Integer id) {
-
+        userRepo.delete(userRepo.findById(id).get());
     }
 
+    @Override
     public List<UserView> list() {
-        List<UserPojo> pojo = userRepo.findAll();
-        return transformInView(pojo);
+        return transformInView(userRepo.findAll());
+    }
+
+    @Override
+    public  UserView getById(Integer id) {
+        return transformInView(userRepo.findById(id).get());
+    }
+
+    private UserView transformInView( UserPojo pojo ) {
+            UserView view = new UserView();
+            view.setId(pojo.getId());
+            view.setEmail(pojo.getEmail());
+            view.setPassword(pojo.getPassword());
+            view.setRole((pojo.getRole()) ? "ADMIN" : "USER");
+            return view;
     }
 
     private List<UserView> transformInView(List<UserPojo> user) {

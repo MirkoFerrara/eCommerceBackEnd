@@ -7,6 +7,15 @@ package com.betacom.eCommerce.classes.dto.request;
         private Integer idGPU;
         private Integer idMemory;
         private Integer idMotherboard;
+        private Boolean cart;
+
+        public Boolean getCart() {
+            return cart;
+        }
+
+        public void setCart(Boolean cart) {
+            this.cart = cart;
+        }
 
         public Integer getId() {
             return id;
