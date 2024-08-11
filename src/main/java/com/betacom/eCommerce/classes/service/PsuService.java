@@ -1,64 +1,58 @@
 package com.betacom.eCommerce.classes.service;
 
-import com.betacom.eCommerce.classes.dto.request.SmartphoneRequest;
-import com.betacom.eCommerce.classes.dto.request.TvRequest;
-import com.betacom.eCommerce.classes.dto.view.SmartphoneView;
-import com.betacom.eCommerce.classes.dto.view.TvView;
-import com.betacom.eCommerce.classes.dto.view.UserView;
+import com.betacom.eCommerce.classes.dto.request.PsuRequest;
+import com.betacom.eCommerce.classes.dto.view.PcView;
+import com.betacom.eCommerce.classes.dto.view.PsuView;
 import com.betacom.eCommerce.classes.pojo.ProductPojo;
-import com.betacom.eCommerce.classes.pojo.SmartphonePojo;
-import com.betacom.eCommerce.classes.pojo.TvPojo;
-import com.betacom.eCommerce.classes.pojo.UserPojo;
+import com.betacom.eCommerce.classes.pojo.PsuPojo;
+import com.betacom.eCommerce.interfaces.iRepository.iPsuRepository;
 import com.betacom.eCommerce.interfaces.iRepository.iProductRepository;
-import com.betacom.eCommerce.interfaces.iRepository.iTvRepository;
-import com.betacom.eCommerce.interfaces.iService.iTvService;
+import com.betacom.eCommerce.interfaces.iService.iPsuService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-@Service
-public class TvService implements iTvService{
-
+public class PsuService implements iPsuService {
     @Autowired
-    private iTvRepository tvRepo;
+    private iPsuRepository psuRepo;
     @Autowired
     private iProductRepository productRepo;
 
     @Override
-    public void create(TvRequest req) {
-        TvPojo pojo=new TvPojo();
+    public void create(PsuRequest req) throws Exception{
+        PsuPojo pojo=new PsuPojo();
         Optional<ProductPojo> product = productRepo.findById(req.getIdProduct());
         pojo.setProduct(product.get());
         pojo.setCart(req.getCart());
-        tvRepo.save(pojo);
+        psuRepo.save(pojo);
     }
 
     @Override
-    public void update(TvRequest req) {
-        Optional<TvPojo> opt=tvRepo.findById(req.getId());
+    public void update(PsuRequest req) throws Exception {
+        Optional<PsuPojo> opt= psuRepo.findById(req.getId());
         opt.get().setCart(req.getCart());
         if(req.getIdProduct()!=null) {
             Optional<ProductPojo> product = productRepo.findById(req.getIdProduct());
             opt.get().setProduct(product.get());
         }
-        tvRepo.save(opt.get());
+        psuRepo.save(opt.get());
     }
 
     @Override
-    public void remove(Integer id) throws Exception{
-        tvRepo.delete(tvRepo.findById(id).get());
+    public void remove(Integer id)throws Exception {
+        psuRepo.delete(psuRepo.findById(id).get());
+
     }
 
     @Override
-    public List<TvView> list() {
-        return transformInView( tvRepo.findAll());
+    public List<PsuView> list() {
+        return transformInView( psuRepo.findAll());
     }
 
-    private List<TvView> transformInView(List<TvPojo> pojo) {
+    public List<PsuView> transformInView(List<PsuPojo> pojo) {
         return pojo.stream().map(s -> {
-            TvView view = new TvView();
+            PsuView view = new PsuView();
             view.setId(s.getId());
             view.setIdProduct(s.getProduct().getId());
             view.setBrand(s.getProduct().getBrand());
@@ -69,14 +63,14 @@ public class TvService implements iTvService{
             return view;
         }).toList();
     }
-
     @Override
-    public TvView getById(Integer id) {
-        return transformInView(tvRepo.findById(id).get());
+    public PsuView getById(Integer id) {
+        return transformInView(psuRepo.findById(id).get());
     }
 
-    private TvView transformInView( TvPojo pojo) {
-        TvView view = new TvView();
+    @Override
+    public PsuView transformInView( PsuPojo pojo) {
+        PsuView view = new PsuView();
         view.setId(pojo.getId());
         view.setIdProduct(pojo.getProduct().getId());
         view.setBrand(pojo.getProduct().getBrand());

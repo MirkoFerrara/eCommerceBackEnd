@@ -54,7 +54,7 @@ public class MotherboardService implements iMotherboardService{
         return transformInView(filteredPojo);
     }
 
-    private List<MotherboardView> transformInView(List<MotherboardPojo> pojo) {
+    public List<MotherboardView> transformInView(List<MotherboardPojo> pojo) {
         return pojo.stream().map(s -> {
             MotherboardView view = new MotherboardView();
             view.setId(s.getId());
@@ -73,7 +73,7 @@ public class MotherboardService implements iMotherboardService{
         return transformInView(motherboardRepo.findById(id).get());
     }
 
-    private MotherboardView transformInView(MotherboardPojo pojo) {
+    public MotherboardView transformInView(MotherboardPojo pojo) {
             MotherboardView view = new MotherboardView();
             view.setId(pojo.getId());
             view.setIdProduct(pojo.getProduct().getId());

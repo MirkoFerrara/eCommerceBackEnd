@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 public class CartService implements iCartService{
 
         @Autowired
-        private iSmartphoneRepository smartphoneRepo;
+        private iPsuRepository psuRepo;
         @Autowired
         private iCartRepository cartRepo;
         @Autowired
@@ -45,7 +45,7 @@ public class CartService implements iCartService{
         @Autowired
         private iMouseRepository mouseRepo;
         @Autowired
-        private iTvRepository tvRepo;
+        private iCoolerRepository coolerRepo;
         @Autowired
         private iKeyboardRepository keyboardRepo;
 
@@ -65,10 +65,10 @@ public class CartService implements iCartService{
 
         public void updateRepo( Integer id , String item , boolean value ){
 
-            if ( item.equalsIgnoreCase("smartphone")) {
-                SmartphonePojo pojo = smartphoneRepo.findById(id).get();
+            if ( item.equalsIgnoreCase("psu")) {
+                PsuPojo pojo = psuRepo.findById(id).get();
                 pojo.setCart(value);
-                smartphoneRepo.save(pojo);
+                psuRepo.save(pojo);
             } else if ( item.equalsIgnoreCase("monitor") ){
                 MonitorPojo pojo = monitorRepo.findById(id).get();
                 pojo.setCart(value);
@@ -89,10 +89,10 @@ public class CartService implements iCartService{
                 GpuPojo pojo = gpuRepo.findById(id).get();
                 pojo.setCart(value);
                 gpuRepo.save(pojo);
-            } else if (item.equalsIgnoreCase("tv")){
-                TvPojo pojo = tvRepo.findById(id).get();
+            } else if (item.equalsIgnoreCase("cooler")){
+                CoolerPojo pojo = coolerRepo.findById(id).get();
                 pojo.setCart(value);
-                tvRepo.save(pojo);
+                coolerRepo.save(pojo);
             } else if ( item.equalsIgnoreCase("cpu") ) {
                 CpuPojo pojo = cpuRepo.findById(id).get();
                 pojo.setCart(value);
@@ -118,9 +118,9 @@ public class CartService implements iCartService{
 
     public void deleteRepo( Integer id , String item ) throws Exception {
 
-        if ( item.equalsIgnoreCase("smartphone")) {
-            SmartphonePojo pojo = smartphoneRepo.findById(id).get() ;
-            smartphoneRepo.delete(pojo);
+        if ( item.equalsIgnoreCase("psu")) {
+            PsuPojo pojo = psuRepo.findById(id).get() ;
+            psuRepo.delete(pojo);
         } else if ( item.equalsIgnoreCase("monitor") ){
             MonitorPojo pojo = monitorRepo.findById(id).get() ;
             monitorRepo.delete(pojo);
@@ -136,9 +136,9 @@ public class CartService implements iCartService{
         } else if ( item.equalsIgnoreCase("gpu") ) {
             GpuPojo pojo = gpuRepo.findById(id).get() ;
             gpuRepo.delete(pojo);
-        } else if (item.equalsIgnoreCase("tv")){
-            TvPojo pojo = tvRepo.findById(id).get();
-            tvRepo.delete(pojo);
+        } else if (item.equalsIgnoreCase("cooler")){
+            CoolerPojo pojo = coolerRepo.findById(id).get();
+            coolerRepo.delete(pojo);
         } else if ( item.equalsIgnoreCase("cpu") ) {
             CpuPojo pojo = cpuRepo.findById(id).get() ;
             cpuRepo.delete(pojo);

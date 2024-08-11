@@ -67,7 +67,7 @@ public class GpuService implements iGpuService {
         return transformInView(filteredPojo);
     }
 
-    private List<GpuView> transformInView(List<GpuPojo> pojo) {
+    public List<GpuView> transformInView(List<GpuPojo> pojo) {
         return pojo.stream().map(s -> {
             GpuView view = new GpuView();
             view.setId(s.getId());
@@ -86,7 +86,7 @@ public class GpuService implements iGpuService {
         return transformInView(gpuRepo.findById(id).get());
     }
 
-    private GpuView transformInView(GpuPojo pojo) {
+    public GpuView transformInView(GpuPojo pojo) {
             GpuView view = new GpuView();
             view.setId(pojo.getId());
             view.setIdProduct(pojo.getProduct().getId());

@@ -7,7 +7,7 @@ import com.betacom.eCommerce.classes.dto.view.RamView;
 import com.betacom.eCommerce.classes.pojo.*;
 import com.betacom.eCommerce.interfaces.iRepository.iPcRepository;
 import com.betacom.eCommerce.interfaces.iRepository.iProductRepository;
-import com.betacom.eCommerce.interfaces.iService.iPcService;
+import com.betacom.eCommerce.interfaces.iService.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +16,21 @@ import java.util.Optional;
 
 @Service
 public class PcService implements iPcService{
+
+    @Autowired
+    private iCpuService cpuService;
+    @Autowired
+    private iRamService ramService;
+    @Autowired
+    private iMotherboardService motherboardService;
+    @Autowired
+    private iGpuService gpuService;
+    @Autowired
+    private iMemoryService memoryService;
+    @Autowired
+    private iPsuService psuService;
+    @Autowired
+    private iCoolerService coolerService;
 
     @Autowired
     private iPcRepository pcRepo;
@@ -53,7 +68,7 @@ public class PcService implements iPcService{
         return transformInView( pcRepo.findAll());
     }
 
-    private List<PcView> transformInView(List<PcPojo> pojo) {
+    public List<PcView> transformInView(List<PcPojo> pojo) {
         return pojo.stream().map(s -> {
             PcView view = new PcView();
             view.setId(s.getId());
@@ -63,6 +78,13 @@ public class PcService implements iPcService{
             view.setDescription(s.getProduct().getDescription());
             view.setPrice(s.getProduct().getPrice());
             view.setModel(s.getProduct().getModel());
+            view.setCpu( cpuService.transformInView( s.getIdCpu()));
+            view.setGpu( gpuService.transformInView( s.getIdGpu()));
+            view.setMemory( memoryService.transformInView( s.getIdMemory()));
+            view.setRam( ramService.transformInView( s.getIdRam()));
+            view.setMotherboard( motherboardService.transformInView( s.getIdMotherboard()));
+            view.setCooler( coolerService.transformInView(s.getIdCooler()));
+            view.setPsu(psuService.transformInView(s.getIdPsu()));
             return view;
         }).toList();
     }
@@ -71,7 +93,7 @@ public class PcService implements iPcService{
         return transformInView(pcRepo.findById(id).get());
     }
 
-    private PcView transformInView( PcPojo pojo) {
+    public PcView transformInView( PcPojo pojo) {
         PcView view = new PcView();
         view.setId(pojo.getId());
         view.setIdProduct(pojo.getProduct().getId());
@@ -80,6 +102,14 @@ public class PcService implements iPcService{
         view.setDescription(pojo.getProduct().getDescription());
         view.setPrice(pojo.getProduct().getPrice());
         view.setModel(pojo.getProduct().getModel());
+        view.setCpu( cpuService.transformInView( pojo.getIdCpu()));
+        view.setGpu( gpuService.transformInView( pojo.getIdGpu()));
+        view.setMemory( memoryService.transformInView( pojo.getIdMemory()));
+        view.setRam( ramService.transformInView( pojo.getIdRam()));
+        view.setMotherboard( motherboardService.transformInView( pojo.getIdMotherboard()));
+        view.setCooler( coolerService.transformInView(pojo.getIdCooler()));
+        view.setPsu(psuService.transformInView(pojo.getIdPsu()));
+
         return view;
     }
 }

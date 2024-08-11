@@ -66,7 +66,8 @@ public class CpuService implements iCpuService {
         return transformInView(filteredPojo);
     }
 
-    private List<CpuView> transformInView(List<CpuPojo> pojo) {
+
+    public List<CpuView> transformInView(List<CpuPojo> pojo) {
         return pojo.stream().map(s -> {
             CpuView view = new CpuView();
             view.setId(s.getId());
@@ -85,7 +86,8 @@ public class CpuService implements iCpuService {
         return transformInView(cpuRepo.findById(id).get());
     }
 
-    private CpuView transformInView( CpuPojo pojo) {
+    @Override
+    public CpuView transformInView( CpuPojo pojo) {
         CpuView view = new CpuView();
         view.setId(pojo.getId());
         view.setIdProduct(pojo.getProduct().getId());

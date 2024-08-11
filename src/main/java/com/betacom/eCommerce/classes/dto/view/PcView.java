@@ -15,124 +15,75 @@ package com.betacom.eCommerce.classes.dto.view;
  */
 public class PcView extends ProductView {
     private Integer id;
-    private Integer idRam;
-    private Integer idCPU;
-    private Integer idGPU;
-    private Integer idMemory;
-    private Integer idMotherboard;
+    private RamView ram;
+    private CpuView cpu;
+    private GpuView gpu;
+    private MemoryView memory;
+    private MotherboardView motherboard;
+    private CoolerView cooler;
+    private PsuView psu;
 
-    /**
-     * Default constructor for creating an empty PcView instance.
-     */
-    public PcView() {
-
+    public CoolerView getCooler() {
+        return cooler;
     }
 
-    /**
-     * Gets the ID of the PC.
-     *
-     * @return the ID of the PC.
-     */
+    public void setCooler(CoolerView cooler) {
+        this.cooler = cooler;
+    }
+
+    public PsuView getPsu() {
+        return psu;
+    }
+
+    public void setPsu(PsuView psu) {
+        this.psu = psu;
+    }
+
     public Integer getId() {
         return id;
     }
 
-    /**
-     * Sets the ID of the PC.
-     *
-     * @param id the ID to set for the PC.
-     */
     public void setId(Integer id) {
         this.id = id;
     }
 
-    /**
-     * Gets the ID of the RAM component.
-     *
-     * @return the ID of the RAM component.
-     */
-    public Integer getIdRam() {
-        return idRam;
+    public RamView getRam() {
+        return ram;
     }
 
-    /**
-     * Sets the ID of the RAM component.
-     *
-     * @param idRam the ID to set for the RAM component.
-     */
-    public void setIdRam(Integer idRam) {
-        this.idRam = idRam;
+    public void setRam(RamView ram) {
+        this.ram = ram;
     }
 
-    /**
-     * Gets the ID of the CPU component.
-     *
-     * @return the ID of the CPU component.
-     */
-    public Integer getIdCPU() {
-        return idCPU;
+    public CpuView getCpu() {
+        return cpu;
     }
 
-    /**
-     * Sets the ID of the CPU component.
-     *
-     * @param idCPU the ID to set for the CPU component.
-     */
-    public void setIdCPU(Integer idCPU) {
-        this.idCPU = idCPU;
+    public void setCpu(CpuView cpu) {
+        this.cpu = cpu;
     }
 
-    /**
-     * Gets the ID of the GPU component.
-     *
-     * @return the ID of the GPU component.
-     */
-    public Integer getIdGPU() {
-        return idGPU;
+    public GpuView getGpu() {
+        return gpu;
     }
 
-    /**
-     * Sets the ID of the GPU component.
-     *
-     * @param idGPU the ID to set for the GPU component.
-     */
-    public void setIdGPU(Integer idGPU) {
-        this.idGPU = idGPU;
+    public void setGpu(GpuView gpu) {
+        this.gpu = gpu;
     }
 
-    /**
-     * Gets the ID of the memory component.
-     *
-     * @return the ID of the memory component.
-     */
-    public Integer getIdMemory() {
-        return idMemory;
+    public MemoryView getMemory() {
+        return memory;
     }
 
-    /**
-     * Sets the ID of the memory component.
-     *
-     * @param idMemory the ID to set for the memory component.
-     */
-    public void setIdMemory(Integer idMemory) {
-        this.idMemory = idMemory;
+    public void setMemory(MemoryView memory) {
+        this.memory = memory;
     }
 
-    /**
-     * Gets the ID of the motherboard component.
-     *
-     * @return the ID of the motherboard component.
-     */
-    public Integer getIdMotherboard() {
-        return idMotherboard;
+    public MotherboardView getMotherboard() {
+        return motherboard;
     }
 
-    /**
-     * Sets the ID of the motherboard component.
-     *
-     * @param idMotherboard the ID to set for the motherboard component.
-     */
-    public void setIdMotherboard(Integer idMotherboard) {
-        this.idMotherboard = idMotherboard;
+    public void setMotherboard(MotherboardView motherboard) {
+        this.motherboard = motherboard;
     }
 }

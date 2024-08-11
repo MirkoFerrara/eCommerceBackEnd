@@ -18,8 +18,26 @@ public class UserPojo {
 
     private Boolean role ;
 
+    private String Address;
+
     @OneToMany(mappedBy="user", fetch = FetchType.EAGER)
     private List<CartPojo> cart ;
+
+    public String getAddress() {
+        return Address;
+    }
+
+    public void setAddress(String address) {
+        Address = address;
+    }
+
+    public List<CartPojo> getCart() {
+        return cart;
+    }
+
+    public void setCart(List<CartPojo> cart) {
+        this.cart = cart;
+    }
 
     public Integer getId() {
         return id;

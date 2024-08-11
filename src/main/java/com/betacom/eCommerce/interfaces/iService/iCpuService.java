@@ -5,6 +5,7 @@ import com.betacom.eCommerce.classes.dto.request.CpuRequest;
 import com.betacom.eCommerce.classes.dto.view.CartView;
 import com.betacom.eCommerce.classes.dto.view.CpuView;
 import com.betacom.eCommerce.classes.dto.view.GpuView;
+import com.betacom.eCommerce.classes.pojo.CpuPojo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,5 +16,5 @@ public interface iCpuService {
     public void remove(Integer id)  throws Exception;
     public List<CpuView> list();
     public CpuView getById(Integer id);
-
+    public CpuView transformInView(CpuPojo pojo);
 }

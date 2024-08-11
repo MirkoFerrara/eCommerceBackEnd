@@ -5,8 +5,8 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name="cpu")
-public class CpuPojo {
+@Table(name="psu")
+public class PsuPojo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id ;
@@ -19,10 +19,10 @@ public class CpuPojo {
 
     private Boolean contained ;
 
-    @OneToMany(mappedBy="idCpu", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy="idPsu", fetch = FetchType.EAGER)
     private List<LaptopPojo> laptop ;
 
-    @OneToMany(mappedBy="idCpu", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy="idPsu", fetch = FetchType.EAGER)
     private List<PcPojo> pc ;
 
     public List<PcPojo> getPc() {

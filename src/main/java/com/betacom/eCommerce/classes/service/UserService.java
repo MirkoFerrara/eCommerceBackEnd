@@ -23,6 +23,7 @@ public class UserService implements iUserService {
     @Override
     public void create(UserRequest req) {
         UserPojo pojo=new UserPojo();
+        pojo.setAddress(req.getAddress());
         pojo.setEmail(req.getEmail());
         pojo.setPassword(req.getPassword());
         pojo.setRole(req.getRole().equalsIgnoreCase("ADMIN"));
@@ -35,6 +36,7 @@ public class UserService implements iUserService {
         pojo.setEmail(req.getEmail());
         pojo.setPassword(req.getPassword());
         pojo.setRole(req.getRole().equalsIgnoreCase("ADMIN"));
+        pojo.setAddress(req.getAddress());
         userRepo.save(pojo);
     }
 
@@ -53,20 +55,22 @@ public class UserService implements iUserService {
         return transformInView(userRepo.findById(id).get());
     }
 
-    private UserView transformInView( UserPojo pojo ) {
+    public UserView transformInView( UserPojo pojo ) {
             UserView view = new UserView();
             view.setId(pojo.getId());
             view.setEmail(pojo.getEmail());
+            view.setAddress(pojo.getAddress());
             view.setPassword(pojo.getPassword());
             view.setRole((pojo.getRole()) ? "ADMIN" : "USER");
             return view;
     }
 
-    private List<UserView> transformInView(List<UserPojo> user) {
-        return user.stream().map(s -> {
+    public List<UserView> transformInView(List<UserPojo> pojo) {
+        return pojo.stream().map(s -> {
             UserView view = new UserView();
             view.setId(s.getId());
             view.setEmail(s.getEmail());
+            view.setAddress(s.getAddress());
             view.setPassword(s.getPassword());
             view.setRole((s.getRole()) ? "ADMIN" : "USER");
             return view;

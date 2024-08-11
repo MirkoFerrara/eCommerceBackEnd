@@ -1,10 +1,7 @@
 package com.betacom.eCommerce.classes.service;
 
 import com.betacom.eCommerce.classes.dto.request.RamRequest;
-import com.betacom.eCommerce.classes.dto.view.MemoryView;
-import com.betacom.eCommerce.classes.dto.view.MotherboardView;
 import com.betacom.eCommerce.classes.dto.view.RamView;
-import com.betacom.eCommerce.classes.dto.view.SmartphoneView;
 import com.betacom.eCommerce.classes.pojo.*;
 import com.betacom.eCommerce.interfaces.iRepository.iProductRepository;
 import com.betacom.eCommerce.interfaces.iRepository.iRamRepository;
@@ -56,7 +53,7 @@ public class RamService implements iRamService{
         return transformInView(filteredPojo);
     }
 
-    private List<RamView> transformInView(List<RamPojo> gpu) {
+    public List<RamView> transformInView(List<RamPojo> gpu) {
         return gpu.stream().map(s -> {
             RamView view = new RamView();
             view.setId(s.getId());
@@ -75,7 +72,7 @@ public class RamService implements iRamService{
         return transformInView(ramRepo.findById(id).get());
     }
 
-    private RamView transformInView( RamPojo pojo) {
+    public RamView transformInView( RamPojo pojo) {
         RamView view = new RamView();
         view.setId(pojo.getId());
         view.setIdProduct(pojo.getProduct().getId());

@@ -53,7 +53,7 @@ public class MouseService implements iMouseService{
         return transformInView( mouseRepo.findAll());
     }
 
-    private List<MouseView> transformInView(List<MousePojo> pojo) {
+    public List<MouseView> transformInView(List<MousePojo> pojo) {
         return pojo.stream().map(s -> {
             MouseView view = new MouseView();
             view.setId(s.getId());
@@ -72,7 +72,7 @@ public class MouseService implements iMouseService{
         return transformInView(mouseRepo.findById(id).get());
     }
 
-    private MouseView transformInView( MousePojo pojo) {
+    public MouseView transformInView( MousePojo pojo) {
         MouseView view = new MouseView();
         view.setId(pojo.getId());
         view.setIdProduct(pojo.getProduct().getId());

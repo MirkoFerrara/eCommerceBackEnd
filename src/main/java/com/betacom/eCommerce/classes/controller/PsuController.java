@@ -1,26 +1,25 @@
 package com.betacom.eCommerce.classes.controller;
 
-import com.betacom.eCommerce.classes.dto.request.ProductRequest;
-import com.betacom.eCommerce.classes.dto.request.SmartphoneRequest;
-import com.betacom.eCommerce.classes.dto.view.SmartphoneView;
-import com.betacom.eCommerce.classes.dto.view.TvView;
+import com.betacom.eCommerce.classes.dto.request.CoolerRequest;
+import com.betacom.eCommerce.classes.dto.request.PsuRequest;
+import com.betacom.eCommerce.classes.dto.view.CoolerView;
+import com.betacom.eCommerce.classes.dto.view.PsuView;
 import com.betacom.eCommerce.classes.response.Response;
 import com.betacom.eCommerce.classes.response.ResponseBase;
 import com.betacom.eCommerce.classes.response.ResponseObject;
-import com.betacom.eCommerce.classes.service.ProductService;
-import com.betacom.eCommerce.interfaces.iService.iSmartphoneService;
+import com.betacom.eCommerce.classes.service.CoolerService;
+import com.betacom.eCommerce.classes.service.PsuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
-@RequestMapping("/smartphone")
-public class SmartphoneController {
+@RestController("/rest/psu")
+public class PsuController {
 
     @Autowired
-    private iSmartphoneService service;
+    private PsuService service;
 
     @PostMapping("/create")
-    public ResponseBase create(SmartphoneRequest req){
+    public ResponseBase create(PsuRequest req){
         ResponseBase resp = new ResponseBase();
         resp.setRc(true);
         try{
@@ -31,10 +30,9 @@ public class SmartphoneController {
         }
         return resp;
     }
-
     @GetMapping("/list")
-    public Response<SmartphoneView> listAll(){
-        Response<SmartphoneView> resp = new Response<SmartphoneView>();
+    public Response<PsuView> listAll(){
+        Response<PsuView> resp = new Response<PsuView>();
         resp.setRc (true);
         try{
             resp.setDati (service.list());
@@ -57,8 +55,9 @@ public class SmartphoneController {
         }
         return resp;
     }
+
     @PostMapping("/update")
-    public ResponseBase update(@RequestBody(required = true) SmartphoneRequest req){
+    public ResponseBase update(@RequestBody(required = true) PsuRequest req){
         ResponseBase resp=new ResponseBase();
         resp.setRc(true);
         try {
@@ -70,8 +69,8 @@ public class SmartphoneController {
         return resp;
     }
     @GetMapping("/getById")
-    public ResponseObject<SmartphoneView> getById(Integer id){
-        ResponseObject<SmartphoneView> res = new ResponseObject<SmartphoneView>();
+    public ResponseObject<PsuView> getById(Integer id){
+        ResponseObject<PsuView> res = new ResponseObject<PsuView>();
         res.setRc(true);
         try {
             res.setDati(service.getById(id));

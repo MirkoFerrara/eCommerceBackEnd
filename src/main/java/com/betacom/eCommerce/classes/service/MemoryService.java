@@ -60,7 +60,7 @@ public class MemoryService implements iMemoryService{
         return transformInView(filteredPojo);
     }
 
-    private List<MemoryView> transformInView(List<MemoryPojo> pojo) {
+    public List<MemoryView> transformInView(List<MemoryPojo> pojo) {
         return pojo.stream().map(s -> {
             MemoryView view = new MemoryView();
             view.setId(s.getId());
@@ -79,7 +79,7 @@ public class MemoryService implements iMemoryService{
         return transformInView(memoryRepo.findById(id).get());
     }
 
-    private MemoryView transformInView( MemoryPojo pojo) {
+    public MemoryView transformInView( MemoryPojo pojo) {
         MemoryView view = new MemoryView();
         view.setId(pojo.getId());
         view.setIdProduct(pojo.getProduct().getId());

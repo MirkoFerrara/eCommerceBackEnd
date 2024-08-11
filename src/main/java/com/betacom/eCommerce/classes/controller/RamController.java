@@ -1,14 +1,11 @@
 package com.betacom.eCommerce.classes.controller;
 
-import com.betacom.eCommerce.classes.dto.request.SmartphoneRequest;
 import com.betacom.eCommerce.classes.dto.view.RamView;
-import com.betacom.eCommerce.classes.dto.view.SmartphoneView;
 import com.betacom.eCommerce.classes.response.Response;
 import com.betacom.eCommerce.classes.response.ResponseBase;
 import com.betacom.eCommerce.classes.response.ResponseObject;
 import com.betacom.eCommerce.interfaces.iService.iRamService;
 import com.betacom.eCommerce.classes.dto.request.RamRequest;
-import com.betacom.eCommerce.interfaces.iService.iSmartphoneService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

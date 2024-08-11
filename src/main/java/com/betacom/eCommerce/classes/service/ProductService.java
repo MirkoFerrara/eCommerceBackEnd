@@ -20,10 +20,8 @@ public class ProductService implements iProductService{
 
     @Autowired
     private iProductRepository productRepo;
-
-
     @Autowired
-    private iSmartphoneRepository smartphoneRepo;
+    private iCoolerRepository coolerRepo;
     @Autowired
     private iCartRepository cartRepo;
     @Autowired
@@ -47,7 +45,7 @@ public class ProductService implements iProductService{
     @Autowired
     private iMouseRepository mouseRepo;
     @Autowired
-    private iTvRepository tvRepo;
+    private iPsuRepository psuRepo;
     @Autowired
     private iKeyboardRepository keyboardRepo;
 
@@ -89,18 +87,18 @@ public class ProductService implements iProductService{
         String model = pojo.getModel();
         String brand = pojo.getBrand() ;
 
-        if(pojo.getItem().equalsIgnoreCase("Smartphone")) {
-            List<SmartphonePojo>  listPojo =  smartphoneRepo.findAll() ;
-            List<SmartphonePojo> filteredList = listPojo.stream()
+        if(pojo.getItem().equalsIgnoreCase("Cooler")) {
+            List<CoolerPojo>  listPojo =  coolerRepo.findAll() ;
+            List<CoolerPojo> filteredList = listPojo.stream()
                     .filter(s -> s.getProduct().getColour().equalsIgnoreCase(colour)
                             && s.getProduct().getModel().equalsIgnoreCase(model)
                             && s.getProduct().getBrand().equalsIgnoreCase(brand))
                     .toList();
             if(filteredList.isEmpty())
                  productRepo.delete(pojo);
-        } else if(pojo.getItem().equalsIgnoreCase("Tv")){
-            List<TvPojo>  listPojo =  tvRepo.findAll() ;
-            List<TvPojo> filteredList = listPojo.stream()
+        } else if(pojo.getItem().equalsIgnoreCase("Psu")){
+                List<PsuPojo>  listPojo =  psuRepo.findAll() ;
+            List<PsuPojo> filteredList = listPojo.stream()
                     .filter(s -> s.getProduct().getColour().equalsIgnoreCase(colour)
                             && s.getProduct().getModel().equalsIgnoreCase(model)
                             && s.getProduct().getBrand().equalsIgnoreCase(brand))
@@ -205,7 +203,7 @@ public class ProductService implements iProductService{
         return transformInView( productRepo.findAll());
     }
 
-    private List<ProductView> transformInView(List<ProductPojo> pojo) {
+    public List<ProductView> transformInView(List<ProductPojo> pojo) {
         return pojo.stream().map(s -> {
             ProductView view = new ProductView();
             view.setIdProduct(s.getId());
@@ -217,6 +215,5 @@ public class ProductService implements iProductService{
             return view;
         }).toList();
     }
-
 
 }

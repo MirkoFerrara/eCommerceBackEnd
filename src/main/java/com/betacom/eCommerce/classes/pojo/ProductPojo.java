@@ -53,13 +53,13 @@ public class ProductPojo {
     private List<MotherboardPojo> motherboard ;
 
     @OneToMany(mappedBy="product", fetch = FetchType.EAGER)
-    private List<TvPojo> tv ;
+    private List<CoolerPojo> cooler ;
 
     @OneToMany(mappedBy="product", fetch = FetchType.EAGER)
     private List<CartPojo> cart ;
 
     @OneToMany(mappedBy="product", fetch = FetchType.EAGER)
-    private List<SmartphonePojo> smartphone  ;
+    private List<PsuPojo> psu  ;
 
     @OneToMany(mappedBy="product", fetch = FetchType.EAGER)
     private List<KeyboardPojo> keyboard ;
@@ -70,6 +70,18 @@ public class ProductPojo {
     @OneToMany(mappedBy="product", fetch = FetchType.EAGER)
     private List<LaptopPojo> laptop ;
 
+    public List<CoolerPojo> getCooler() {
+        return cooler;
+    }
+    public void setCooler(List<CoolerPojo> cooler) {
+        this.cooler = cooler;
+    }
+    public List<PsuPojo> getPsu() {
+        return psu;
+    }
+    public void setPsu(List<PsuPojo> psu) {
+        this.psu = psu;
+    }
     public Integer getId() {
         return id;
     }
@@ -134,28 +146,12 @@ public class ProductPojo {
         this.motherboard = motherboard;
     }
 
-    public List<TvPojo> getTv() {
-        return tv;
-    }
-
-    public void setTv(List<TvPojo> tv) {
-        this.tv = tv;
-    }
-
     public List<CartPojo> getCart() {
         return cart;
     }
 
     public void setCart(List<CartPojo> cart) {
         this.cart = cart;
-    }
-
-    public List<SmartphonePojo> getSmartphone() {
-        return smartphone;
-    }
-
-    public void setSmartphone(List<SmartphonePojo> smartphone) {
-        this.smartphone = smartphone;
     }
 
     public List<KeyboardPojo> getKeyboard() {
