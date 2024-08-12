@@ -1,7 +1,6 @@
 package com.betacom.eCommerce.classes.service;
 
 import com.betacom.eCommerce.classes.dto.request.PsuRequest;
-import com.betacom.eCommerce.classes.dto.view.PcView;
 import com.betacom.eCommerce.classes.dto.view.PsuView;
 import com.betacom.eCommerce.classes.pojo.ProductPojo;
 import com.betacom.eCommerce.classes.pojo.PsuPojo;
@@ -9,10 +8,12 @@ import com.betacom.eCommerce.interfaces.iRepository.iPsuRepository;
 import com.betacom.eCommerce.interfaces.iRepository.iProductRepository;
 import com.betacom.eCommerce.interfaces.iService.iPsuService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class PsuService implements iPsuService {
     @Autowired
     private iPsuRepository psuRepo;

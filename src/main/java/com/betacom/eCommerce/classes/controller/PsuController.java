@@ -12,7 +12,8 @@ import com.betacom.eCommerce.classes.service.PsuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-@RestController("/rest/psu")
+@RestController
+@RequestMapping("/psu")
 public class PsuController {
 
     @Autowired

@@ -9,7 +9,8 @@ import com.betacom.eCommerce.classes.service.CoolerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-@RestController("/rest/cooler")
+@RestController
+@RequestMapping("/cooler")
 public class CoolerController {
 
     @Autowired
