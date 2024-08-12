@@ -12,4 +12,5 @@ public interface iUserService {
     public void update(UserRequest req) throws Exception;
     public void remove(Integer id) throws Exception;
     public List<UserView> list();
+    public UserView getById(Integer id);
 }

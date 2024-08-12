@@ -3,6 +3,8 @@ package com.betacom.eCommerce.classes.pojo;
 import jakarta.persistence.*;
 import org.apache.catalina.User;
 
+import java.util.List;
+
 @Entity
 @Table(name="memory")
 public class MemoryPojo {
@@ -16,6 +18,28 @@ public class MemoryPojo {
     private Boolean cart ;
 
     private Boolean contained ;
+
+    @OneToMany(mappedBy="idMemory", fetch = FetchType.EAGER)
+    private List<LaptopPojo> laptop ;
+
+    @OneToMany(mappedBy="idMemory", fetch = FetchType.EAGER)
+    private List<PcPojo> pc ;
+
+    public List<PcPojo> getPc() {
+        return pc;
+    }
+
+    public void setPc(List<PcPojo> pc) {
+        this.pc = pc;
+    }
+
+    public List<LaptopPojo> getLaptop() {
+        return laptop;
+    }
+
+    public void setLaptop(List<LaptopPojo> laptop) {
+        this.laptop = laptop;
+    }
 
     public Boolean getContained() {
         return contained;

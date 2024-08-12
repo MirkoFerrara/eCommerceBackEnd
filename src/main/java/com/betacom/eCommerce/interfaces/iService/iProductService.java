@@ -5,6 +5,7 @@ import com.betacom.eCommerce.classes.dto.request.ProductRequest;
 import com.betacom.eCommerce.classes.dto.request.RamRequest;
 import com.betacom.eCommerce.classes.dto.view.CartView;
 import com.betacom.eCommerce.classes.dto.view.ProductView;
+import com.betacom.eCommerce.classes.dto.view.RamView;
 
 import java.util.List;
 

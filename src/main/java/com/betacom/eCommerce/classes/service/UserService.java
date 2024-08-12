@@ -1,9 +1,7 @@
 package com.betacom.eCommerce.classes.service;
 
 import com.betacom.eCommerce.classes.dto.request.UserRequest;
-import com.betacom.eCommerce.classes.dto.view.GpuView;
 import com.betacom.eCommerce.classes.dto.view.UserView;
-import com.betacom.eCommerce.classes.pojo.GpuPojo;
 import com.betacom.eCommerce.classes.pojo.UserPojo;
 import com.betacom.eCommerce.interfaces.iRepository.iUserRepository;
 import com.betacom.eCommerce.interfaces.iRepository.iProductRepository;
@@ -24,29 +22,55 @@ public class UserService implements iUserService {
 
     @Override
     public void create(UserRequest req) {
-
+        UserPojo pojo=new UserPojo();
+        pojo.setAddress(req.getAddress());
+        pojo.setEmail(req.getEmail());
+        pojo.setPassword(req.getPassword());
+        pojo.setRole(req.getRole().equalsIgnoreCase("ADMIN"));
+        userRepo.save(pojo);
     }
 
     @Override
     public void update(UserRequest req) {
-
+        UserPojo pojo = userRepo.findById(req.getId()).get();
+        pojo.setEmail(req.getEmail());
+        pojo.setPassword(req.getPassword());
+        pojo.setRole(req.getRole().equalsIgnoreCase("ADMIN"));
+        pojo.setAddress(req.getAddress());
+        userRepo.save(pojo);
     }
 
     @Override
     public void remove(Integer id) {
-
+        userRepo.delete(userRepo.findById(id).get());
     }
 
+    @Override
     public List<UserView> list() {
-        List<UserPojo> pojo = userRepo.findAll();
-        return transformInView(pojo);
+        return transformInView(userRepo.findAll());
     }
 
-    private List<UserView> transformInView(List<UserPojo> user) {
-        return user.stream().map(s -> {
+    @Override
+    public  UserView getById(Integer id) {
+        return transformInView(userRepo.findById(id).get());
+    }
+
+    public UserView transformInView( UserPojo pojo ) {
+            UserView view = new UserView();
+            view.setId(pojo.getId());
+            view.setEmail(pojo.getEmail());
+            view.setAddress(pojo.getAddress());
+            view.setPassword(pojo.getPassword());
+            view.setRole((pojo.getRole()) ? "ADMIN" : "USER");
+            return view;
+    }
+
+    public List<UserView> transformInView(List<UserPojo> pojo) {
+        return pojo.stream().map(s -> {
             UserView view = new UserView();
             view.setId(s.getId());
             view.setEmail(s.getEmail());
+            view.setAddress(s.getAddress());
             view.setPassword(s.getPassword());
             view.setRole((s.getRole()) ? "ADMIN" : "USER");
             return view;

@@ -8,7 +8,10 @@ import com.betacom.eCommerce.interfaces.iRepository.*;
 import com.betacom.eCommerce.interfaces.iService.iCartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -16,7 +19,7 @@ import java.util.stream.Collectors;
 public class CartService implements iCartService{
 
         @Autowired
-        private iSmartphoneRepository smartphoneRepo;
+        private iPsuRepository psuRepo;
         @Autowired
         private iCartRepository cartRepo;
         @Autowired
@@ -42,7 +45,7 @@ public class CartService implements iCartService{
         @Autowired
         private iMouseRepository mouseRepo;
         @Autowired
-        private iTvRepository tvRepo;
+        private iCoolerRepository coolerRepo;
         @Autowired
         private iKeyboardRepository keyboardRepo;
 
@@ -62,10 +65,10 @@ public class CartService implements iCartService{
 
         public void updateRepo( Integer id , String item , boolean value ){
 
-            if ( item.equalsIgnoreCase("smartphone")) {
-                SmartphonePojo pojo = smartphoneRepo.findById(id).get();
+            if ( item.equalsIgnoreCase("psu")) {
+                PsuPojo pojo = psuRepo.findById(id).get();
                 pojo.setCart(value);
-                smartphoneRepo.save(pojo);
+                psuRepo.save(pojo);
             } else if ( item.equalsIgnoreCase("monitor") ){
                 MonitorPojo pojo = monitorRepo.findById(id).get();
                 pojo.setCart(value);
@@ -86,10 +89,10 @@ public class CartService implements iCartService{
                 GpuPojo pojo = gpuRepo.findById(id).get();
                 pojo.setCart(value);
                 gpuRepo.save(pojo);
-            } else if (item.equalsIgnoreCase("tv")){
-                TvPojo pojo = tvRepo.findById(id).get();
+            } else if (item.equalsIgnoreCase("cooler")){
+                CoolerPojo pojo = coolerRepo.findById(id).get();
                 pojo.setCart(value);
-                tvRepo.save(pojo);
+                coolerRepo.save(pojo);
             } else if ( item.equalsIgnoreCase("cpu") ) {
                 CpuPojo pojo = cpuRepo.findById(id).get();
                 pojo.setCart(value);
@@ -115,9 +118,9 @@ public class CartService implements iCartService{
 
     public void deleteRepo( Integer id , String item ) throws Exception {
 
-        if ( item.equalsIgnoreCase("smartphone")) {
-            SmartphonePojo pojo = smartphoneRepo.findById(id).get() ;
-            smartphoneRepo.delete(pojo);
+        if ( item.equalsIgnoreCase("psu")) {
+            PsuPojo pojo = psuRepo.findById(id).get() ;
+            psuRepo.delete(pojo);
         } else if ( item.equalsIgnoreCase("monitor") ){
             MonitorPojo pojo = monitorRepo.findById(id).get() ;
             monitorRepo.delete(pojo);
@@ -133,9 +136,9 @@ public class CartService implements iCartService{
         } else if ( item.equalsIgnoreCase("gpu") ) {
             GpuPojo pojo = gpuRepo.findById(id).get() ;
             gpuRepo.delete(pojo);
-        } else if (item.equalsIgnoreCase("tv")){
-            TvPojo pojo = tvRepo.findById(id).get();
-            tvRepo.delete(pojo);
+        } else if (item.equalsIgnoreCase("cooler")){
+            CoolerPojo pojo = coolerRepo.findById(id).get();
+            coolerRepo.delete(pojo);
         } else if ( item.equalsIgnoreCase("cpu") ) {
             CpuPojo pojo = cpuRepo.findById(id).get() ;
             cpuRepo.delete(pojo);
@@ -162,6 +165,7 @@ public class CartService implements iCartService{
     *           eliminata la riga nel carrello , e viene reimpostato a false
     *           il campo che indica se un prodotto è all'interno del carrello
     * */
+    @Override
     public void removeFromCart(CartRequest req) throws Exception {
 
         if (req.getConfirm())
@@ -187,27 +191,21 @@ public class CartService implements iCartService{
     }
 
     @Override
-    public void update(CartRequest req) throws Exception {
-
-        Optional<CartPojo>cart=cartRepo.findById(req.getId());
-
-        Optional<UserPojo> user=userRepo.findById(req.getIdUser());
-
-        Optional<ProductPojo> product=productRepo.findById(req.getIdProduct());
-        cart.get().setUser(user.get());
-        cart.get().setProduct(product.get());
-
-    }
-    @Override
     public void remove(Integer id) throws Exception {
-        Optional<CartPojo> opt = cartRepo.findById(id);
-        if (opt.isEmpty())
-            throw new Exception("l'id passato non è associato ad alcun carrello");
-        cartRepo.delete(opt.get());
+        cartRepo.delete(cartRepo.findById(id).get());
     }
+
     @Override
-    public List<CartView> list() {
-        List<CartPojo>cart=cartRepo.findAll();
-        return transformInView(cart);
+    public List<CartView> list(Integer id) throws Exception {
+
+        List<CartPojo>cart = cartRepo.findAll();
+        List<CartPojo> filteredList = cart.stream()
+                .filter(item -> item.getUser().getId() == id )
+                .toList();
+
+        if(filteredList.isEmpty())
+            throw new Exception("La lista è vuota");
+
+        return transformInView(filteredList);
     }
 }

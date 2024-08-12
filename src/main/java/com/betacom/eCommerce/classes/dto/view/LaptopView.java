@@ -2,11 +2,29 @@ package com.betacom.eCommerce.classes.dto.view;
 
 public class LaptopView extends ProductView {
     private Integer id;
-    private Integer idRam;
-    private Integer idCPU;
-    private Integer idGPU;
-    private Integer idMemory;
-    private Integer idMotherboard;
+    private RamView ram;
+    private CpuView cpu;
+    private GpuView gpu;
+    private MemoryView memory;
+    private MotherboardView motherboard;
+    private CoolerView cooler;
+    private PsuView psu;
+
+    public CoolerView getCooler() {
+        return cooler;
+    }
+
+    public void setCooler(CoolerView cooler) {
+        this.cooler = cooler;
+    }
+
+    public PsuView getPsu() {
+        return psu;
+    }
+
+    public void setPsu(PsuView psu) {
+        this.psu = psu;
+    }
 
     public Integer getId() {
         return id;
@@ -16,54 +34,43 @@ public class LaptopView extends ProductView {
         this.id = id;
     }
 
-    public Integer getIdRam() {
-        return idRam;
+    public RamView getRam() {
+        return ram;
     }
 
-    public void setIdRam(Integer idRam) {
-        this.idRam = idRam;
+    public void setRam(RamView ram) {
+        this.ram = ram;
     }
 
-    public Integer getIdCPU() {
-        return idCPU;
+    public CpuView getCpu() {
+        return cpu;
     }
 
-    public void setIdCPU(Integer idCPU) {
-        this.idCPU = idCPU;
+    public void setCpu(CpuView cpu) {
+        this.cpu = cpu;
     }
 
-    public Integer getIdGPU() {
-        return idGPU;
+    public GpuView getGpu() {
+        return gpu;
     }
 
-    public void setIdGPU(Integer idGPU) {
-        this.idGPU = idGPU;
+    public void setGpu(GpuView gpu) {
+        this.gpu = gpu;
     }
 
-    public Integer getIdMemory() {
-        return idMemory;
+    public MemoryView getMemory() {
+        return memory;
     }
 
-    public void setIdMemory(Integer idMemory) {
-        this.idMemory = idMemory;
+    public void setMemory(MemoryView memory) {
+        this.memory = memory;
     }
 
-    public Integer getIdMotherboard() {
-        return idMotherboard;
+    public MotherboardView getMotherboard() {
+        return motherboard;
     }
 
-    public void setIdMotherboard(Integer idMotherboard) {
-        this.idMotherboard = idMotherboard;
+    public void setMotherboard(MotherboardView motherboard) {
+        this.motherboard = motherboard;
     }
-
-    private Boolean cart ;
-
-    public Boolean getCart() {
-        return cart;
-    }
-
-    public void setCart(Boolean cart) {
-        this.cart = cart;
-    }
-
 }

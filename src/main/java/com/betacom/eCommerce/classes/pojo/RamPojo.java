@@ -2,20 +2,40 @@ package com.betacom.eCommerce.classes.pojo;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name="ram")
 public class RamPojo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id ;
+
+    @OneToMany(mappedBy="idRam", fetch = FetchType.EAGER)
+    private List<LaptopPojo> laptop ;
+
+    @OneToMany(mappedBy="idRam", fetch = FetchType.EAGER)
+    private List<PcPojo> pc ;
+
     @ManyToOne
     @JoinColumn(name = "idProduct")
     private ProductPojo product ;
 
     private Boolean cart ;
-
     private Boolean contained ;
 
+    public List<PcPojo> getPc() {
+        return pc;
+    }
+    public void setPc(List<PcPojo> pc) {
+        this.pc = pc;
+    }
+    public List<LaptopPojo> getLaptop() {
+        return laptop;
+    }
+    public void setLaptop(List<LaptopPojo> laptop) {
+        this.laptop = laptop;
+    }
     public Boolean getContained() {
         return contained;
     }
@@ -43,7 +63,6 @@ public class RamPojo {
     public ProductPojo getProduct() {
         return product;
     }
-
     public void setProduct(ProductPojo product) {
         this.product = product;
     }

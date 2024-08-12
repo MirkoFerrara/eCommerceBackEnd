@@ -2,14 +2,13 @@ package com.betacom.eCommerce.classes.dto.request;
 
 public class MouseRequest extends ProductRequest{
     private Integer id;
+    private Boolean cart;
 
-    private Boolean contained;
-
-    public Boolean getContained() {
-        return contained;
+    public Boolean getCart() {
+        return cart;
     }
-    public void setContained(Boolean contained) {
-        this.contained = contained;
+    public void setCart(Boolean cart) {
+        this.cart = cart;
     }
     public Integer getId() {
         return id;

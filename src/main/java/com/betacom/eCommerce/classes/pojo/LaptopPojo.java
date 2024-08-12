@@ -5,24 +5,99 @@ import jakarta.persistence.*;
 @Entity
 @Table(name="laptop")
 public class LaptopPojo {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id ;
+
     @ManyToOne
     @JoinColumn(name = "idProduct")
     private ProductPojo product ;
 
-    private Integer idRam ;
+    @ManyToOne
+    @JoinColumn(name = "idRam")
+    private RamPojo idRam ;
 
-    private Integer idProcessor ;
+    @ManyToOne
+    @JoinColumn(name = "idCpu")
+    private CpuPojo idCpu ;
 
-    private Integer idGUI ;
+    @ManyToOne
+    @JoinColumn(name = "idGpu")
+    private GpuPojo idGpu ;
 
-    private Integer idMemory ;
+    @ManyToOne
+    @JoinColumn(name = "idMemory")
+    private MemoryPojo idMemory ;
 
-    private Integer idMotherBoard ;
+    @ManyToOne
+    @JoinColumn(name = "idMotherboard")
+    private MotherboardPojo idMotherboard ;
+
+    @ManyToOne
+    @JoinColumn(name = "idPsu")
+    private PsuPojo idPsu ;
+
+    @ManyToOne
+    @JoinColumn(name = "idCooler")
+    private CoolerPojo idCooler ;
 
     private Boolean cart ;
+
+    public PsuPojo getIdPsu() {
+        return idPsu;
+    }
+
+    public void setIdPsu(PsuPojo idPsu) {
+        this.idPsu = idPsu;
+    }
+
+    public CoolerPojo getIdCooler() {
+        return idCooler;
+    }
+
+    public void setIdCooler(CoolerPojo idCooler) {
+        this.idCooler = idCooler;
+    }
+    public RamPojo getIdRam() {
+        return idRam;
+    }
+
+    public void setIdRam(RamPojo idRam) {
+        this.idRam = idRam;
+    }
+
+    public CpuPojo getIdCpu() {
+        return idCpu;
+    }
+
+    public void setIdCpu(CpuPojo idCpu) {
+        this.idCpu = idCpu;
+    }
+
+    public GpuPojo getIdGpu() {
+        return idGpu;
+    }
+
+    public void setIdGpu(GpuPojo idGpu) {
+        this.idGpu = idGpu;
+    }
+
+    public MemoryPojo getIdMemory() {
+        return idMemory;
+    }
+
+    public void setIdMemory(MemoryPojo idMemory) {
+        this.idMemory = idMemory;
+    }
+
+    public MotherboardPojo getIdMotherboard() {
+        return idMotherboard;
+    }
+
+    public void setIdMotherboard(MotherboardPojo idMotherboard) {
+        this.idMotherboard = idMotherboard;
+    }
 
     public Boolean getCart() {
         return cart;
@@ -48,43 +123,4 @@ public class LaptopPojo {
         this.product = product;
     }
 
-    public Integer getIdRam() {
-        return idRam;
-    }
-
-    public void setIdRam(Integer idRam) {
-        this.idRam = idRam;
-    }
-
-    public Integer getIdProcessor() {
-        return idProcessor;
-    }
-
-    public void setIdProcessor(Integer idProcessor) {
-        this.idProcessor = idProcessor;
-    }
-
-    public Integer getIdGUI() {
-        return idGUI;
-    }
-
-    public void setIdGUI(Integer idGUI) {
-        this.idGUI = idGUI;
-    }
-
-    public Integer getIdMemory() {
-        return idMemory;
-    }
-
-    public void setIdMemory(Integer idMemory) {
-        this.idMemory = idMemory;
-    }
-
-    public Integer getIdMotherBoard() {
-        return idMotherBoard;
-    }
-
-    public void setIdMotherBoard(Integer idMotherBoard) {
-        this.idMotherBoard = idMotherBoard;
-    }
 }

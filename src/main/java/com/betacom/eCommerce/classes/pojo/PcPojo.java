@@ -9,83 +9,105 @@ public class PcPojo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id ;
+
     @ManyToOne
     @JoinColumn(name = "idProduct")
     private ProductPojo product ;
 
-    private Integer idRam ;
+    @ManyToOne
+    @JoinColumn(name = "idRam")
+    private RamPojo idRam ;
 
-    private Integer idCPU ;
+    @ManyToOne
+    @JoinColumn(name = "idCpu")
+    private CpuPojo idCpu ;
 
-    private Integer idGPU ;
+    @ManyToOne
+    @JoinColumn(name = "idGpu")
+    private GpuPojo idGpu ;
 
-    private Integer idMemory ;
+    @ManyToOne
+    @JoinColumn(name = "idMemory")
+    private MemoryPojo idMemory ;
 
-    private Integer idMotherBoard ;
+    @ManyToOne
+    @JoinColumn(name = "idMotherboard")
+    private MotherboardPojo idMotherboard ;
+
+    @ManyToOne
+    @JoinColumn(name = "idPsu")
+    private PsuPojo idPsu ;
+
+    @ManyToOne
+    @JoinColumn(name = "idCooler")
+    private CoolerPojo idCooler ;
 
     private Boolean cart ;
+
+    public PsuPojo getIdPsu() {
+        return idPsu;
+    }
+
+    public void setIdPsu(PsuPojo idPsu) {
+        this.idPsu = idPsu;
+    }
+
+    public CoolerPojo getIdCooler() {
+        return idCooler;
+    }
+
+    public void setIdCooler(CoolerPojo idCooler) {
+        this.idCooler = idCooler;
+    }
+
+
 
     public Boolean getCart() {
         return cart;
     }
-
     public void setCart(Boolean cart) {
         this.cart = cart;
     }
-
     public Integer getId() {
         return id;
     }
-
     public void setId(Integer id) {
         this.id = id;
     }
-
     public ProductPojo getProduct() {
         return product;
     }
-
     public void setProduct(ProductPojo product) {
         this.product = product;
     }
-
-    public Integer getIdRam() {
+    public RamPojo getIdRam() {
         return idRam;
     }
-
-    public void setIdRam(Integer idRam) {
+    public void setIdRam(RamPojo idRam) {
         this.idRam = idRam;
     }
-
-    public Integer getIdCPU() {
-        return idCPU;
+    public CpuPojo getIdCpu() {
+        return idCpu;
     }
-
-    public void setIdCPU(Integer idCPU) {
-        this.idCPU = idCPU;
+    public void setIdCpu(CpuPojo idCpu) {
+        this.idCpu = idCpu;
     }
-
-    public Integer getIdGPU() {
-        return idGPU;
+    public GpuPojo getIdGpu() {
+        return idGpu;
     }
-
-    public void setIdGPU(Integer idGPU) {
-        this.idGPU = idGPU;
+    public void setIdGpu(GpuPojo idGpu) {
+        this.idGpu = idGpu;
     }
-
-    public Integer getIdMemory() {
+    public MemoryPojo getIdMemory() {
         return idMemory;
     }
-
-    public void setIdMemory(Integer idMemory) {
+    public void setIdMemory(MemoryPojo idMemory) {
         this.idMemory = idMemory;
     }
-
-    public Integer getIdMotherBoard() {
-        return idMotherBoard;
+    public MotherboardPojo getIdMotherboard() {
+        return idMotherboard;
     }
-
-    public void setIdMotherBoard(Integer idMotherBoard) {
-        this.idMotherBoard = idMotherBoard;
+    public void setIdMotherboard(MotherboardPojo idMotherboard) {
+        this.idMotherboard = idMotherboard;
     }
 }

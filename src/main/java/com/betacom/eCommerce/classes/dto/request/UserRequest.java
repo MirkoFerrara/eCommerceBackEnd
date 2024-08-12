@@ -5,6 +5,14 @@ public class UserRequest {
     private String email;
     private String password;
     private String role;
+    private String  Address;
+
+    public String getAddress(){return Address;}
+
+    public void setAddress(String Address)
+    {
+        this.Address=Address;
+    }
 
     public Integer getId() {
         return id;
