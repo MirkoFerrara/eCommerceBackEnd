@@ -54,7 +54,6 @@ public class CpuService implements iCpuService {
     @Override
     public void remove(Integer id) throws Exception {
         cpuRepo.delete(cpuRepo.findById(id).get());
-
     }
 
     @Override

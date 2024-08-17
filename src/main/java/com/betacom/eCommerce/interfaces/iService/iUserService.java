@@ -13,4 +13,5 @@ public interface iUserService {
     public void remove(Integer id) throws Exception;
     public List<UserView> list();
     public UserView getById(Integer id);
+    public UserView getByUsername(String username);
 }

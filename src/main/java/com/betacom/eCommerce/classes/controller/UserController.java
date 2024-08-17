@@ -82,4 +82,17 @@ public class UserController {
         }
         return res;
     }
+
+    @GetMapping("/getByUsername")
+    public ResponseObject<UserView> getByUsername(String username){
+        ResponseObject<UserView> res = new ResponseObject<UserView>();
+        res.setRc(true);
+        try {
+            res.setDati(service.getByUsername(username));
+        } catch (Exception e) {
+            res.setRc(false);
+            res.setMsg(e.getMessage());
+        }
+        return res;
+    }
 }

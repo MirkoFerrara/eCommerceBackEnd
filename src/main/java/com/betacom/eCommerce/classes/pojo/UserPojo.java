@@ -12,7 +12,7 @@ public class UserPojo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id ;
 
-    private String email ;
+    private String username ;
 
     private String password ;
 
@@ -47,14 +47,6 @@ public class UserPojo {
         this.id = id;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -69,5 +61,13 @@ public class UserPojo {
 
     public void setRole(Boolean role) {
         this.role = role;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }
