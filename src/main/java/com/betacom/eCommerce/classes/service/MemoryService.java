@@ -1,12 +1,8 @@
 package com.betacom.eCommerce.classes.service;
 
 import com.betacom.eCommerce.classes.dto.request.MemoryRequest;
-import com.betacom.eCommerce.classes.dto.view.GpuView;
 import com.betacom.eCommerce.classes.dto.view.MemoryView;
-import com.betacom.eCommerce.classes.dto.view.MonitorView;
-import com.betacom.eCommerce.classes.pojo.GpuPojo;
 import com.betacom.eCommerce.classes.pojo.MemoryPojo;
-import com.betacom.eCommerce.classes.pojo.MonitorPojo;
 import com.betacom.eCommerce.classes.pojo.ProductPojo;
 import com.betacom.eCommerce.interfaces.iRepository.iMemoryRepository;
 import com.betacom.eCommerce.interfaces.iRepository.iProductRepository;

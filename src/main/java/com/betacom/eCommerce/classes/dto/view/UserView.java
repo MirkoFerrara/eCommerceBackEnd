@@ -1,6 +1,6 @@
 package com.betacom.eCommerce.classes.dto.view;
 
-public class UserView extends ProductView {
+public class UserView {
     private Integer id;
     private String email;
     private String password;
