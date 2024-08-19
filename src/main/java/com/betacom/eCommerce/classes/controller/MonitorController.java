@@ -17,7 +17,7 @@ public class MonitorController {
     private iMonitorService service;
 
     @PostMapping("/create")
-    public ResponseBase create(MonitorRequest req){
+    public ResponseBase create(@RequestBody(required=true)MonitorRequest req){
         ResponseBase resp = new ResponseBase();
         resp.setRc(true);
         try{
@@ -69,7 +69,7 @@ public class MonitorController {
     }
 
     @GetMapping("/getById")
-    public ResponseObject<MonitorView> getById(Integer id){
+    public ResponseObject<MonitorView> getById(@RequestParam(required=true)Integer id){
         ResponseObject<MonitorView> res = new ResponseObject<MonitorView>();
         res.setRc(true);
         try {

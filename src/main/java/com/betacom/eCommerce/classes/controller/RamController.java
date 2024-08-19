@@ -17,7 +17,7 @@ public class RamController {
     private iRamService service;
 
     @PostMapping("/create")
-    public ResponseBase create(RamRequest req){
+    public ResponseBase create(@RequestBody(required=true)RamRequest req){
         ResponseBase resp = new ResponseBase();
         resp.setRc(true);
         try{
@@ -68,7 +68,7 @@ public class RamController {
         return resp;
     }
     @GetMapping("/getById")
-    public ResponseObject<RamView> getById(Integer id){
+    public ResponseObject<RamView> getById(@RequestParam(required=true)Integer id){
         ResponseObject<RamView> res = new ResponseObject<RamView>();
         res.setRc(true);
         try {
