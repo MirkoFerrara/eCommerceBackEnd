@@ -19,7 +19,7 @@ public class MotherboardController {
     private iMotherboardService service;
 
     @PostMapping("/create")
-    public ResponseBase create(MotherboardRequest req){
+    public ResponseBase create(@RequestBody(required=true)MotherboardRequest req){
         ResponseBase resp = new ResponseBase();
         resp.setRc(true);
         try{
@@ -71,7 +71,7 @@ public class MotherboardController {
     }
 
     @GetMapping("/getById")
-    public ResponseObject<MotherboardView> getById(Integer id){
+    public ResponseObject<MotherboardView> getById(@RequestParam(required=true)Integer id){
         ResponseObject<MotherboardView> res = new ResponseObject<MotherboardView>();
         res.setRc(true);
         try {

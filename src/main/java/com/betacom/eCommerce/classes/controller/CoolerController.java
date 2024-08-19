@@ -17,7 +17,7 @@ public class CoolerController {
     private CoolerService service;
 
     @PostMapping("/create")
-    public ResponseBase create(CoolerRequest req){
+    public ResponseBase create(@RequestBody(required=true)CoolerRequest req){
         ResponseBase resp = new ResponseBase();
         resp.setRc(true);
         try{
@@ -67,7 +67,7 @@ public class CoolerController {
         return resp;
     }
     @GetMapping("/getById")
-    public ResponseObject<CoolerView> getById(Integer id){
+    public ResponseObject<CoolerView> getById(@RequestParam(required=true)Integer id){
         ResponseObject<CoolerView> res = new ResponseObject<CoolerView>();
         res.setRc(true);
         try {

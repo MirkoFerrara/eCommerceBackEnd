@@ -20,7 +20,7 @@ public class LaptopController {
     private iLaptopService service;
 
     @PostMapping("/create")
-    public ResponseBase create(LaptopRequest req){
+    public ResponseBase create(@RequestBody(required=true)LaptopRequest req){
         ResponseBase resp = new ResponseBase();
         resp.setRc(true);
         try{
@@ -71,7 +71,7 @@ public class LaptopController {
     }
 
     @GetMapping("/getById")
-    public ResponseObject<LaptopView> getById(Integer id){
+    public ResponseObject<LaptopView> getById(@RequestParam(required=true)Integer id){
         ResponseObject<LaptopView> res = new ResponseObject<LaptopView>();
         res.setRc(true);
         try {

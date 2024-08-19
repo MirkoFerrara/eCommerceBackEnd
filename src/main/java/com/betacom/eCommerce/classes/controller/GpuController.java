@@ -20,7 +20,7 @@ public class GpuController {
     private iGpuService service;
 
     @PostMapping("/create")
-    public ResponseBase create(GpuRequest req){
+    public ResponseBase create(@RequestBody(required=true)GpuRequest req){
         ResponseBase resp = new ResponseBase();
         resp.setRc(true);
         try{
@@ -71,7 +71,7 @@ public class GpuController {
         return resp;
     }
     @GetMapping("/getById")
-    public ResponseObject<GpuView> getById(Integer id){
+    public ResponseObject<GpuView> getById(@RequestParam(required=true)Integer id){
         ResponseObject<GpuView> res = new ResponseObject<GpuView>();
         res.setRc(true);
         try {

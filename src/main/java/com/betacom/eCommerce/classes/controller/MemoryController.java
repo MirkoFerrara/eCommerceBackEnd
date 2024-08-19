@@ -20,7 +20,7 @@ public class MemoryController {
     private iMemoryService service;
 
     @PostMapping("/create")
-    public ResponseBase create(MemoryRequest req){
+    public ResponseBase create(@RequestBody(required=true)MemoryRequest req){
         ResponseBase resp = new ResponseBase();
         resp.setRc(true);
         try{
@@ -71,7 +71,7 @@ public class MemoryController {
     }
 
     @GetMapping("/getById")
-    public ResponseObject<MemoryView> getById(Integer id){
+    public ResponseObject<MemoryView> getById(@RequestParam(required=true)Integer id){
         ResponseObject<MemoryView> res = new ResponseObject<MemoryView>();
         res.setRc(true);
         try {

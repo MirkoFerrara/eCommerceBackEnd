@@ -19,7 +19,7 @@ public class CpuController {
     private iCpuService service;
 
     @PostMapping("/create")
-    public ResponseBase create(CpuRequest req){
+    public ResponseBase create(@RequestBody(required=true)CpuRequest req){
         ResponseBase resp = new ResponseBase();
         resp.setRc(true);
         try{
@@ -69,7 +69,7 @@ public class CpuController {
         return resp;
     }
     @GetMapping("/getById")
-    public ResponseObject<CpuView> getById(Integer id){
+    public ResponseObject<CpuView> getById(@RequestParam(required=true)Integer id){
         ResponseObject<CpuView> res = new ResponseObject<CpuView>();
         res.setRc(true);
         try {

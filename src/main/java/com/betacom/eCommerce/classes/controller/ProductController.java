@@ -19,7 +19,7 @@ public class ProductController {
     private ProductService service;
 
     @PostMapping("/create")
-    public ResponseBase create(ProductRequest req){
+    public ResponseBase create(@RequestBody(required=true)ProductRequest req){
         ResponseBase resp = new ResponseBase();
         resp.setRc(true);
         try{

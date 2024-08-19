@@ -20,7 +20,7 @@ public class KeyboardController {
     private iKeyboardService service;
 
     @PostMapping("/create")
-    public ResponseBase create(KeyboardRequest req){
+    public ResponseBase create(@RequestBody(required=true)KeyboardRequest req){
         ResponseBase resp = new ResponseBase();
         resp.setRc(true);
         try{
@@ -71,7 +71,7 @@ public class KeyboardController {
     }
 
     @GetMapping("/getById")
-    public ResponseObject<KeyboardView> getById(Integer id){
+    public ResponseObject<KeyboardView> getById(@RequestParam(required=true)Integer id){
         ResponseObject<KeyboardView> res = new ResponseObject<KeyboardView>();
         res.setRc(true);
         try {

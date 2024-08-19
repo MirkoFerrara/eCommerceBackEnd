@@ -20,7 +20,7 @@ public class MouseController {
     private iMouseService service;
 
     @PostMapping("/create")
-    public ResponseBase create(MouseRequest req){
+    public ResponseBase create(@RequestBody(required=true)MouseRequest req){
         ResponseBase resp = new ResponseBase();
         resp.setRc(true);
         try{
@@ -69,7 +69,7 @@ public class MouseController {
         return resp;
     }
     @GetMapping("/getById")
-    public ResponseObject<MouseView> getById(Integer id){
+    public ResponseObject<MouseView> getById(@RequestParam(required=true)Integer id){
         ResponseObject<MouseView> res = new ResponseObject<MouseView>();
         res.setRc(true);
         try {
