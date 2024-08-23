@@ -19,7 +19,7 @@ public class UserController {
     private iUserService service;
 
     @PostMapping("/create")
-    public ResponseBase create(UserRequest req){
+    public ResponseBase create(@RequestBody(required = true) UserRequest req){
         ResponseBase resp = new ResponseBase();
         resp.setRc(true);
         try{
