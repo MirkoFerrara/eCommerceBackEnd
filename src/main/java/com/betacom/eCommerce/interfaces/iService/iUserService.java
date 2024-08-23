@@ -11,7 +11,8 @@ public interface iUserService {
     public void create(UserRequest req) throws Exception;
     public void update(UserRequest req) throws Exception;
     public void remove(Integer id) throws Exception;
-    public List<UserView> list();
+    public List<UserView> listAdmin();
+    public List<UserView> listUser();
     public UserView getById(Integer id);
     public UserView getByUsername(String username);
 }
