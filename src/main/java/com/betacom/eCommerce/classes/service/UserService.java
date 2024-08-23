@@ -50,10 +50,15 @@ public class UserService implements iUserService {
     }
 
     @Override
-    public List<UserView> list() {
-        return transformInView(userRepo.findAll());
+    public List<UserView> listAdmin() {
+        return transformInView(userRepo.findAll(),"ADMIN");
     }
 
+    @Override
+    public List<UserView> listUser() {
+        return transformInView(userRepo.findAll(),"USER");
+    }
+    
     @Override
     public  UserView getById(Integer id) {
         return transformInView(userRepo.findById(id).get());
@@ -74,15 +79,21 @@ public class UserService implements iUserService {
             return view;
     }
 
-    public List<UserView> transformInView(List<UserPojo> pojo) {
-        return pojo.stream().map(s -> {
-            UserView view = new UserView();
-            view.setId(s.getId());
-            view.setUsername(s.getUsername());
-            view.setAddress(s.getAddress());
-            view.setPassword(s.getPassword());
-            view.setRole((s.getRole()) ? "ADMIN" : "USER");
-            return view;
-        }).collect(Collectors.toList());
+    public List<UserView> transformInView(List<UserPojo> pojo, String role) {
+        return pojo.stream()
+                .filter(s -> { 
+                    String userRole = s.getRole() ? "ADMIN" : "USER";
+                    return userRole.equalsIgnoreCase(role);
+                })
+                .map(s -> {
+                    UserView view = new UserView();
+                    view.setId(s.getId());
+                    view.setUsername(s.getUsername());
+                    view.setAddress(s.getAddress());
+                    view.setPassword(s.getPassword());
+                    view.setRole(s.getRole() ? "ADMIN" : "USER");
+                    return view;
+                })
+                .toList();
     }
 }

@@ -17,7 +17,7 @@ public class MonitorController {
     private iMonitorService service;
 
     @PostMapping("/create")
-    public ResponseBase create(@RequestBody(required=true)MonitorRequest req){
+    public ResponseBase create(@RequestBody(required=true)MonitorRequest req) {
         ResponseBase resp = new ResponseBase();
         resp.setRc(true);
         try{
@@ -30,7 +30,7 @@ public class MonitorController {
     }
 
     @GetMapping("/list")
-    public Response<MonitorView> listAll(){
+    public Response<MonitorView> listAll() {
         Response<MonitorView> resp = new Response<MonitorView>();
         resp.setRc (true);
         try{
@@ -43,7 +43,7 @@ public class MonitorController {
     }
 
     @PostMapping("/remove")
-    public ResponseBase remove(@RequestParam(required = true) Integer id){
+    public ResponseBase remove(@RequestParam(required = true) Integer id) {
         ResponseBase resp=new ResponseBase();
         resp.setRc(true);
         try {
@@ -56,7 +56,7 @@ public class MonitorController {
     }
 
     @PostMapping("/update")
-    public ResponseBase update(@RequestBody(required = true) MonitorRequest req){
+    public ResponseBase update(@RequestBody(required = true) MonitorRequest req) {
         ResponseBase resp=new ResponseBase();
         resp.setRc(true);
         try {
@@ -69,7 +69,7 @@ public class MonitorController {
     }
 
     @GetMapping("/getById")
-    public ResponseObject<MonitorView> getById(@RequestParam(required=true)Integer id){
+    public ResponseObject<MonitorView> getById(@RequestParam(required=true)Integer id) {
         ResponseObject<MonitorView> res = new ResponseObject<MonitorView>();
         res.setRc(true);
         try {

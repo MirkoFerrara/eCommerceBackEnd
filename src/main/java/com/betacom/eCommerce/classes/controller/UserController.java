@@ -30,12 +30,24 @@ public class UserController {
         }
         return resp;
     }
-    @GetMapping("/list")
-    public Response<UserView> listAll(){
+    @GetMapping("/listUser")
+    public Response<UserView> listAllUser(){
         Response<UserView> resp = new Response<UserView>();
         resp.setRc (true);
         try{
-            resp.setDati (service.list());
+            resp.setDati (service.listUser());
+        }catch(Exception e){
+            resp.setRc(false);
+            resp.setMsg(e.getMessage());
+        }
+        return resp;
+    }
+    @GetMapping("/listAdmin")
+    public Response<UserView> listAllAdmin(){
+        Response<UserView> resp = new Response<UserView>();
+        resp.setRc (true);
+        try{
+            resp.setDati (service.listAdmin());
         }catch(Exception e){
             resp.setRc(false);
             resp.setMsg(e.getMessage());
