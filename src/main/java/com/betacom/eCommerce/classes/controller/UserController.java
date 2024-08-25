@@ -30,14 +30,9 @@ public class UserController {
         }
         return resp;
     }
-<<<<<<< HEAD
 
-    @GetMapping("/list")
-    public Response<UserView> listAll(){
-=======
     @GetMapping("/listUser")
     public Response<UserView> listAllUser(){
->>>>>>> 5f2b6d02426c0705ee7a08c02632ef6cf536d4a6
         Response<UserView> resp = new Response<UserView>();
         resp.setRc (true);
         try{
