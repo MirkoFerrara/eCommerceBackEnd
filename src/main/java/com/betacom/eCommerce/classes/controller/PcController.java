@@ -18,7 +18,7 @@ public class PcController {
     private iPcService service;
 
     @PostMapping("/create")
-    public ResponseBase create(PcRequest req){
+    public ResponseBase create(@RequestBody(required=true)PcRequest req){
         ResponseBase resp = new ResponseBase();
         resp.setRc(true);
         try{
@@ -70,7 +70,7 @@ public class PcController {
     }
 
     @GetMapping("/getById")
-    public ResponseObject<PcView> getById(Integer id){
+    public ResponseObject<PcView> getById(@RequestParam(required=true)Integer id){
         ResponseObject<PcView> res = new ResponseObject<PcView>();
         res.setRc(true);
         try {

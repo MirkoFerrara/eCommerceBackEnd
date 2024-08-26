@@ -4,6 +4,7 @@ import com.betacom.eCommerce.classes.dto.request.CoolerRequest;
 import com.betacom.eCommerce.classes.dto.request.PsuRequest;
 import com.betacom.eCommerce.classes.dto.view.CoolerView;
 import com.betacom.eCommerce.classes.dto.view.PsuView;
+import com.betacom.eCommerce.classes.dto.view.RamView;
 import com.betacom.eCommerce.classes.response.Response;
 import com.betacom.eCommerce.classes.response.ResponseBase;
 import com.betacom.eCommerce.classes.response.ResponseObject;
@@ -20,7 +21,7 @@ public class PsuController {
     private PsuService service;
 
     @PostMapping("/create")
-    public ResponseBase create(PsuRequest req){
+    public ResponseBase create(@RequestBody(required=true)PsuRequest req){
         ResponseBase resp = new ResponseBase();
         resp.setRc(true);
         try{
@@ -70,11 +71,24 @@ public class PsuController {
         return resp;
     }
     @GetMapping("/getById")
-    public ResponseObject<PsuView> getById(Integer id){
+    public ResponseObject<PsuView> getById(@RequestParam(required=true)Integer id){
         ResponseObject<PsuView> res = new ResponseObject<PsuView>();
         res.setRc(true);
         try {
             res.setDati(service.getById(id));
+        } catch (Exception e) {
+            res.setRc(false);
+            res.setMsg(e.getMessage());
+        }
+        return res;
+    }
+
+    @GetMapping("/listByIdProduct")
+    public Response<PsuView> listByIdProduct(@RequestParam(required=true)Integer id){
+        Response<PsuView> res = new Response<PsuView>();
+        res.setRc(true);
+        try {
+            res.setDati(service.listByIdProduct(id));
         } catch (Exception e) {
             res.setRc(false);
             res.setMsg(e.getMessage());

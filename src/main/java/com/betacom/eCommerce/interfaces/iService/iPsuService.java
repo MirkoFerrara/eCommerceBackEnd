@@ -5,6 +5,7 @@ import com.betacom.eCommerce.classes.dto.view.GpuView;
 import com.betacom.eCommerce.classes.dto.view.PsuView;
 import com.betacom.eCommerce.classes.pojo.GpuPojo;
 import com.betacom.eCommerce.classes.pojo.PsuPojo;
+import com.betacom.eCommerce.classes.pojo.RamPojo;
 
 import java.util.List;
 
@@ -15,5 +16,7 @@ public interface iPsuService {
     public List<PsuView> list();
     public PsuView getById(Integer id);
     public PsuView transformInView(PsuPojo pojo);
+    public List<PsuView>listByIdProduct(Integer idProduct);
+
 
 }

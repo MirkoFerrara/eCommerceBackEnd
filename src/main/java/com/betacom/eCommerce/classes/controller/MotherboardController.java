@@ -4,6 +4,7 @@ import com.betacom.eCommerce.classes.dto.request.MonitorRequest;
 import com.betacom.eCommerce.classes.dto.request.MotherboardRequest;
 import com.betacom.eCommerce.classes.dto.view.MotherboardView;
 import com.betacom.eCommerce.classes.dto.view.MouseView;
+import com.betacom.eCommerce.classes.dto.view.PsuView;
 import com.betacom.eCommerce.classes.response.Response;
 import com.betacom.eCommerce.classes.response.ResponseBase;
 import com.betacom.eCommerce.classes.response.ResponseObject;
@@ -19,7 +20,7 @@ public class MotherboardController {
     private iMotherboardService service;
 
     @PostMapping("/create")
-    public ResponseBase create(MotherboardRequest req){
+    public ResponseBase create(@RequestBody(required=true)MotherboardRequest req){
         ResponseBase resp = new ResponseBase();
         resp.setRc(true);
         try{
@@ -71,11 +72,24 @@ public class MotherboardController {
     }
 
     @GetMapping("/getById")
-    public ResponseObject<MotherboardView> getById(Integer id){
+    public ResponseObject<MotherboardView> getById(@RequestParam(required=true)Integer id){
         ResponseObject<MotherboardView> res = new ResponseObject<MotherboardView>();
         res.setRc(true);
         try {
             res.setDati(service.getById(id));
+        } catch (Exception e) {
+            res.setRc(false);
+            res.setMsg(e.getMessage());
+        }
+        return res;
+    }
+
+    @GetMapping("/listByIdProduct")
+    public Response<MotherboardView> listByIdProduct(@RequestParam(required=true)Integer id){
+        Response<MotherboardView> res = new Response<MotherboardView>();
+        res.setRc(true);
+        try {
+            res.setDati(service.listByIdProduct(id));
         } catch (Exception e) {
             res.setRc(false);
             res.setMsg(e.getMessage());

@@ -1,6 +1,7 @@
 package com.betacom.eCommerce.classes.service;
 
 import com.betacom.eCommerce.classes.dto.request.RamRequest;
+import com.betacom.eCommerce.classes.dto.view.CoolerView;
 import com.betacom.eCommerce.classes.dto.view.RamView;
 import com.betacom.eCommerce.classes.pojo.*;
 import com.betacom.eCommerce.interfaces.iRepository.iProductRepository;
@@ -82,5 +83,9 @@ public class RamService implements iRamService{
         view.setPrice(pojo.getProduct().getPrice());
         view.setModel(pojo.getProduct().getModel());
         return view;
+    }
+    @Override
+    public List<RamView> listByIdProduct(Integer idProduct) {
+        return transformInView(ramRepo.findByProduct(idProduct));
     }
 }

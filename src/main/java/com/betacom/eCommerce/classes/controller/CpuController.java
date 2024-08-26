@@ -1,6 +1,7 @@
 package com.betacom.eCommerce.classes.controller;
 
 import com.betacom.eCommerce.classes.dto.request.CpuRequest;
+import com.betacom.eCommerce.classes.dto.view.CoolerView;
 import com.betacom.eCommerce.classes.dto.view.CpuView;
 import com.betacom.eCommerce.classes.dto.view.GpuView;
 import com.betacom.eCommerce.classes.dto.view.UserView;
@@ -19,7 +20,7 @@ public class CpuController {
     private iCpuService service;
 
     @PostMapping("/create")
-    public ResponseBase create(CpuRequest req){
+    public ResponseBase create(@RequestBody(required=true)CpuRequest req){
         ResponseBase resp = new ResponseBase();
         resp.setRc(true);
         try{
@@ -30,6 +31,20 @@ public class CpuController {
         }
         return resp;
     }
+
+    @GetMapping("/listByIdProduct")
+    public Response<CpuView> listByIdProduct(Integer idProduct){
+        Response<CpuView> resp = new Response<CpuView>();
+        resp.setRc (true);
+        try{
+            resp.setDati (service.listByIdProduct(idProduct));
+        }catch(Exception e){
+            resp.setRc(false);
+            resp.setMsg(e.getMessage());
+        }
+        return resp;
+    }
+
     @GetMapping("/list")
     public Response<CpuView> listAll(){
         Response<CpuView> resp = new Response<CpuView>();
@@ -69,7 +84,7 @@ public class CpuController {
         return resp;
     }
     @GetMapping("/getById")
-    public ResponseObject<CpuView> getById(Integer id){
+    public ResponseObject<CpuView> getById(@RequestParam(required=true)Integer id){
         ResponseObject<CpuView> res = new ResponseObject<CpuView>();
         res.setRc(true);
         try {

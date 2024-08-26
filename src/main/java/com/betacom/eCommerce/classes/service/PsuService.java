@@ -2,6 +2,7 @@ package com.betacom.eCommerce.classes.service;
 
 import com.betacom.eCommerce.classes.dto.request.PsuRequest;
 import com.betacom.eCommerce.classes.dto.view.PsuView;
+import com.betacom.eCommerce.classes.dto.view.RamView;
 import com.betacom.eCommerce.classes.pojo.ProductPojo;
 import com.betacom.eCommerce.classes.pojo.PsuPojo;
 import com.betacom.eCommerce.interfaces.iRepository.iPsuRepository;
@@ -80,5 +81,10 @@ public class PsuService implements iPsuService {
         view.setPrice(pojo.getProduct().getPrice());
         view.setModel(pojo.getProduct().getModel());
         return view;
+    }
+
+    @Override
+    public List<PsuView> listByIdProduct(Integer idProduct) {
+        return transformInView(psuRepo.findByProduct(idProduct));
     }
 }

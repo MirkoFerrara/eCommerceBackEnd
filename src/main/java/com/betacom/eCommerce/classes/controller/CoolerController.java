@@ -17,7 +17,7 @@ public class CoolerController {
     private CoolerService service;
 
     @PostMapping("/create")
-    public ResponseBase create(CoolerRequest req){
+    public ResponseBase create(@RequestBody(required=true)CoolerRequest req){
         ResponseBase resp = new ResponseBase();
         resp.setRc(true);
         try{
@@ -28,6 +28,20 @@ public class CoolerController {
         }
         return resp;
     }
+
+    @GetMapping("/listByIdProduct")
+    public Response<CoolerView> listByIdProduct(Integer idProduct){
+        Response<CoolerView> resp = new Response<CoolerView>();
+        resp.setRc (true);
+        try{
+            resp.setDati (service.listByIdProduct(idProduct));
+        }catch(Exception e){
+            resp.setRc(false);
+            resp.setMsg(e.getMessage());
+        }
+        return resp;
+    }
+
     @GetMapping("/list")
     public Response<CoolerView> listAll(){
         Response<CoolerView> resp = new Response<CoolerView>();
@@ -67,7 +81,7 @@ public class CoolerController {
         return resp;
     }
     @GetMapping("/getById")
-    public ResponseObject<CoolerView> getById(Integer id){
+    public ResponseObject<CoolerView> getById(@RequestParam(required=true)Integer id){
         ResponseObject<CoolerView> res = new ResponseObject<CoolerView>();
         res.setRc(true);
         try {

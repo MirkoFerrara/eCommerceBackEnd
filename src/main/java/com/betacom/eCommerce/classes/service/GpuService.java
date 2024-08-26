@@ -1,6 +1,7 @@
 package com.betacom.eCommerce.classes.service;
 
 import com.betacom.eCommerce.classes.dto.request.GpuRequest;
+import com.betacom.eCommerce.classes.dto.view.CoolerView;
 import com.betacom.eCommerce.classes.dto.view.CpuView;
 import com.betacom.eCommerce.classes.dto.view.GpuView;
 import com.betacom.eCommerce.classes.dto.view.MotherboardView;
@@ -39,6 +40,12 @@ public class GpuService implements iGpuService {
         pojo.setContained(req.getContained());
 
         gpuRepo.save(pojo);
+    }
+
+
+    @Override
+    public List<GpuView> listByIdProduct(Integer idProduct) {
+        return transformInView(gpuRepo.findByProduct(idProduct));
     }
 
     @Override

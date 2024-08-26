@@ -20,12 +20,13 @@ public class UserService implements iUserService {
     @Autowired
     private iProductRepository productRepo;
 
+
     @Override
     public void create(UserRequest req) {
-        UserPojo pojo=new UserPojo();
+        UserPojo pojo = new UserPojo();
         pojo.setAddress(req.getAddress());
-        pojo.setUsername(req.getEmail());
-        pojo.setPassword(req.getPassword());
+        pojo.setUsername(req.getUsername());
+        pojo.setPassword(req.getPassword()); // Codifica la password qui
         pojo.setRole(req.getRole().equalsIgnoreCase("ADMIN"));
         userRepo.save(pojo);
     }
@@ -33,13 +34,14 @@ public class UserService implements iUserService {
     @Override
     public void update(UserRequest req) {
         UserPojo pojo = userRepo.findById(req.getId()).get();
-        pojo.setUsername(req.getEmail());
-        pojo.setPassword(req.getPassword());
+        pojo.setUsername(req.getUsername());
+        if (req.getPassword() != null && !req.getPassword().isEmpty()) {
+            pojo.setPassword(req.getPassword()); // Codifica la password qui
+        }
         pojo.setRole(req.getRole().equalsIgnoreCase("ADMIN"));
         pojo.setAddress(req.getAddress());
         userRepo.save(pojo);
     }
-
     @Override
     public void remove(Integer id) {
         userRepo.delete(userRepo.findById(id).get());
@@ -63,7 +65,7 @@ public class UserService implements iUserService {
     public UserView transformInView( UserPojo pojo ) {
             UserView view = new UserView();
             view.setId(pojo.getId());
-            view.setEmail(pojo.getUsername());
+            view.setUsername(pojo.getUsername());
             view.setAddress(pojo.getAddress());
             view.setPassword(pojo.getPassword());
             view.setRole((pojo.getRole()) ? "ADMIN" : "USER");
@@ -74,7 +76,7 @@ public class UserService implements iUserService {
         return pojo.stream().map(s -> {
             UserView view = new UserView();
             view.setId(s.getId());
-            view.setEmail(s.getUsername());
+            view.setUsername(s.getUsername());
             view.setAddress(s.getAddress());
             view.setPassword(s.getPassword());
             view.setRole((s.getRole()) ? "ADMIN" : "USER");

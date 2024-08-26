@@ -20,12 +20,25 @@ public class GpuController {
     private iGpuService service;
 
     @PostMapping("/create")
-    public ResponseBase create(GpuRequest req){
+    public ResponseBase create(@RequestBody(required=true)GpuRequest req){
         ResponseBase resp = new ResponseBase();
         resp.setRc(true);
         try{
             service.create(req);
         }catch (Exception e){
+            resp.setRc(false);
+            resp.setMsg(e.getMessage());
+        }
+        return resp;
+    }
+
+    @GetMapping("/listByIdProduct")
+    public Response<GpuView> listByIdProduct(Integer idProduct){
+        Response<GpuView> resp = new Response<GpuView>();
+        resp.setRc (true);
+        try{
+            resp.setDati (service.listByIdProduct(idProduct));
+        }catch(Exception e){
             resp.setRc(false);
             resp.setMsg(e.getMessage());
         }
@@ -71,7 +84,7 @@ public class GpuController {
         return resp;
     }
     @GetMapping("/getById")
-    public ResponseObject<GpuView> getById(Integer id){
+    public ResponseObject<GpuView> getById(@RequestParam(required=true)Integer id){
         ResponseObject<GpuView> res = new ResponseObject<GpuView>();
         res.setRc(true);
         try {
