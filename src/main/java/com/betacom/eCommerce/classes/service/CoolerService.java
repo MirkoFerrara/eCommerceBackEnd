@@ -2,6 +2,7 @@ package com.betacom.eCommerce.classes.service;
 
 import com.betacom.eCommerce.classes.dto.request.CoolerRequest;
 import com.betacom.eCommerce.classes.dto.view.CoolerView;
+import com.betacom.eCommerce.classes.dto.view.UserView;
 import com.betacom.eCommerce.classes.pojo.*;
 import com.betacom.eCommerce.interfaces.iRepository.iCoolerRepository;
 import com.betacom.eCommerce.interfaces.iRepository.iProductRepository;
@@ -50,6 +51,7 @@ public class CoolerService implements iCoolerService {
         }
         coolerRepo.save(pojo);
     }
+
     @Override
     public void remove(Integer id) throws Exception {
         coolerRepo.delete(coolerRepo.findById(id).get());
@@ -81,6 +83,11 @@ public class CoolerService implements iCoolerService {
         view.setPrice(pojo.getProduct().getPrice());
         view.setModel(pojo.getProduct().getModel());
         return view;
+    }
+
+    @Override
+    public List<CoolerView> listByIdProduct(Integer idProduct) {
+        return transformInView(coolerRepo.findByProduct(idProduct));
     }
 
     public List<CoolerView> transformInView(List<CoolerPojo> pojo) {

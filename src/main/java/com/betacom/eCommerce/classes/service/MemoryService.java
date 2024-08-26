@@ -1,6 +1,7 @@
 package com.betacom.eCommerce.classes.service;
 
 import com.betacom.eCommerce.classes.dto.request.MemoryRequest;
+import com.betacom.eCommerce.classes.dto.view.CoolerView;
 import com.betacom.eCommerce.classes.dto.view.GpuView;
 import com.betacom.eCommerce.classes.dto.view.MemoryView;
 import com.betacom.eCommerce.classes.dto.view.MonitorView;
@@ -33,6 +34,12 @@ public class MemoryService implements iMemoryService{
             pojo.setContained(req.getContained());
         }
         memoryRepo.save(pojo);
+    }
+
+
+    @Override
+    public List<MemoryView> listByIdProduct(Integer idProduct) {
+        return transformInView(memoryRepo.findByProduct(idProduct));
     }
 
     @Override

@@ -4,6 +4,7 @@ import com.betacom.eCommerce.classes.dto.request.MonitorRequest;
 import com.betacom.eCommerce.classes.dto.request.MotherboardRequest;
 import com.betacom.eCommerce.classes.dto.view.MotherboardView;
 import com.betacom.eCommerce.classes.dto.view.MouseView;
+import com.betacom.eCommerce.classes.dto.view.PsuView;
 import com.betacom.eCommerce.classes.response.Response;
 import com.betacom.eCommerce.classes.response.ResponseBase;
 import com.betacom.eCommerce.classes.response.ResponseObject;
@@ -76,6 +77,19 @@ public class MotherboardController {
         res.setRc(true);
         try {
             res.setDati(service.getById(id));
+        } catch (Exception e) {
+            res.setRc(false);
+            res.setMsg(e.getMessage());
+        }
+        return res;
+    }
+
+    @GetMapping("/listByIdProduct")
+    public Response<MotherboardView> listByIdProduct(@RequestParam(required=true)Integer id){
+        Response<MotherboardView> res = new Response<MotherboardView>();
+        res.setRc(true);
+        try {
+            res.setDati(service.listByIdProduct(id));
         } catch (Exception e) {
             res.setRc(false);
             res.setMsg(e.getMessage());

@@ -20,16 +20,16 @@ public class KeyboardService implements iKeyboardService {
 
     @Autowired
     private iKeyboardRepository keyboardRepo;
-
     @Autowired
     private iProductRepository productRepo;
-
     @Override
     public void create(KeyboardRequest req) throws Exception{
         KeyboardPojo pojo = null ;
         for(int i=0;i<req.getQuantity();i++){
             pojo=new KeyboardPojo();
+
             Optional<ProductPojo> product=productRepo.findById(req.getId());
+
             pojo.setProduct(product.get());
             pojo.setCart(req.getCart());
         }

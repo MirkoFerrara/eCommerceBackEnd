@@ -79,4 +79,17 @@ public class RamController {
         }
         return res;
     }
+
+    @GetMapping("/listByIdProduct")
+    public Response<RamView> listByIdProduct(@RequestParam(required=true)Integer id){
+        Response<RamView> res = new Response<RamView>();
+        res.setRc(true);
+        try {
+            res.setDati(service.listByIdProduct(id));
+        } catch (Exception e) {
+            res.setRc(false);
+            res.setMsg(e.getMessage());
+        }
+        return res;
+    }
 }

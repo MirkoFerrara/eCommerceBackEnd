@@ -1,6 +1,7 @@
 package com.betacom.eCommerce.classes.service;
 
 import com.betacom.eCommerce.classes.dto.request.CpuRequest;
+import com.betacom.eCommerce.classes.dto.view.CoolerView;
 import com.betacom.eCommerce.classes.dto.view.CpuView;
 import com.betacom.eCommerce.classes.dto.view.KeyboardView;
 import com.betacom.eCommerce.classes.pojo.*;
@@ -36,6 +37,11 @@ public class CpuService implements iCpuService {
             pojo.setContained(req.getContained());
         }
         cpuRepo.save(pojo);
+    }
+
+    @Override
+    public List<CpuView> listByIdProduct(Integer idProduct) {
+        return transformInView(cpuRepo.findByProduct(idProduct));
     }
 
     @Override

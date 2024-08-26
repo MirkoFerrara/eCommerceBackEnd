@@ -32,6 +32,19 @@ public class GpuController {
         return resp;
     }
 
+    @GetMapping("/listByIdProduct")
+    public Response<GpuView> listByIdProduct(Integer idProduct){
+        Response<GpuView> resp = new Response<GpuView>();
+        resp.setRc (true);
+        try{
+            resp.setDati (service.listByIdProduct(idProduct));
+        }catch(Exception e){
+            resp.setRc(false);
+            resp.setMsg(e.getMessage());
+        }
+        return resp;
+    }
+
     @GetMapping("/list")
     public Response<GpuView> listAll(){
         Response<GpuView> resp = new Response<GpuView>();

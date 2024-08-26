@@ -1,6 +1,7 @@
 package com.betacom.eCommerce.classes.service;
 
 import com.betacom.eCommerce.classes.dto.request.RamRequest;
+import com.betacom.eCommerce.classes.dto.view.CoolerView;
 import com.betacom.eCommerce.classes.dto.view.RamView;
 import com.betacom.eCommerce.classes.pojo.*;
 import com.betacom.eCommerce.interfaces.iRepository.iProductRepository;
@@ -20,17 +21,6 @@ public class RamService implements iRamService{
     @Autowired
     private iProductRepository productRepo;
 
-    @Override
-    public void create(RamRequest req) {
-        RamPojo pojo = null ;
-        for(int i=0; i< req.getQuantity();i++ ) {
-            pojo = new RamPojo();
-            Optional<ProductPojo> product = productRepo.findById(req.getIdProduct());
-            pojo.setProduct(product.get());
-            pojo.setCart(req.getCart());
-        }
-        ramRepo.save(pojo);
-    }
 
     @Override
     public void update(RamRequest req) {
@@ -86,4 +76,21 @@ public class RamService implements iRamService{
         view.setModel(pojo.getProduct().getModel());
         return view;
     }
+    @Override
+    public List<RamView> listByIdProduct(Integer idProduct) {
+        return transformInView(ramRepo.findByProduct(idProduct));
+    }
+
+    @Override
+    public void create(RamRequest req) {
+        RamPojo pojo = null ;
+        for(int i=0; i< req.getQuantity();i++ ) {
+            pojo = new RamPojo();
+            Optional<ProductPojo> product = productRepo.findById(req.getIdProduct());
+            pojo.setProduct(product.get());
+            pojo.setCart(req.getCart());
+        }
+        ramRepo.save(pojo);
+    }
+
 }
