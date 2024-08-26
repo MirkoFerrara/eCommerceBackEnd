@@ -28,11 +28,14 @@ public class MemoryService implements iMemoryService{
     private iProductRepository productRepo;
     @Override
     public void create(MemoryRequest req) throws Exception{
-        MemoryPojo pojo=new MemoryPojo();
-        Optional<ProductPojo> product=productRepo.findById(req.getId());
-        pojo.setProduct(product.get());
-        pojo.setCart(req.getCart());
-        pojo.setContained(req.getContained());
+        MemoryPojo pojo = null ;
+        for(int i=0; i< req.getQuantity();i++ ) {
+            pojo = new MemoryPojo();
+            Optional<ProductPojo> product = productRepo.findById(req.getIdProduct());
+            pojo.setProduct(product.get());
+            pojo.setCart(req.getCart());
+            pojo.setContained(req.getContained());
+        }
         memoryRepo.save(pojo);
     }
 

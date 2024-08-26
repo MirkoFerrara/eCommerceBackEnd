@@ -28,20 +28,16 @@ public class CpuService implements iCpuService {
 
     @Override
     public void create(CpuRequest req) throws Exception {
-
-
-        CpuPojo pojo=new CpuPojo();
-
-        Optional<ProductPojo> product = productRepo.findById(req.getIdProduct());
-
-        pojo.setProduct(product.get());
-
-        pojo.setCart(req.getCart());
-        pojo.setContained(req.getContained());
-
+        CpuPojo pojo = null ;
+        for(int i=0; i< req.getQuantity();i++ ) {
+            pojo = new CpuPojo();
+            Optional<ProductPojo> product = productRepo.findById(req.getIdProduct());
+            pojo.setProduct(product.get());
+            pojo.setCart(req.getCart());
+            pojo.setContained(req.getContained());
+        }
         cpuRepo.save(pojo);
     }
-
 
     @Override
     public List<CpuView> listByIdProduct(Integer idProduct) {

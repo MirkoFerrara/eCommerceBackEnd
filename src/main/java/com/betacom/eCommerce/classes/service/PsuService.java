@@ -23,10 +23,13 @@ public class PsuService implements iPsuService {
 
     @Override
     public void create(PsuRequest req) throws Exception{
-        PsuPojo pojo=new PsuPojo();
-        Optional<ProductPojo> product = productRepo.findById(req.getIdProduct());
-        pojo.setProduct(product.get());
-        pojo.setCart(req.getCart());
+        PsuPojo pojo = null ;
+        for(int i=0; i< req.getQuantity();i++ ) {
+            pojo = new PsuPojo();
+            Optional<ProductPojo> product = productRepo.findById(req.getIdProduct());
+            pojo.setProduct(product.get());
+            pojo.setCart(req.getCart());
+        }
         psuRepo.save(pojo);
     }
 

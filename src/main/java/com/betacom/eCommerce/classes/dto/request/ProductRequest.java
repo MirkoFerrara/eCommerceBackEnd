@@ -10,6 +10,15 @@ public class ProductRequest {
     private String description ;
     private String colour ;
     private String item ;
+private int quantity;
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 
     public Integer getIdProduct() {
         return idProduct;
