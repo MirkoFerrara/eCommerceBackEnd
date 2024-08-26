@@ -29,15 +29,14 @@ public class GpuService implements iGpuService {
     @Override
     public void create(GpuRequest req) throws Exception {
 
-        GpuPojo pojo=new GpuPojo();
-
-        Optional<ProductPojo> product=productRepo.findById(req.getId());
-
-        pojo.setProduct(product.get());
-
-        pojo.setCart(req.getCart());
-        pojo.setContained(req.getContained());
-
+        GpuPojo pojo = null ;
+        for(int i=0; i< req.getQuantity();i++ ) {
+            pojo = new GpuPojo();
+            Optional<ProductPojo> product = productRepo.findById(req.getIdProduct());
+            pojo.setProduct(product.get());
+            pojo.setCart(req.getCart());
+            pojo.setContained(req.getContained());
+        }
         gpuRepo.save(pojo);
     }
 

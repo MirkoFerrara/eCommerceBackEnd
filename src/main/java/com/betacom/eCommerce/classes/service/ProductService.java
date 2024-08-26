@@ -49,20 +49,17 @@ public class ProductService implements iProductService{
     @Autowired
     private iKeyboardRepository keyboardRepo;
 
-
-
-
-
     @Override
     public void create(ProductRequest req) {
-        ProductPojo pojo=new ProductPojo();
-        pojo.setItem(req.getItem());
-        pojo.setBrand(req.getBrand());
-        pojo.setDescription(req.getDescription());
-        pojo.setModel(req.getModel());
-        pojo.setPrice(req.getPrice());
-        pojo.setColour(req.getColour());
-        productRepo.save(pojo);
+ 
+            ProductPojo pojo = new ProductPojo();
+            pojo.setItem(req.getItem());
+            pojo.setBrand(req.getBrand());
+            pojo.setDescription(req.getDescription());
+            pojo.setModel(req.getModel());
+            pojo.setPrice(req.getPrice());
+            pojo.setColour(req.getColour());
+            productRepo.save(pojo); 
     }
 
     @Override

@@ -39,10 +39,13 @@ public class PcService implements iPcService{
 
     @Override
     public void create(PcRequest req) throws Exception{
-        PcPojo pojo=new PcPojo();
-        Optional<ProductPojo> product = productRepo.findById(req.getIdProduct());
-        pojo.setProduct(product.get());
-        pojo.setCart(req.getCart());
+        PcPojo pojo = null ;
+        for(int i=0; i< req.getQuantity();i++ ) {
+            pojo = new PcPojo();
+            Optional<ProductPojo> product = productRepo.findById(req.getIdProduct());
+            pojo.setProduct(product.get());
+            pojo.setCart(req.getCart());
+        }
         pcRepo.save(pojo);
     }
 

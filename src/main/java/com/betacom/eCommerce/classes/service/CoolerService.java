@@ -38,17 +38,14 @@ public class CoolerService implements iCoolerService {
 
     @Override
     public void create(CoolerRequest req) throws Exception {
-
-
-        CoolerPojo pojo=new CoolerPojo();
-
-        Optional<ProductPojo> product = productRepo.findById(req.getIdProduct());
-
-        pojo.setProduct(product.get());
-
-        pojo.setCart(req.getCart());
-        pojo.setContained(req.getContained());
-
+        CoolerPojo pojo = null ;
+        for(int i=0; i< req.getQuantity();i++ ) {
+            pojo = new CoolerPojo();
+            Optional<ProductPojo> product = productRepo.findById(req.getIdProduct());
+            pojo.setProduct(product.get());
+            pojo.setCart(req.getCart());
+            pojo.setContained(req.getContained());
+        }
         coolerRepo.save(pojo);
     }
     @Override

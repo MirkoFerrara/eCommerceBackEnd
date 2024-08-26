@@ -24,10 +24,13 @@ public class MonitorService implements iMonitorService{
 
     @Override
     public void create(MonitorRequest req) throws Exception{
-        MonitorPojo pojo=new MonitorPojo();
-        Optional<ProductPojo> product = productRepo.findById(req.getIdProduct());
-        pojo.setProduct(product.get());
-        pojo.setCart(req.getCart());
+        MonitorPojo pojo = null ;
+        for(int i=0; i< req.getQuantity();i++ ) {
+            pojo = new MonitorPojo();
+            Optional<ProductPojo> product = productRepo.findById(req.getIdProduct());
+            pojo.setProduct(product.get());
+            pojo.setCart(req.getCart());
+        }
         monitorRepo.save(pojo);
     }
 

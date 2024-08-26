@@ -24,7 +24,7 @@ public class UserService implements iUserService {
     public void create(UserRequest req) {
         UserPojo pojo=new UserPojo();
         pojo.setAddress(req.getAddress());
-        pojo.setUsername(req.getUsername());
+        pojo.setUsername(req.getUsername().toLowerCase());
         pojo.setPassword(req.getPassword());
         System.out.println(req.getUsername());
         System.out.println(req.getId());
@@ -37,7 +37,7 @@ public class UserService implements iUserService {
     @Override
     public void update(UserRequest req) {
         UserPojo pojo = userRepo.findById(req.getId()).get();
-        pojo.setUsername(req.getUsername());
+        pojo.setUsername(req.getUsername().toLowerCase());
         pojo.setPassword(req.getPassword());
         pojo.setRole(req.getRole().equalsIgnoreCase("ADMIN"));
         pojo.setAddress(req.getAddress());

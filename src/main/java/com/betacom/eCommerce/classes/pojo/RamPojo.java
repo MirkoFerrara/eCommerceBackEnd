@@ -23,7 +23,14 @@ public class RamPojo {
 
     private Boolean cart ;
     private Boolean contained ;
+    private Boolean laptopMounted ; // true , false if mounted on pc
 
+    public Boolean getLaptopMounted() {
+        return laptopMounted;
+    }
+    public void setLaptopMounted(Boolean laptopMounted) {
+        this.laptopMounted = laptopMounted;
+    }
     public List<PcPojo> getPc() {
         return pc;
     }

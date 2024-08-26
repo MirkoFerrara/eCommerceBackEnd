@@ -19,7 +19,14 @@ public class GpuPojo {
 
     @OneToMany(mappedBy="idGpu", fetch = FetchType.EAGER)
     private List<PcPojo> pc ;
+    private Boolean laptopMounted ; // true , false if mounted on pc
 
+    public Boolean getLaptopMounted() {
+        return laptopMounted;
+    }
+    public void setLaptopMounted(Boolean laptopMounted) {
+        this.laptopMounted = laptopMounted;
+    }
     public List<PcPojo> getPc() {
         return pc;
     }

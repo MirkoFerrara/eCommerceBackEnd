@@ -22,10 +22,13 @@ public class RamService implements iRamService{
 
     @Override
     public void create(RamRequest req) {
-        RamPojo pojo=new RamPojo();
-        Optional<ProductPojo> product = productRepo.findById(req.getIdProduct());
-        pojo.setProduct(product.get());
-        pojo.setCart(req.getCart());
+        RamPojo pojo = null ;
+        for(int i=0; i< req.getQuantity();i++ ) {
+            pojo = new RamPojo();
+            Optional<ProductPojo> product = productRepo.findById(req.getIdProduct());
+            pojo.setProduct(product.get());
+            pojo.setCart(req.getCart());
+        }
         ramRepo.save(pojo);
     }
 
