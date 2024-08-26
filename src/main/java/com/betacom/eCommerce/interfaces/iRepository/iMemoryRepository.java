@@ -11,6 +11,4 @@ import java.util.List;
 
 @Repository
 public interface iMemoryRepository extends JpaRepository<MemoryPojo,Integer> {
-    @Query("select u from MemoryPojo u inner join ProductPojo p where p.id=:id")
-    List<MemoryPojo> findByProduct(@Param("id") Integer id);
 }

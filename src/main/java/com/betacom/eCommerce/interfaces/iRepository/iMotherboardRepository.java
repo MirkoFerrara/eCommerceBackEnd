@@ -11,6 +11,4 @@ import java.util.List;
 
 @Repository
 public interface iMotherboardRepository extends JpaRepository<MotherboardPojo,Integer> {
-    @Query("select u from MotherboardPojo m inner join ProductPojo p where p.id=:id")
-    List<MotherboardPojo> findByProduct(@Param("id") Integer id);
 }

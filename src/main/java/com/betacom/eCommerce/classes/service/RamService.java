@@ -77,8 +77,8 @@ public class RamService implements iRamService{
         return view;
     }
     @Override
-    public List<RamView> listByIdProduct(Integer idProduct) {
-        return transformInView(ramRepo.findByProduct(idProduct));
+    public RamView listByIdProduct(Integer id ) {
+        return transformInView(ramRepo.findByProduct(id));
     }
 
     @Override

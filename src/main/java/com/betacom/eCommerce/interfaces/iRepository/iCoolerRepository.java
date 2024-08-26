@@ -11,7 +11,5 @@ import java.util.List;
 @Repository
 public interface iCoolerRepository extends JpaRepository<CoolerPojo,Integer> {
 
-    @Query("select u from CoolerPojo u inner join ProductPojo p where p.id=:id")
-    List<CoolerPojo> findByProduct(@Param("id") Integer id);
 
 }

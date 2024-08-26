@@ -11,6 +11,5 @@ import java.util.List;
 
 @Repository
 public interface iRamRepository extends JpaRepository<RamPojo,Integer> {
-    @Query("select u from RamPojo u inner join ProductPojo p where p.id=:id")
-    List<RamPojo> findByProduct(@Param("id") Integer id);
+
 }

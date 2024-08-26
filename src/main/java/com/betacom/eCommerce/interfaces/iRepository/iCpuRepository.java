@@ -11,6 +11,4 @@ import java.util.List;
 
 @Repository
 public interface iCpuRepository extends JpaRepository<CpuPojo,Integer> {
-    @Query("select u from CpuPojo c inner join ProductPojo p where p.id=:id")
-    List<CpuPojo> findByProduct(@Param("id") Integer id);
 }

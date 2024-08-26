@@ -11,6 +11,4 @@ import java.util.List;
 
 @Repository
 public interface iGpuRepository extends JpaRepository<GpuPojo,Integer> {
-    @Query("select u from GpuPojo u inner join ProductPojo p where p.id=:id")
-    List<GpuPojo> findByProduct(@Param("id") Integer id);
 }

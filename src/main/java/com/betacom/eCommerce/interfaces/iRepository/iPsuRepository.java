@@ -9,6 +9,5 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface iPsuRepository extends JpaRepository<PsuPojo, Integer> {
-    @Query("select u from PsuPojo u inner join ProductPojo p where p.id=:id")
-    List<PsuPojo> findByProduct(@Param("id") Integer id);
+
 }
