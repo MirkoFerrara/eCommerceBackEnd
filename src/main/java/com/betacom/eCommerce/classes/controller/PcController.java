@@ -1,6 +1,7 @@
 package com.betacom.eCommerce.classes.controller;
 
 import com.betacom.eCommerce.classes.dto.request.PcRequest;
+import com.betacom.eCommerce.classes.dto.view.CpuView;
 import com.betacom.eCommerce.classes.dto.view.PcView;
 import com.betacom.eCommerce.classes.dto.view.ProductView;
 import com.betacom.eCommerce.classes.response.Response;
@@ -24,6 +25,19 @@ public class PcController {
         try{
             service.create(req);
         }catch (Exception e){
+            resp.setRc(false);
+            resp.setMsg(e.getMessage());
+        }
+        return resp;
+    }
+
+    @GetMapping("/list")
+    public Response<PcView> listAll(){
+        Response<PcView> resp = new Response<PcView>();
+        resp.setRc (true);
+        try{
+            resp.setDati (service.list());
+        }catch(Exception e){
             resp.setRc(false);
             resp.setMsg(e.getMessage());
         }

@@ -20,6 +20,5 @@ public interface iCoolerService {
     public List<CoolerView> list();
     public CoolerView getById(Integer id);
     public CoolerView transformInView(CoolerPojo pojo);
-    public List<CoolerView> listByIdProduct(Integer idProduct);
 
 }

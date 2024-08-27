@@ -200,6 +200,23 @@ public class ProductService implements iProductService{
         return transformInView( productRepo.findAll());
     }
 
+    @Override
+    public ProductView getById(Integer id) {
+        return transformInView(productRepo.findById(id).get());
+    }
+    
+
+    public ProductView transformInView( ProductPojo pojo) {
+            ProductView view = new ProductView();
+            view.setIdProduct(pojo.getId());
+            view.setBrand(pojo.getBrand());
+            view.setColour(pojo.getColour());
+            view.setDescription(pojo.getDescription());
+            view.setPrice(pojo.getPrice());
+            view.setModel(pojo.getModel());
+            return view;
+    }
+
     public List<ProductView> transformInView(List<ProductPojo> pojo) {
         return pojo.stream().map(s -> {
             ProductView view = new ProductView();

@@ -83,16 +83,4 @@ public class PsuController {
         return res;
     }
 
-    @GetMapping("/listByIdProduct")
-    public Response<PsuView> listByIdProduct(@RequestParam(required=true)Integer id){
-        Response<PsuView> res = new Response<PsuView>();
-        res.setRc(true);
-        try {
-            res.setDati(service.listByIdProduct(id));
-        } catch (Exception e) {
-            res.setRc(false);
-            res.setMsg(e.getMessage());
-        }
-        return res;
-    }
 }

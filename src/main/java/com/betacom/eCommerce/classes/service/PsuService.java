@@ -89,8 +89,4 @@ public class PsuService implements iPsuService {
         return view;
     }
 
-    @Override
-    public  PsuView listByIdProduct(Integer id) {
-        return transformInView( psuRepo.findById(id).get() );
-    }
 }

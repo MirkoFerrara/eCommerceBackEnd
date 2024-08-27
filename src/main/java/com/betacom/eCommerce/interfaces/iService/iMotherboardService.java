@@ -19,7 +19,6 @@ public interface iMotherboardService {
     public List<MotherboardView> list();
     public MotherboardView getById(Integer id);
     public MotherboardView transformInView(MotherboardPojo pojo);
-    public List<MotherboardView>listByIdProduct(Integer idProduct);
 
 
 }

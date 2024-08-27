@@ -18,7 +18,6 @@ public interface iPsuService {
     public List<PsuView> list();
     public PsuView getById(Integer id);
     public PsuView transformInView(PsuPojo pojo);
-    public PsuView listByIdProduct(Integer idProduct);
 
 
 }

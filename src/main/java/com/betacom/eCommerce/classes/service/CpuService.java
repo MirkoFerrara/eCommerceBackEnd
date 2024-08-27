@@ -39,10 +39,6 @@ public class CpuService implements iCpuService {
         cpuRepo.save(pojo);
     }
 
-    @Override
-    public List<CpuView> listByIdProduct(Integer idProduct) {
-        return transformInView(cpuRepo.findByProduct(idProduct));
-    }
 
     @Override
     public void update(CpuRequest req) throws Exception {

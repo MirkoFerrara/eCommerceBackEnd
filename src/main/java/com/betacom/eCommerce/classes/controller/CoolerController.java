@@ -29,19 +29,6 @@ public class CoolerController {
         return resp;
     }
 
-    @GetMapping("/listByIdProduct")
-    public Response<CoolerView> listByIdProduct(Integer idProduct){
-        Response<CoolerView> resp = new Response<CoolerView>();
-        resp.setRc (true);
-        try{
-            resp.setDati (service.listByIdProduct(idProduct));
-        }catch(Exception e){
-            resp.setRc(false);
-            resp.setMsg(e.getMessage());
-        }
-        return resp;
-    }
-
     @GetMapping("/list")
     public Response<CoolerView> listAll(){
         Response<CoolerView> resp = new Response<CoolerView>();

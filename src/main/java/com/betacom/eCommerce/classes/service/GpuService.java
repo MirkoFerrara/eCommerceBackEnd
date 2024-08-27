@@ -42,12 +42,6 @@ public class GpuService implements iGpuService {
         gpuRepo.save(pojo);
     }
 
-
-    @Override
-    public List<GpuView> listByIdProduct(Integer idProduct) {
-        return transformInView(gpuRepo.findByProduct(idProduct));
-    }
-
     @Override
     public void update(GpuRequest req) throws Exception {
         GpuPojo pojo = gpuRepo.findById(req.getId()).get();

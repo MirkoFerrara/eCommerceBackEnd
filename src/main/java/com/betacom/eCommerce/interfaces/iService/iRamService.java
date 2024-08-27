@@ -17,7 +17,4 @@ public interface iRamService {
     public List<RamView> list();
     public RamView getById(Integer id);
     public RamView  transformInView(RamPojo pojo);
-    public List<RamView>listByIdProduct(Integer idProduct);
-
-
 }

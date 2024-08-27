@@ -14,4 +14,5 @@ public interface iProductService {
     public void update(ProductRequest req) throws Exception;
     public void remove(Integer id) throws Exception;
     public List<ProductView> list();
+    public ProductView getById(Integer id);
 }

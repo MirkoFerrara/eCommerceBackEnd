@@ -85,11 +85,6 @@ public class CoolerService implements iCoolerService {
         return view;
     }
 
-    @Override
-    public List<CoolerView> listByIdProduct(Integer idProduct) {
-        return transformInView(coolerRepo.findByProduct(idProduct));
-    }
-
     public List<CoolerView> transformInView(List<CoolerPojo> pojo) {
         return pojo.stream().map(s -> {
             CoolerView view = new CoolerView();

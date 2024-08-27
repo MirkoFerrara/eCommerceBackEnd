@@ -32,18 +32,6 @@ public class CpuController {
         return resp;
     }
 
-    @GetMapping("/listByIdProduct")
-    public Response<CpuView> listByIdProduct(Integer idProduct){
-        Response<CpuView> resp = new Response<CpuView>();
-        resp.setRc (true);
-        try{
-            resp.setDati (service.listByIdProduct(idProduct));
-        }catch(Exception e){
-            resp.setRc(false);
-            resp.setMsg(e.getMessage());
-        }
-        return resp;
-    }
 
     @GetMapping("/list")
     public Response<CpuView> listAll(){

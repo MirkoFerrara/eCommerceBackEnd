@@ -1,10 +1,7 @@
 package com.betacom.eCommerce.classes.controller;
 
-import com.betacom.eCommerce.classes.dto.request.CpuRequest;
 import com.betacom.eCommerce.classes.dto.request.GpuRequest;
-import com.betacom.eCommerce.classes.dto.view.CpuView;
 import com.betacom.eCommerce.classes.dto.view.GpuView;
-import com.betacom.eCommerce.classes.dto.view.KeyboardView;
 import com.betacom.eCommerce.classes.response.Response;
 import com.betacom.eCommerce.classes.response.ResponseBase;
 import com.betacom.eCommerce.classes.response.ResponseObject;
@@ -26,19 +23,6 @@ public class GpuController {
         try{
             service.create(req);
         }catch (Exception e){
-            resp.setRc(false);
-            resp.setMsg(e.getMessage());
-        }
-        return resp;
-    }
-
-    @GetMapping("/listByIdProduct")
-    public Response<GpuView> listByIdProduct(Integer idProduct){
-        Response<GpuView> resp = new Response<GpuView>();
-        resp.setRc (true);
-        try{
-            resp.setDati (service.listByIdProduct(idProduct));
-        }catch(Exception e){
             resp.setRc(false);
             resp.setMsg(e.getMessage());
         }

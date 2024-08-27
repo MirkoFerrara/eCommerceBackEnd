@@ -85,16 +85,5 @@ public class MotherboardController {
         return res;
     }
 
-    @GetMapping("/listByIdProduct")
-    public Response<MotherboardView> listByIdProduct(@RequestParam(required=true)Integer id){
-        Response<MotherboardView> res = new Response<MotherboardView>();
-        res.setRc(true);
-        try {
-            res.setDati(service.listByIdProduct(id));
-        } catch (Exception e) {
-            res.setRc(false);
-            res.setMsg(e.getMessage());
-        }
-        return res;
-    }
+
 }
