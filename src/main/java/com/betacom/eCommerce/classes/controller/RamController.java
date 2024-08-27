@@ -1,5 +1,6 @@
 package com.betacom.eCommerce.classes.controller;
 
+import com.betacom.eCommerce.classes.dto.view.CoolerView;
 import com.betacom.eCommerce.classes.dto.view.RamView;
 import com.betacom.eCommerce.classes.response.Response;
 import com.betacom.eCommerce.classes.response.ResponseBase;
@@ -28,6 +29,7 @@ public class RamController {
         }
         return resp;
     }
+
 
     @GetMapping("/list")
     public Response<RamView> listAll(){

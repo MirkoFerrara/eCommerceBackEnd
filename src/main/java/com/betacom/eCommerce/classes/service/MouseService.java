@@ -24,10 +24,13 @@ public class MouseService implements iMouseService{
 
     @Override
     public void create(MouseRequest req) {
-        MousePojo pojo=new MousePojo();
-        Optional<ProductPojo> product = productRepo.findById(req.getIdProduct());
-        pojo.setProduct(product.get());
-        pojo.setCart(req.getCart());
+        MousePojo pojo = null ;
+        for(int i=0; i< req.getQuantity();i++ ) {
+            pojo = new MousePojo();
+            Optional<ProductPojo> product = productRepo.findById(req.getIdProduct());
+            pojo.setProduct(product.get());
+            pojo.setCart(req.getCart());
+        }
         mouseRepo.save(pojo);
     }
 

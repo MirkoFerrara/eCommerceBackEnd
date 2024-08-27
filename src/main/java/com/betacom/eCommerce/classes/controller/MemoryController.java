@@ -2,6 +2,7 @@ package com.betacom.eCommerce.classes.controller;
 
 import com.betacom.eCommerce.classes.dto.request.LaptopRequest;
 import com.betacom.eCommerce.classes.dto.request.MemoryRequest;
+import com.betacom.eCommerce.classes.dto.view.GpuView;
 import com.betacom.eCommerce.classes.dto.view.LaptopView;
 import com.betacom.eCommerce.classes.dto.view.MemoryView;
 import com.betacom.eCommerce.classes.dto.view.MonitorView;
@@ -31,6 +32,8 @@ public class MemoryController {
         }
         return resp;
     }
+
+
     @GetMapping("/list")
     public Response<MemoryView> listAll(){
         Response<MemoryView> resp = new Response<MemoryView>();
@@ -82,5 +85,6 @@ public class MemoryController {
         }
         return res;
     }
+
 
 }

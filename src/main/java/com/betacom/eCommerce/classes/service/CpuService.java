@@ -1,6 +1,7 @@
 package com.betacom.eCommerce.classes.service;
 
 import com.betacom.eCommerce.classes.dto.request.CpuRequest;
+import com.betacom.eCommerce.classes.dto.view.CoolerView;
 import com.betacom.eCommerce.classes.dto.view.CpuView;
 import com.betacom.eCommerce.classes.dto.view.KeyboardView;
 import com.betacom.eCommerce.classes.pojo.*;
@@ -27,17 +28,14 @@ public class CpuService implements iCpuService {
 
     @Override
     public void create(CpuRequest req) throws Exception {
-
-
-        CpuPojo pojo=new CpuPojo();
-
-        Optional<ProductPojo> product = productRepo.findById(req.getIdProduct());
-
-        pojo.setProduct(product.get());
-
-        pojo.setCart(req.getCart());
-        pojo.setContained(req.getContained());
-
+        CpuPojo pojo = null ;
+        for(int i=0; i< req.getQuantity();i++ ) {
+            pojo = new CpuPojo();
+            Optional<ProductPojo> product = productRepo.findById(req.getIdProduct());
+            pojo.setProduct(product.get());
+            pojo.setCart(req.getCart());
+            pojo.setContained(req.getContained());
+        }
         cpuRepo.save(pojo);
     }
 
@@ -97,4 +95,6 @@ public class CpuService implements iCpuService {
         view.setModel(pojo.getProduct().getModel());
         return view;
     }
-}
+
+    }
+

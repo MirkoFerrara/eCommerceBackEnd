@@ -3,6 +3,7 @@ package com.betacom.eCommerce.interfaces.iService;
 import com.betacom.eCommerce.classes.dto.request.CartRequest;
 import com.betacom.eCommerce.classes.dto.request.CpuRequest;
 import com.betacom.eCommerce.classes.dto.view.CartView;
+import com.betacom.eCommerce.classes.dto.view.CoolerView;
 import com.betacom.eCommerce.classes.dto.view.CpuView;
 import com.betacom.eCommerce.classes.dto.view.GpuView;
 import com.betacom.eCommerce.classes.pojo.CpuPojo;
@@ -17,4 +18,5 @@ public interface iCpuService {
     public List<CpuView> list();
     public CpuView getById(Integer id);
     public CpuView transformInView(CpuPojo pojo);
+
 }

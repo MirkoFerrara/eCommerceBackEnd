@@ -1,6 +1,7 @@
 package com.betacom.eCommerce.classes.controller;
 
 import com.betacom.eCommerce.classes.dto.request.CpuRequest;
+import com.betacom.eCommerce.classes.dto.view.CoolerView;
 import com.betacom.eCommerce.classes.dto.view.CpuView;
 import com.betacom.eCommerce.classes.dto.view.GpuView;
 import com.betacom.eCommerce.classes.dto.view.UserView;

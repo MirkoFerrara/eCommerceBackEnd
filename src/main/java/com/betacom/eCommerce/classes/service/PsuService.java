@@ -2,6 +2,7 @@ package com.betacom.eCommerce.classes.service;
 
 import com.betacom.eCommerce.classes.dto.request.PsuRequest;
 import com.betacom.eCommerce.classes.dto.view.PsuView;
+import com.betacom.eCommerce.classes.dto.view.RamView;
 import com.betacom.eCommerce.classes.pojo.ProductPojo;
 import com.betacom.eCommerce.classes.pojo.PsuPojo;
 import com.betacom.eCommerce.interfaces.iRepository.iPsuRepository;
@@ -22,12 +23,17 @@ public class PsuService implements iPsuService {
 
     @Override
     public void create(PsuRequest req) throws Exception{
-        PsuPojo pojo=new PsuPojo();
-        Optional<ProductPojo> product = productRepo.findById(req.getIdProduct());
-        pojo.setProduct(product.get());
-        pojo.setCart(req.getCart());
+        PsuPojo pojo = null ;
+        for(int i=0; i< req.getQuantity();i++ ) {
+            pojo = new PsuPojo();
+            Optional<ProductPojo> product = productRepo.findById(req.getIdProduct());
+            pojo.setProduct(product.get());
+            pojo.setCart(req.getCart());
+        }
         psuRepo.save(pojo);
     }
+
+
 
     @Override
     public void update(PsuRequest req) throws Exception {

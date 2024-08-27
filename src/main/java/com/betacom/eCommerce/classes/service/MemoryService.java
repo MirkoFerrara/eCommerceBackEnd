@@ -1,7 +1,9 @@
 package com.betacom.eCommerce.classes.service;
 
 import com.betacom.eCommerce.classes.dto.request.MemoryRequest;
+import com.betacom.eCommerce.classes.dto.view.CoolerView;
 import com.betacom.eCommerce.classes.dto.view.MemoryView;
+import com.betacom.eCommerce.classes.dto.view.RamView;
 import com.betacom.eCommerce.classes.pojo.MemoryPojo;
 import com.betacom.eCommerce.classes.pojo.ProductPojo;
 import com.betacom.eCommerce.interfaces.iRepository.iMemoryRepository;
@@ -21,13 +23,17 @@ public class MemoryService implements iMemoryService{
     private iMemoryRepository memoryRepo;
     @Autowired
     private iProductRepository productRepo;
+
     @Override
     public void create(MemoryRequest req) throws Exception{
-        MemoryPojo pojo=new MemoryPojo();
-        Optional<ProductPojo> product=productRepo.findById(req.getId());
-        pojo.setProduct(product.get());
-        pojo.setCart(req.getCart());
-        pojo.setContained(req.getContained());
+        MemoryPojo pojo = null ;
+        for(int i=0; i< req.getQuantity();i++ ) {
+            pojo = new MemoryPojo();
+            Optional<ProductPojo> product = productRepo.findById(req.getIdProduct());
+            pojo.setProduct(product.get());
+            pojo.setCart(req.getCart());
+            pojo.setContained(req.getContained());
+        }
         memoryRepo.save(pojo);
     }
 
@@ -40,6 +46,7 @@ public class MemoryService implements iMemoryService{
         pojo.setContained(req.getContained());
         memoryRepo.save(pojo);
     }
+
 
     @Override
     public void remove(Integer id) {
