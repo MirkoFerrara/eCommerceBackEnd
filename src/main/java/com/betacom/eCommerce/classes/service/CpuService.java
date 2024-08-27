@@ -39,6 +39,7 @@ public class CpuService implements iCpuService {
         cpuRepo.save(pojo);
     }
 
+
     @Override
     public void update(CpuRequest req) throws Exception {
         CpuPojo pojo = cpuRepo.findById(req.getId()).get();

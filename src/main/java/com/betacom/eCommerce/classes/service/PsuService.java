@@ -5,6 +5,7 @@ import com.betacom.eCommerce.classes.dto.view.PsuView;
 import com.betacom.eCommerce.classes.dto.view.RamView;
 import com.betacom.eCommerce.classes.pojo.ProductPojo;
 import com.betacom.eCommerce.classes.pojo.PsuPojo;
+import com.betacom.eCommerce.classes.pojo.RamPojo;
 import com.betacom.eCommerce.interfaces.iRepository.iPsuRepository;
 import com.betacom.eCommerce.interfaces.iRepository.iProductRepository;
 import com.betacom.eCommerce.interfaces.iService.iPsuService;
@@ -87,4 +88,5 @@ public class PsuService implements iPsuService {
         view.setModel(pojo.getProduct().getModel());
         return view;
     }
+
 }

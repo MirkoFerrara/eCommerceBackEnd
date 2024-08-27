@@ -2,6 +2,7 @@ package com.betacom.eCommerce.classes.controller;
 
 import com.betacom.eCommerce.classes.dto.request.ProductRequest;
 import com.betacom.eCommerce.classes.dto.request.RamRequest;
+import com.betacom.eCommerce.classes.dto.view.PcView;
 import com.betacom.eCommerce.classes.dto.view.ProductView;
 import com.betacom.eCommerce.classes.dto.view.RamView;
 import com.betacom.eCommerce.classes.response.Response;
@@ -70,4 +71,16 @@ public class ProductController {
         return resp;
     }
 
+    @GetMapping("/getById")
+    public ResponseObject<ProductView> getById(@RequestParam(required=true)Integer id){
+        ResponseObject<ProductView> res = new ResponseObject<ProductView>();
+        res.setRc(true);
+        try {
+            res.setDati(service.getById(id));
+        } catch (Exception e) {
+            res.setRc(false);
+            res.setMsg(e.getMessage());
+        }
+        return res;
+    }
 }

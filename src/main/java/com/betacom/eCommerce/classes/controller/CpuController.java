@@ -31,6 +31,8 @@ public class CpuController {
         }
         return resp;
     }
+
+
     @GetMapping("/list")
     public Response<CpuView> listAll(){
         Response<CpuView> resp = new Response<CpuView>();

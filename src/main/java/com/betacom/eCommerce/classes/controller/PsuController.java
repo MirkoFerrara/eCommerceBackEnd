@@ -4,6 +4,7 @@ import com.betacom.eCommerce.classes.dto.request.CoolerRequest;
 import com.betacom.eCommerce.classes.dto.request.PsuRequest;
 import com.betacom.eCommerce.classes.dto.view.CoolerView;
 import com.betacom.eCommerce.classes.dto.view.PsuView;
+import com.betacom.eCommerce.classes.dto.view.RamView;
 import com.betacom.eCommerce.classes.response.Response;
 import com.betacom.eCommerce.classes.response.ResponseBase;
 import com.betacom.eCommerce.classes.response.ResponseObject;
@@ -81,4 +82,5 @@ public class PsuController {
         }
         return res;
     }
+
 }

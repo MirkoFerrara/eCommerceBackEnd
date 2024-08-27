@@ -20,16 +20,13 @@ public class UserService implements iUserService {
     @Autowired
     private iProductRepository productRepo;
 
+
     @Override
     public void create(UserRequest req) {
-        UserPojo pojo=new UserPojo();
+        UserPojo pojo = new UserPojo();
         pojo.setAddress(req.getAddress());
         pojo.setUsername(req.getUsername());
-        pojo.setPassword(req.getPassword());
-        System.out.println(req.getUsername());
-        System.out.println(req.getId());
-        System.out.println(req.getPassword());
-        System.out.println(req.getRole());
+        pojo.setPassword(req.getPassword()); // Codifica la password qui
         pojo.setRole(req.getRole().equalsIgnoreCase("ADMIN"));
         userRepo.save(pojo);
     }
@@ -38,12 +35,13 @@ public class UserService implements iUserService {
     public void update(UserRequest req) {
         UserPojo pojo = userRepo.findById(req.getId()).get();
         pojo.setUsername(req.getUsername());
-        pojo.setPassword(req.getPassword());
+        if (req.getPassword() != null && !req.getPassword().isEmpty()) {
+            pojo.setPassword(req.getPassword()); // Codifica la password qui
+        }
         pojo.setRole(req.getRole().equalsIgnoreCase("ADMIN"));
         pojo.setAddress(req.getAddress());
         userRepo.save(pojo);
     }
-
     @Override
     public void remove(Integer id) {
         userRepo.delete(userRepo.findById(id).get());
@@ -58,7 +56,7 @@ public class UserService implements iUserService {
     public List<UserView> listUser() {
         return transformInView(userRepo.findAll(),"USER");
     }
-    
+
     @Override
     public  UserView getById(Integer id) {
         return transformInView(userRepo.findById(id).get());
@@ -79,9 +77,21 @@ public class UserService implements iUserService {
             return view;
     }
 
+    public List<UserView> transformInView(List<UserPojo> pojo) {
+        return pojo.stream().map(s -> {
+            UserView view = new UserView();
+            view.setId(s.getId());
+            view.setUsername(s.getUsername());
+            view.setAddress(s.getAddress());
+            view.setPassword(s.getPassword());
+            view.setRole((s.getRole()) ? "ADMIN" : "USER");
+            return view;
+        }).collect(Collectors.toList());
+    }
+
     public List<UserView> transformInView(List<UserPojo> pojo, String role) {
         return pojo.stream()
-                .filter(s -> { 
+                .filter(s -> {
                     String userRole = s.getRole() ? "ADMIN" : "USER";
                     return userRole.equalsIgnoreCase(role);
                 })

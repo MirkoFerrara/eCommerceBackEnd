@@ -17,6 +17,15 @@ public class CoolerPojo {
 
     private Boolean cart ;
 
+    private Boolean laptopMounted ; // true , false if mounted on pc
+
+    public Boolean getLaptopMounted() {
+        return laptopMounted;
+    }
+    public void setLaptopMounted(Boolean laptopMounted) {
+        this.laptopMounted = laptopMounted;
+    }
+
     private Boolean contained ;
 
     @OneToMany(mappedBy="idCooler", fetch = FetchType.EAGER)

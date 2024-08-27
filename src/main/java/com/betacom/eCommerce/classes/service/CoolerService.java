@@ -2,6 +2,7 @@ package com.betacom.eCommerce.classes.service;
 
 import com.betacom.eCommerce.classes.dto.request.CoolerRequest;
 import com.betacom.eCommerce.classes.dto.view.CoolerView;
+import com.betacom.eCommerce.classes.dto.view.UserView;
 import com.betacom.eCommerce.classes.pojo.*;
 import com.betacom.eCommerce.interfaces.iRepository.iCoolerRepository;
 import com.betacom.eCommerce.interfaces.iRepository.iProductRepository;
@@ -35,6 +36,8 @@ public class CoolerService implements iCoolerService {
         pojo.setContained(req.getContained());
         coolerRepo.save(pojo);
     }
+
+    
 
     @Override
     public void create(CoolerRequest req) throws Exception {

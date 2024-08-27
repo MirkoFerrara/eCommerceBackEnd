@@ -8,6 +8,7 @@ import com.betacom.eCommerce.classes.pojo.*;
 import com.betacom.eCommerce.interfaces.iRepository.iMonitorRepository;
 import com.betacom.eCommerce.interfaces.iRepository.iProductRepository;
 import com.betacom.eCommerce.interfaces.iService.iMonitorService;
+import com.betacom.eCommerce.interfaces.iService.iProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -75,6 +76,7 @@ public class MonitorService implements iMonitorService{
     }
 
     private MonitorView transformInView( MonitorPojo pojo) {
+
         MonitorView view = new MonitorView();
         view.setId(pojo.getId());
         view.setIdProduct(pojo.getProduct().getId());
@@ -83,6 +85,8 @@ public class MonitorService implements iMonitorService{
         view.setDescription(pojo.getProduct().getDescription());
         view.setPrice(pojo.getProduct().getPrice());
         view.setModel(pojo.getProduct().getModel());
+        ProductPojo productPojo = productRepo.findById( pojo.getProduct().getId() ).get() ;
+        view.setQuantity( productPojo.getMonitor().size() );
         return view;
     }
 }

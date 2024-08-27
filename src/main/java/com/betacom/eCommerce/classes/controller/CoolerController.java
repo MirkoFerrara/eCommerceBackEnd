@@ -28,6 +28,7 @@ public class CoolerController {
         }
         return resp;
     }
+
     @GetMapping("/list")
     public Response<CoolerView> listAll(){
         Response<CoolerView> resp = new Response<CoolerView>();

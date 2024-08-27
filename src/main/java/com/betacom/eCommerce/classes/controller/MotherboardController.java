@@ -5,6 +5,7 @@ import com.betacom.eCommerce.classes.dto.request.MotherboardRequest;
 import com.betacom.eCommerce.classes.dto.view.CoolerView;
 import com.betacom.eCommerce.classes.dto.view.MotherboardView;
 import com.betacom.eCommerce.classes.dto.view.MouseView;
+import com.betacom.eCommerce.classes.dto.view.PsuView;
 import com.betacom.eCommerce.classes.response.Response;
 import com.betacom.eCommerce.classes.response.ResponseBase;
 import com.betacom.eCommerce.classes.response.ResponseObject;
@@ -83,4 +84,6 @@ public class MotherboardController {
         }
         return res;
     }
+
+
 }

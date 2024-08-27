@@ -8,6 +8,7 @@ import com.betacom.eCommerce.classes.dto.view.MotherboardView;
 import com.betacom.eCommerce.classes.dto.view.MouseView;
 import com.betacom.eCommerce.classes.pojo.GpuPojo;
 import com.betacom.eCommerce.classes.pojo.MotherboardPojo;
+import com.betacom.eCommerce.classes.pojo.PsuPojo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

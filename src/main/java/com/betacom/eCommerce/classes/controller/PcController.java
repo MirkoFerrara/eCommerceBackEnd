@@ -1,6 +1,7 @@
 package com.betacom.eCommerce.classes.controller;
 
 import com.betacom.eCommerce.classes.dto.request.PcRequest;
+import com.betacom.eCommerce.classes.dto.view.CpuView;
 import com.betacom.eCommerce.classes.dto.view.PcView;
 import com.betacom.eCommerce.classes.dto.view.ProductView;
 import com.betacom.eCommerce.classes.dto.view.PsuView;
