@@ -8,11 +8,9 @@ public class CoolerRequest extends ProductRequest{
     public Integer getId() {
         return id;
     }
-
     public void setId(Integer id) {
         this.id = id;
     }
-
     public Boolean getContained() {
         return contained;
     }
@@ -25,4 +23,5 @@ public class CoolerRequest extends ProductRequest{
     public void setCart(Boolean cart) {
         this.cart = cart;
     }
+
 }

@@ -30,6 +30,7 @@ public class UserController {
         }
         return resp;
     }
+
     @GetMapping("/listUser")
     public Response<UserView> listAllUser(){
         Response<UserView> resp = new Response<UserView>();
@@ -66,6 +67,7 @@ public class UserController {
         }
         return resp;
     }
+
     @PostMapping("/update")
     public ResponseBase update(@RequestBody(required = true) UserRequest req){
         ResponseBase resp=new ResponseBase();
@@ -78,8 +80,10 @@ public class UserController {
         }
         return resp;
     }
+
+
     @GetMapping("/getById")
-    public ResponseObject<UserView> getById(@RequestParam(required=true)Integer id){
+    public ResponseObject<UserView> getById(Integer id){
         ResponseObject<UserView> res = new ResponseObject<UserView>();
         res.setRc(true);
         try {
@@ -90,8 +94,9 @@ public class UserController {
         }
         return res;
     }
+
     @GetMapping("/getByUsername")
-    public ResponseObject<UserView> getByUsername(@RequestParam(required=true)String username){
+    public ResponseObject<UserView> getByUsername(String username){
         ResponseObject<UserView> res = new ResponseObject<UserView>();
         res.setRc(true);
         try {

@@ -2,7 +2,7 @@ package com.betacom.eCommerce.classes.controller;
 
 import com.betacom.eCommerce.classes.dto.request.LaptopRequest;
 import com.betacom.eCommerce.classes.dto.request.MemoryRequest;
-import com.betacom.eCommerce.classes.dto.view.CpuView;
+import com.betacom.eCommerce.classes.dto.view.GpuView;
 import com.betacom.eCommerce.classes.dto.view.LaptopView;
 import com.betacom.eCommerce.classes.dto.view.MemoryView;
 import com.betacom.eCommerce.classes.dto.view.MonitorView;
@@ -33,18 +33,6 @@ public class MemoryController {
         return resp;
     }
 
-    @GetMapping("/listByIdProduct")
-    public Response<MemoryView> listByIdProduct(Integer idProduct){
-        Response<MemoryView> resp = new Response<MemoryView>();
-        resp.setRc (true);
-        try{
-            resp.setDati (service.listByIdProduct(idProduct));
-        }catch(Exception e){
-            resp.setRc(false);
-            resp.setMsg(e.getMessage());
-        }
-        return resp;
-    }
 
     @GetMapping("/list")
     public Response<MemoryView> listAll(){
@@ -97,5 +85,6 @@ public class MemoryController {
         }
         return res;
     }
+
 
 }

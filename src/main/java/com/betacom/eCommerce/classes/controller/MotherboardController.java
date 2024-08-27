@@ -2,6 +2,7 @@ package com.betacom.eCommerce.classes.controller;
 
 import com.betacom.eCommerce.classes.dto.request.MonitorRequest;
 import com.betacom.eCommerce.classes.dto.request.MotherboardRequest;
+import com.betacom.eCommerce.classes.dto.view.CoolerView;
 import com.betacom.eCommerce.classes.dto.view.MotherboardView;
 import com.betacom.eCommerce.classes.dto.view.MouseView;
 import com.betacom.eCommerce.classes.dto.view.PsuView;

@@ -100,4 +100,6 @@ public class CpuService implements iCpuService {
         view.setModel(pojo.getProduct().getModel());
         return view;
     }
-}
+
+    }
+

@@ -1,9 +1,8 @@
 package com.betacom.eCommerce.classes.service;
 
 import com.betacom.eCommerce.classes.dto.request.MotherboardRequest;
-import com.betacom.eCommerce.classes.dto.view.CoolerView;
 import com.betacom.eCommerce.classes.dto.view.MotherboardView;
-import com.betacom.eCommerce.classes.dto.view.PsuView;
+import com.betacom.eCommerce.classes.dto.view.RamView;
 import com.betacom.eCommerce.classes.pojo.*;
 import com.betacom.eCommerce.interfaces.iRepository.iMotherboardRepository;
 import com.betacom.eCommerce.interfaces.iRepository.iProductRepository;
@@ -89,10 +88,5 @@ public class MotherboardService implements iMotherboardService{
             view.setPrice(pojo.getProduct().getPrice());
             view.setModel(pojo.getProduct().getModel());
             return view;
-    }
-
-    @Override
-    public List<MotherboardView> listByIdProduct(Integer idProduct) {
-        return transformInView(motherboardRepo.findByProduct(idProduct));
     }
 }

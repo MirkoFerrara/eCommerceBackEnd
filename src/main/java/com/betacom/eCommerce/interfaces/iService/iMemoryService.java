@@ -3,11 +3,7 @@ package com.betacom.eCommerce.interfaces.iService;
 import com.betacom.eCommerce.classes.dto.request.CartRequest;
 import com.betacom.eCommerce.classes.dto.request.MemoryRequest;
 import com.betacom.eCommerce.classes.dto.request.MonitorRequest;
-import com.betacom.eCommerce.classes.dto.view.CartView;
-import com.betacom.eCommerce.classes.dto.view.GpuView;
-import com.betacom.eCommerce.classes.dto.view.MemoryView;
-import com.betacom.eCommerce.classes.dto.view.MonitorView;
-import com.betacom.eCommerce.classes.pojo.CoolerPojo;
+import com.betacom.eCommerce.classes.dto.view.*;
 import com.betacom.eCommerce.classes.pojo.GpuPojo;
 import com.betacom.eCommerce.classes.pojo.MemoryPojo;
 import org.springframework.stereotype.Service;
@@ -21,6 +17,5 @@ public interface iMemoryService {
     public List<MemoryView> list();
     public MemoryView getById(Integer id);
     public MemoryView transformInView(MemoryPojo pojo);
-    public List<MemoryView>listByIdProduct(Integer idProduct);
 
 }

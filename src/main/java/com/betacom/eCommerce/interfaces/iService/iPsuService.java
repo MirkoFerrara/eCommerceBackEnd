@@ -1,7 +1,9 @@
 package com.betacom.eCommerce.interfaces.iService;
 
 import com.betacom.eCommerce.classes.dto.request.PsuRequest;
+import com.betacom.eCommerce.classes.dto.view.CoolerView;
 import com.betacom.eCommerce.classes.dto.view.GpuView;
+import com.betacom.eCommerce.classes.dto.view.MemoryView;
 import com.betacom.eCommerce.classes.dto.view.PsuView;
 import com.betacom.eCommerce.classes.pojo.GpuPojo;
 import com.betacom.eCommerce.classes.pojo.PsuPojo;

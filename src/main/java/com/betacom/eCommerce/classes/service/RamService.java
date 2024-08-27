@@ -21,6 +21,18 @@ public class RamService implements iRamService{
     @Autowired
     private iProductRepository productRepo;
 
+    @Override
+    public void create(RamRequest req) {
+        RamPojo pojo = null ;
+        for(int i=0; i< req.getQuantity();i++ ) {
+            pojo = new RamPojo();
+            Optional<ProductPojo> product = productRepo.findById(req.getIdProduct());
+            pojo.setProduct(product.get());
+            pojo.setCart(req.getCart());
+        }
+        ramRepo.save(pojo);
+    }
+
 
     @Override
     public void update(RamRequest req) {
@@ -76,21 +88,4 @@ public class RamService implements iRamService{
         view.setModel(pojo.getProduct().getModel());
         return view;
     }
-    @Override
-    public RamView listByIdProduct(Integer id ) {
-        return transformInView(ramRepo.findByProduct(id));
-    }
-
-    @Override
-    public void create(RamRequest req) {
-        RamPojo pojo = null ;
-        for(int i=0; i< req.getQuantity();i++ ) {
-            pojo = new RamPojo();
-            Optional<ProductPojo> product = productRepo.findById(req.getIdProduct());
-            pojo.setProduct(product.get());
-            pojo.setCart(req.getCart());
-        }
-        ramRepo.save(pojo);
-    }
-
 }

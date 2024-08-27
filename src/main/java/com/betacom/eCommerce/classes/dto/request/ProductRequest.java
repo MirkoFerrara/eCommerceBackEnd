@@ -11,6 +11,17 @@ public class ProductRequest {
     private String description ;
     private String colour ;
     private String item ;
+    private Integer quantity;
+
+
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
 
     public Integer getQuantity() {
         return quantity;
@@ -75,4 +86,6 @@ public class ProductRequest {
     public void setItem(String item) {
         this.item = item;
     }
+
+
 }

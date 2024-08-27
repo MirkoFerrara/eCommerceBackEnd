@@ -30,19 +30,6 @@ public class PcController {
         return resp;
     }
 
-    @GetMapping("/list")
-    public Response<PcView> listAll(){
-        Response<PcView> resp = new Response<PcView>();
-        resp.setRc (true);
-        try{
-            resp.setDati (service.list());
-        }catch(Exception e){
-            resp.setRc(false);
-            resp.setMsg(e.getMessage());
-        }
-        return resp;
-    }
-
     @PostMapping("/update")
     public ResponseBase update(@RequestBody(required = true) PcRequest req){
         ResponseBase resp=new ResponseBase();

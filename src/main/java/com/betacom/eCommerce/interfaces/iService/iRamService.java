@@ -1,6 +1,7 @@
 package com.betacom.eCommerce.interfaces.iService;
 
 import com.betacom.eCommerce.classes.dto.request.RamRequest;
+import com.betacom.eCommerce.classes.dto.view.CoolerView;
 import com.betacom.eCommerce.classes.dto.view.GpuView;
 import com.betacom.eCommerce.classes.dto.view.RamView;
 import com.betacom.eCommerce.classes.pojo.CoolerPojo;

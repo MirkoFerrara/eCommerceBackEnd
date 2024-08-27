@@ -34,6 +34,8 @@ public class PsuService implements iPsuService {
         psuRepo.save(pojo);
     }
 
+
+
     @Override
     public void update(PsuRequest req) throws Exception {
         Optional<PsuPojo> opt= psuRepo.findById(req.getId());
