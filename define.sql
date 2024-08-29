@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+=======
 create table cart (id integer not null auto_increment, id_product integer, id_user integer, primary key (id)) engine=InnoDB;
 create table cooler (cart bit, contained bit, id integer not null auto_increment, id_product integer, laptop_mounted bit, primary key (id)) engine=InnoDB;
 create table cpu (cart bit, contained bit, id integer not null auto_increment, id_product integer, laptop_mounted bit, primary key (id)) engine=InnoDB;
@@ -9,7 +11,7 @@ create table monitor (cart bit, id integer not null auto_increment, id_product i
 create table motherboard (cart bit, contained bit, id integer not null auto_increment, id_product integer, laptop_mounted bit, primary key (id)) engine=InnoDB;
 create table mouse (cart bit, id integer not null auto_increment, id_product integer, primary key (id)) engine=InnoDB;
 create table pc (cart bit, id integer not null auto_increment, id_cooler integer, id_cpu integer, id_gpu integer, id_memory integer, id_motherboard integer, id_product integer, id_psu integer, id_ram integer, primary key (id)) engine=InnoDB;
-create table product (id integer not null auto_increment, price float(23), brand varchar(255), colour varchar(255), description varchar(255), item varchar(255), model varchar(255), primary key (id)) engine=InnoDB;
+create table product (id integer not null auto_increment, price float(23), brand varchar(255), colour varchar(255), description varchar(255), item varchar(255), model varchar(255), url varchar(255), primary key (id)) engine=InnoDB;
 create table psu (cart bit, contained bit, id integer not null auto_increment, id_product integer, laptop_mounted bit, primary key (id)) engine=InnoDB;
 create table ram (cart bit, contained bit, id integer not null auto_increment, id_product integer, laptop_mounted bit, primary key (id)) engine=InnoDB;
 create table user (id integer not null auto_increment, role bit, address varchar(255), password varchar(255), username varchar(255), primary key (id)) engine=InnoDB;
@@ -41,6 +43,7 @@ alter table pc add constraint FK1j2g8cr7pbb5wcdaq9clxp8uv foreign key (id_ram) r
 alter table pc add constraint FKcy86cutw0wkrk24k8q6jsb2oq foreign key (id_product) references product (id);
 alter table psu add constraint FKmlv848190ac7j03649mxv451w foreign key (id_product) references product (id);
 alter table ram add constraint FKaldquekielufl0b9mvt61jvny foreign key (id_product) references product (id);
+>>>>>>> f2766fe282f70d77e716b443a0e543663c814aec
 create table cart (id integer not null auto_increment, id_product integer, id_user integer, primary key (id)) engine=InnoDB;
 create table cooler (cart bit, contained bit, id integer not null auto_increment, id_product integer, laptop_mounted bit, primary key (id)) engine=InnoDB;
 create table cpu (cart bit, contained bit, id integer not null auto_increment, id_product integer, laptop_mounted bit, primary key (id)) engine=InnoDB;
@@ -52,7 +55,7 @@ create table monitor (cart bit, id integer not null auto_increment, id_product i
 create table motherboard (cart bit, contained bit, id integer not null auto_increment, id_product integer, laptop_mounted bit, primary key (id)) engine=InnoDB;
 create table mouse (cart bit, id integer not null auto_increment, id_product integer, primary key (id)) engine=InnoDB;
 create table pc (cart bit, id integer not null auto_increment, id_cooler integer, id_cpu integer, id_gpu integer, id_memory integer, id_motherboard integer, id_product integer, id_psu integer, id_ram integer, primary key (id)) engine=InnoDB;
-create table product (id integer not null auto_increment, price float(23), brand varchar(255), colour varchar(255), description varchar(255), item varchar(255), model varchar(255), primary key (id)) engine=InnoDB;
+create table product (id integer not null auto_increment, price float(23), brand varchar(255), colour varchar(255), description varchar(255), item varchar(255), model varchar(255), url varchar(255), primary key (id)) engine=InnoDB;
 create table psu (cart bit, contained bit, id integer not null auto_increment, id_product integer, laptop_mounted bit, primary key (id)) engine=InnoDB;
 create table ram (cart bit, contained bit, id integer not null auto_increment, id_product integer, laptop_mounted bit, primary key (id)) engine=InnoDB;
 create table user (id integer not null auto_increment, role bit, address varchar(255), password varchar(255), username varchar(255), primary key (id)) engine=InnoDB;

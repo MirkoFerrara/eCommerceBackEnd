@@ -204,7 +204,6 @@ public class ProductService implements iProductService{
     public ProductView getById(Integer id) {
         return transformInView(productRepo.findById(id).get());
     }
-    
 
     public ProductView transformInView( ProductPojo pojo) {
             ProductView view = new ProductView();
@@ -214,6 +213,8 @@ public class ProductService implements iProductService{
             view.setDescription(pojo.getDescription());
             view.setPrice(pojo.getPrice());
             view.setModel(pojo.getModel());
+            view.setUrl(pojo.getUrl());
+            view.setItem(pojo.getItem());
             return view;
     }
 
@@ -229,5 +230,4 @@ public class ProductService implements iProductService{
             return view;
         }).toList();
     }
-
 }

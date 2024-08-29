@@ -11,6 +11,6 @@ import java.util.List;
 public interface iCartService {
     public void create(CartRequest req) throws Exception;
     public void remove(Integer id) throws Exception;
-    public List<CartView>list(Integer id) throws Exception;
+    public List<CartView>list(String username) throws Exception;
     public void removeFromCart(CartRequest req) throws Exception;
 }

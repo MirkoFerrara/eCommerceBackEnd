@@ -8,6 +8,15 @@ public class CartRequest {
     private String item ;
     private Boolean confirm;
     private Boolean selected;
+    private String username;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     public Boolean getSelected() {
         return selected;
