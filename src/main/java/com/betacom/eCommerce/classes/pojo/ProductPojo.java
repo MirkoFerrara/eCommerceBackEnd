@@ -70,6 +70,8 @@ public class ProductPojo {
     @OneToMany(mappedBy="product", fetch = FetchType.EAGER)
     private List<LaptopPojo> laptop ;
 
+    private String url ;
+
     public List<CoolerPojo> getCooler() {
         return cooler;
     }
@@ -216,5 +218,13 @@ public class ProductPojo {
 
     public void setColour(String colour) {
         this.colour = colour;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

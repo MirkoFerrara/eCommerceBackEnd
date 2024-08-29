@@ -55,7 +55,8 @@ public class CartService implements iCartService{
             CartPojo pojo = new CartPojo();
 
             Optional<ProductPojo> optProduct = productRepo.findById(req.getIdProduct());
-            Optional<UserPojo> optUser = userRepo.findById(req.getIdUser());
+
+            Optional<UserPojo> optUser = userRepo.findByUsername(req.getUsername());
 
             updateRepo( req.getIdItem() , req.getItem() , true );
             pojo.setProduct(optProduct.get());
@@ -196,11 +197,11 @@ public class CartService implements iCartService{
     }
 
     @Override
-    public List<CartView> list(Integer id) throws Exception {
+    public List<CartView> list(String username) throws Exception {
 
         List<CartPojo>cart = cartRepo.findAll();
         List<CartPojo> filteredList = cart.stream()
-                .filter(item -> item.getUser().getId() == id )
+                .filter(item -> item.getUser().getUsername().equalsIgnoreCase(username)  )
                 .toList();
 
         if(filteredList.isEmpty())

@@ -14,7 +14,6 @@ public class CartController {
     @Autowired
     private iCartService service;
 
-
     @PostMapping("/create")
     public ResponseBase create(@RequestBody(required = true) CartRequest req){
         ResponseBase resp=new ResponseBase();
@@ -41,11 +40,11 @@ public class CartController {
     }
 
     @GetMapping("/list")
-    public Response<CartView>list(@RequestParam (required = true) Integer id){
+    public Response<CartView>list(@RequestParam (required = true) String username){
         Response<CartView> resp = new Response<CartView>();
         resp.setRc(true);
         try {
-            resp.setDati(service.list(id));
+            resp.setDati(service.list(username)); // id dello user
         } catch (Exception e) {
             resp.setRc(false);
             resp.setMsg(e.getMessage());
