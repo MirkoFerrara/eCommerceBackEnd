@@ -8,15 +8,28 @@ package com.betacom.eCommerce.classes.dto.request;
         private Integer idMemory;
         private Integer idMotherboard;
         private Boolean cart;
+        private Integer idCooler;
+        private Integer idPsu;
 
+
+        public Integer getIdCooler() {
+            return idCooler;
+        }
+        public void setIdCooler(Integer idCooler) {
+            this.idCooler = idCooler;
+        }
+        public Integer getIdPsu() {
+            return idPsu;
+        }
+        public void setIdPsu(Integer idPsu) {
+            this.idPsu = idPsu;
+        }
         public Boolean getCart() {
             return cart;
         }
-
         public void setCart(Boolean cart) {
             this.cart = cart;
         }
-
         public Integer getId() {
             return id;
         }

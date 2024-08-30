@@ -27,13 +27,11 @@ public class KeyboardService implements iKeyboardService {
         KeyboardPojo pojo = null ;
         for(int i=0;i<req.getQuantity();i++){
             pojo=new KeyboardPojo();
-
             Optional<ProductPojo> product=productRepo.findById(req.getId());
-
             pojo.setProduct(product.get());
             pojo.setCart(req.getCart());
+            keyboardRepo.save(pojo);
         }
-        keyboardRepo.save(pojo);
     }
 
     @Override

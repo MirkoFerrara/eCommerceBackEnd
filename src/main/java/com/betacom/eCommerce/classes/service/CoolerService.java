@@ -1,6 +1,7 @@
 package com.betacom.eCommerce.classes.service;
 
 import com.betacom.eCommerce.classes.dto.request.CoolerRequest;
+import com.betacom.eCommerce.classes.dto.request.CpuRequest;
 import com.betacom.eCommerce.classes.dto.view.CoolerView;
 import com.betacom.eCommerce.classes.dto.view.UserView;
 import com.betacom.eCommerce.classes.pojo.*;
@@ -11,6 +12,7 @@ import com.betacom.eCommerce.interfaces.iService.iCoolerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -37,19 +39,29 @@ public class CoolerService implements iCoolerService {
         coolerRepo.save(pojo);
     }
 
-    
+
 
     @Override
     public void create(CoolerRequest req) throws Exception {
-        CoolerPojo pojo = null ;
-        for(int i=0; i< req.getQuantity();i++ ) {
+        CoolerPojo pojo = null;
+        for (int i = 0; i < req.getQuantity(); i++) {
             pojo = new CoolerPojo();
-            Optional<ProductPojo> product = productRepo.findById(req.getIdProduct());
-            pojo.setProduct(product.get());
-            pojo.setCart(req.getCart());
-            pojo.setContained(req.getContained());
+            Optional<ProductPojo> productOpt = productRepo.findById(req.getIdProduct());
+
+            if (productOpt.isPresent()) {
+                ProductPojo product = productOpt.get();
+                System.out.println(product + " ID FOUND");
+
+                pojo.setProduct(product);
+                pojo.setCart(req.getCart());
+                pojo.setLaptopMounted(req.getLaptopMounted());
+                pojo.setContained(req.getContained());
+                coolerRepo.save(pojo);
+            } else {
+                System.out.println("Product with ID " + req.getIdProduct() + " not found.");
+                throw new Exception("Product with ID " + req.getIdProduct() + " not found.");
+            }
         }
-        coolerRepo.save(pojo);
     }
 
     @Override
@@ -66,6 +78,8 @@ public class CoolerService implements iCoolerService {
                 .toList();
         return transformInView(filteredPojo);
     }
+
+
 
     @Override
     public CoolerView getById(Integer id) {

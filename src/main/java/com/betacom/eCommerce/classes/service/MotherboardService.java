@@ -29,6 +29,7 @@ public class MotherboardService implements iMotherboardService{
             Optional<ProductPojo> product = productRepo.findById(req.getIdProduct());
             pojo.setProduct(product.get());
             pojo.setCart(req.getCart());
+            pojo.setContained(req.getContained());
         }
         motherboardRepo.save(pojo);
     }

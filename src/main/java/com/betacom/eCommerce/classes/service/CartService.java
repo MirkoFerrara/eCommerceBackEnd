@@ -1,17 +1,13 @@
 package com.betacom.eCommerce.classes.service;
 
 import com.betacom.eCommerce.classes.dto.request.CartRequest;
-import com.betacom.eCommerce.classes.dto.request.MonitorRequest;
 import com.betacom.eCommerce.classes.dto.view.CartView;
 import com.betacom.eCommerce.classes.pojo.*;
 import com.betacom.eCommerce.interfaces.iRepository.*;
 import com.betacom.eCommerce.interfaces.iService.iCartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 

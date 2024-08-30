@@ -3,6 +3,7 @@ package com.betacom.eCommerce.classes.dto.request;
 
 public class ProductRequest {
 
+
     private Integer quantity ;
     private Integer idProduct;
     private String model ;
@@ -11,6 +12,7 @@ public class ProductRequest {
     private String description ;
     private String colour ;
     private String item ;
+
 
     public Integer getQuantity() {
         return quantity;

@@ -29,6 +29,7 @@ public class RamService implements iRamService{
             Optional<ProductPojo> product = productRepo.findById(req.getIdProduct());
             pojo.setProduct(product.get());
             pojo.setCart(req.getCart());
+            pojo.setContained(req.getContained());
         }
         ramRepo.save(pojo);
     }

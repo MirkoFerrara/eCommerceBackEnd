@@ -29,7 +29,7 @@ public class CoolerController {
         return resp;
     }
 
-    @GetMapping("/list")
+    @GetMapping("/listAll")
     public Response<CoolerView> listAll(){
         Response<CoolerView> resp = new Response<CoolerView>();
         resp.setRc (true);
@@ -41,6 +41,9 @@ public class CoolerController {
         }
         return resp;
     }
+
+
+
 
     @PostMapping("/remove")
     public ResponseBase remove(@RequestParam(required = true) Integer id){
