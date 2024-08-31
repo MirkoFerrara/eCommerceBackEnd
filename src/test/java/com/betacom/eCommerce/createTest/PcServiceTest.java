@@ -1,8 +1,11 @@
 package com.betacom.eCommerce.createTest;
 
+import com.betacom.eCommerce.classes.dto.request.CpuRequest;
 import com.betacom.eCommerce.classes.dto.request.PcRequest;
+import com.betacom.eCommerce.classes.dto.view.CpuView;
 import com.betacom.eCommerce.classes.dto.view.MouseView;
 import com.betacom.eCommerce.classes.dto.view.PcView;
+import com.betacom.eCommerce.interfaces.iService.iCpuService;
 import com.betacom.eCommerce.interfaces.iService.iPcService;
 import static org.junit.jupiter.api.Assertions.fail;
 import jakarta.transaction.Transactional;
@@ -24,6 +27,9 @@ public class PcServiceTest {
     @Autowired
     iPcService service;
 
+    @Autowired
+    iCpuService cpu;
+
     @Test
     public void createPcTest() {
         createPcTest(service);  ;
@@ -31,16 +37,18 @@ public class PcServiceTest {
 
     public void createPcTest(iPcService service){
         PcRequest request = new PcRequest();
+        CpuView cpu1 = cpu.getById(1);
+        System.out.println("view della cpu "+cpu1);
         request.setId(1);
-        request.setIdProduct(6);
-        request.setIdCPU(12);
-        request.setIdGPU(11);
-        request.setIdMemory(8);
-        request.setIdMotherboard(9);
-        request.setIdRam(5);
-        request.setIdPsu(7);
-        request.setIdCooler(10);
-        request.setQuantity(2);
+        request.setIdProduct(1);
+        request.setIdCPU(1);
+        request.setIdGPU(1);
+        request.setIdMemory(1);
+        request.setIdMotherboard(1);
+        request.setIdRam(1);
+        request.setIdPsu(1);
+        request.setIdCooler(1);
+        request.setQuantity(1);
 
         try {
             service.create(request);
@@ -48,7 +56,8 @@ public class PcServiceTest {
             Assertions.assertThat(list.size()).isEqualTo(1);
         }catch (Exception e){
             e.printStackTrace();
-            fail("errore nella creazione del pc" +e.getMessage());        }
+            fail("errore nella creazione del pc" +e.getMessage());
+        }
     }
 
 }

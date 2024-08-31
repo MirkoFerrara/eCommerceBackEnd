@@ -29,7 +29,7 @@ public class MouseServiceTest {
 
     public void createMouseTest(iMouseService service){
         MouseRequest request = new MouseRequest();
-        request.setIdProduct(3);
+        request.setIdProduct(2);
         request.setQuantity(1);
         request.setCart(false);
         try {

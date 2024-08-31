@@ -36,10 +36,10 @@ public class CpuServiceTest {
     public void createCpuTest(iCpuService service) {
         CpuRequest request= new CpuRequest();
         request.setId(1);
-        request.setIdProduct(12);
+        request.setIdProduct(10);
         request.setQuantity(1);
         request.setCart(false);
-        request.setContained(true);
+        request.setContained(false);
         request.setLaptopMounted(false);
         try {
             service.create(request);

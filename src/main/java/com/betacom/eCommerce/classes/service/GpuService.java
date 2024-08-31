@@ -30,11 +30,9 @@ public class GpuService implements iGpuService {
         Optional<ProductPojo> product = productRepo.findById(req.getIdProduct());
         for(int i=0; i< req.getQuantity();i++ ) {
             pojo = new GpuPojo();
-            pojo.setId(req.getId());
             pojo.setProduct(product.get());
             pojo.setCart(req.getCart());
-            pojo.setContained(req.getContained());
-            pojo.setLaptopMounted(req.getLaptopMounted());
+            pojo.setContained((req.getContained()));
             gpuRepo.save(pojo);
         }
     }
@@ -45,7 +43,6 @@ public class GpuService implements iGpuService {
         pojo.setCart(req.getCart());
         ProductPojo product=productRepo.findById(req.getId()).get();
         pojo.setProduct(product);
-        pojo.setContained(req.getContained());
         gpuRepo.save(pojo);
     }
 
@@ -55,7 +52,6 @@ public class GpuService implements iGpuService {
 
     }
 
-
     @Override
     public List<GpuView> list() {
         List<GpuPojo> pojo = gpuRepo.findAll();
@@ -63,11 +59,6 @@ public class GpuService implements iGpuService {
                 .filter(item -> !item.getContained())
                 .toList();
         return transformInView(filteredPojo);
-    }
-
-    @Override
-    public List<GpuView> listAll() {
-        return transformInView( gpuRepo.findAll());
     }
 
 
@@ -81,9 +72,8 @@ public class GpuService implements iGpuService {
             view.setDescription(s.getProduct().getDescription());
             view.setPrice(s.getProduct().getPrice());
             view.setModel(s.getProduct().getModel());
-            view.setContained(s.getContained());
-            view.setLaptopMounted(s.getLaptopMounted());
             view.setCart(s.getCart());
+            view.setContained(s.getContained());
             return view;
         }).toList();
     }

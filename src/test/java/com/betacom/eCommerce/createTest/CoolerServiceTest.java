@@ -31,10 +31,10 @@ public class CoolerServiceTest {
 
     public void createCoolerTest(iCoolerService service) {
         CoolerRequest request= new CoolerRequest();
-        request.setIdProduct(10);
+        request.setIdProduct(8);
         request.setQuantity(1);
         request.setCart(false);
-        request.setContained(true);
+        request.setContained(false);
         request.setLaptopMounted(true);
 
         try {

@@ -51,15 +51,15 @@ public class ProductService implements iProductService{
 
     @Override
     public void create(ProductRequest req) {
- 
-            ProductPojo pojo = new ProductPojo();
-            pojo.setItem(req.getItem());
-            pojo.setBrand(req.getBrand());
-            pojo.setDescription(req.getDescription());
-            pojo.setModel(req.getModel());
-            pojo.setPrice(req.getPrice());
-            pojo.setColour(req.getColour());
-            productRepo.save(pojo); 
+
+        ProductPojo pojo = new ProductPojo();
+        pojo.setItem(req.getItem());
+        pojo.setBrand(req.getBrand());
+        pojo.setDescription(req.getDescription());
+        pojo.setModel(req.getModel());
+        pojo.setPrice(req.getPrice());
+        pojo.setColour(req.getColour());
+        productRepo.save(pojo);
     }
 
     @Override
@@ -92,9 +92,9 @@ public class ProductService implements iProductService{
                             && s.getProduct().getBrand().equalsIgnoreCase(brand))
                     .toList();
             if(filteredList.isEmpty())
-                 productRepo.delete(pojo);
+                productRepo.delete(pojo);
         } else if(pojo.getItem().equalsIgnoreCase("Psu")){
-                List<PsuPojo>  listPojo =  psuRepo.findAll() ;
+            List<PsuPojo>  listPojo =  psuRepo.findAll() ;
             List<PsuPojo> filteredList = listPojo.stream()
                     .filter(s -> s.getProduct().getColour().equalsIgnoreCase(colour)
                             && s.getProduct().getModel().equalsIgnoreCase(model)
@@ -206,26 +206,21 @@ public class ProductService implements iProductService{
 
     @Override
     public ProductView getById(Integer id) {
-        return null;
+        return transformInView(productRepo.findById(id).get());
     }
 
-//    @Override
-//    public ProductView getById(Integer id) {
-//        return transformInView(productRepo.findById(id).get());
-//    }
-
-//    public ProductView transformInView( ProductPojo pojo) {
-//            ProductView view = new ProductView();
-//            view.setIdProduct(pojo.getId());
-//            view.setBrand(pojo.getBrand());
-//            view.setColour(pojo.getColour());
-//            view.setDescription(pojo.getDescription());
-//            view.setPrice(pojo.getPrice());
-//            view.setModel(pojo.getModel());
-//            view.setUrl(pojo.getUrl());
-//            view.setItem(pojo.getItem());
-//            return view;
-//    }
+    public ProductView transformInView( ProductPojo pojo) {
+        ProductView view = new ProductView();
+        view.setIdProduct(pojo.getId());
+        view.setBrand(pojo.getBrand());
+        view.setColour(pojo.getColour());
+        view.setDescription(pojo.getDescription());
+        view.setPrice(pojo.getPrice());
+        view.setModel(pojo.getModel());
+        view.setUrl(pojo.getUrl());
+        view.setItem(pojo.getItem());
+        return view;
+    }
 
     public List<ProductView> transformInView(List<ProductPojo> pojo) {
         return pojo.stream().map(s -> {

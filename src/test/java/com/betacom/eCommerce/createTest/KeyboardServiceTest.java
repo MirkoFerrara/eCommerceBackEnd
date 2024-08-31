@@ -30,7 +30,7 @@ public class KeyboardServiceTest {
     public void createKeyboardTest(iKeyboardService service) {
         KeyboardRequest request= new KeyboardRequest();
         request.setId(1);
-        request.setIdProduct(4);
+        request.setIdProduct(3);
         request.setQuantity(1);
         request.setCart(false);
 

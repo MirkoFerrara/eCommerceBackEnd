@@ -23,13 +23,9 @@ public class ProductPojo {
 
     private String colour ;
 
-    public String getItem() {
-        return item;
-    }
+    private String url ;
 
-    public void setItem(String item) {
-        this.item = item;
-    }
+
 
     @OneToMany(mappedBy="product", fetch = FetchType.EAGER)
     private List<MousePojo> mouse ;
@@ -186,5 +182,16 @@ public class ProductPojo {
     public void setColour(String colour) {
         this.colour = colour;
     }
-
+    public String getItem() {
+        return item;
+    }
+    public void setItem(String item) {
+        this.item = item;
+    }
+    public String getUrl() {
+        return url;
+    }
+    public void setUrl(String url) {
+        this.url = url;
+    }
 }

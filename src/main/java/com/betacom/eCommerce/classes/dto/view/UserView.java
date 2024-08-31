@@ -7,6 +7,14 @@ public class UserView {
     private String role;
     private String  Address;
 
+    @Override
+    public String toString() {
+        return "UserView{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                '}';
+    }
+
     public String getAddress(){return Address;}
 
     public void setAddress(String Address) {

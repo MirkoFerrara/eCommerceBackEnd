@@ -31,10 +31,10 @@ public class MotherboardServiceTest {
 
     public void createMotherboardTest(iMotherboardService service) {
         MotherboardRequest request= new MotherboardRequest();
-        request.setIdProduct(9);
+        request.setIdProduct(7);
         request.setQuantity(1);
         request.setCart(false);
-        request.setContained(true);
+        request.setContained(false);
         request.setLaptopMounted(true);
 
         try {

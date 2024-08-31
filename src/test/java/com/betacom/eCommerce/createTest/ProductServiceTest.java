@@ -41,19 +41,9 @@ public class ProductServiceTest {
             request.setColour("Nero");
             service.create(request);
 
-            List<ProductView> list = service.list();
+            List<ProductView> list = service.list(request.getItem());
             Assertions.assertThat(list.size()).isEqualTo(1);
 
-            request.setItem("Laptop");
-            request.setBrand("MSI");
-            request.setDescription("Pc Msi 144Hz");
-            request.setModel("MSI Modern 15 B12M-094IT");
-            request.setPrice(1500.50F);
-            request.setColour("Rosso");
-            service.create(request);
-
-            list = service.list();
-            Assertions.assertThat(list.size()).isEqualTo(2);
 
             request.setItem("Mouse");
             request.setBrand("Logitech");
@@ -63,8 +53,8 @@ public class ProductServiceTest {
             request.setColour("Bianco");
             service.create(request);
 
-            list = service.list();
-            Assertions.assertThat(list.size()).isEqualTo(3);
+            list = service.list(request.getItem());
+            Assertions.assertThat(list.size()).isEqualTo(1);
 
             request.setItem("Keyboard");
             request.setBrand("Logitech");
@@ -74,8 +64,8 @@ public class ProductServiceTest {
             request.setColour("Bianco");
             service.create(request);
 
-            list = service.list();
-            Assertions.assertThat(list.size()).isEqualTo(4);
+            list = service.list(request.getItem());
+            Assertions.assertThat(list.size()).isEqualTo(1);
 
             request.setItem("Ram");
             request.setBrand("Corsair");
@@ -85,19 +75,8 @@ public class ProductServiceTest {
             request.setColour("Nero");
             service.create(request);
 
-            list = service.list();
-            Assertions.assertThat(list.size()).isEqualTo(5);
-
-            request.setItem("Pc");
-            request.setBrand("HP");
-            request.setDescription("HP processore i9 2,22 ghz");
-            request.setModel("hp ");
-            request.setPrice(700.50F);
-            request.setColour("Nero");
-            service.create(request);
-
-            list = service.list();
-            Assertions.assertThat(list.size()).isEqualTo(6);
+            list = service.list(request.getItem());
+            Assertions.assertThat(list.size()).isEqualTo(1);
 
             request.setItem("Psu");
             request.setBrand("Corsair");
@@ -107,8 +86,8 @@ public class ProductServiceTest {
             request.setColour("Nero");
             service.create(request);
 
-            list = service.list();
-            Assertions.assertThat(list.size()).isEqualTo(7);
+            list = service.list(request.getItem());
+            Assertions.assertThat(list.size()).isEqualTo(1);
 
             request.setItem("Memory");
             request.setBrand("HP");
@@ -118,8 +97,8 @@ public class ProductServiceTest {
             request.setColour("Nero");
             service.create(request);
 
-            list = service.list();
-            Assertions.assertThat(list.size()).isEqualTo(8);
+            list = service.list(request.getItem());
+            Assertions.assertThat(list.size()).isEqualTo(1);
 
             request.setItem("Motherboard");
             request.setBrand("HP");
@@ -129,8 +108,8 @@ public class ProductServiceTest {
             request.setColour("Nero");
             service.create(request);
 
-            list = service.list();
-            Assertions.assertThat(list.size()).isEqualTo(9);
+            list = service.list(request.getItem());
+            Assertions.assertThat(list.size()).isEqualTo(1);
 
             request.setItem("Cooler");
             request.setBrand("Noctua");
@@ -140,8 +119,8 @@ public class ProductServiceTest {
             request.setColour("Nero");
             service.create(request);
 
-            list = service.list();
-            Assertions.assertThat(list.size()).isEqualTo(10);
+            list = service.list(request.getItem());
+            Assertions.assertThat(list.size()).isEqualTo(1);
 
             request.setItem("GPU");
             request.setBrand("Nvidia");
@@ -151,8 +130,8 @@ public class ProductServiceTest {
             request.setColour("Nero");
             service.create(request);
 
-            list = service.list();
-            Assertions.assertThat(list.size()).isEqualTo(11);
+            list = service.list(request.getItem());
+            Assertions.assertThat(list.size()).isEqualTo(1);
 
             request.setItem("CPU");
             request.setBrand("Amd");
@@ -162,9 +141,32 @@ public class ProductServiceTest {
             request.setColour("Nero");
             service.create(request);
 
-            list = service.list();
-            Assertions.assertThat(list.size()).isEqualTo(12);
+            list = service.list(request.getItem());
+            Assertions.assertThat(list.size()).isEqualTo(1);
 
+
+            request.setItem("Pc");
+            request.setBrand("HP");
+            request.setDescription("HP processore i9 2,22 ghz");
+            request.setModel("hp ");
+            request.setPrice(700.50F);
+            request.setColour("Nero");
+            service.create(request);
+
+            list = service.list(request.getItem());
+            Assertions.assertThat(list.size()).isEqualTo(1);
+
+
+            request.setItem("Laptop");
+            request.setBrand("MSI");
+            request.setDescription("Pc Msi 144Hz");
+            request.setModel("MSI Modern 15 B12M-094IT");
+            request.setPrice(1500.50F);
+            request.setColour("Rosso");
+            service.create(request);
+
+            list = service.list(request.getItem());
+            Assertions.assertThat(list.size()).isEqualTo(1);
 
         }catch(Exception e){
             e.printStackTrace();

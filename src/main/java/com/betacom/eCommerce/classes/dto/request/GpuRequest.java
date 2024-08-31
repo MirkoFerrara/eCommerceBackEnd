@@ -4,7 +4,6 @@ public class GpuRequest extends ProductRequest{
     private Integer id;
     private Boolean cart;
     private Boolean contained;
-    private Boolean laptopMounted;
 
     @Override
     public String toString() {
@@ -12,17 +11,11 @@ public class GpuRequest extends ProductRequest{
                 "id=" + id +
                 ", cart=" + cart +
                 ", contained=" + contained +
-                ", laptopMounted=" + laptopMounted +
                 ", getIdProduct "+getIdProduct() +
                 '}';
     }
 
-    public Boolean getLaptopMounted() {
-        return laptopMounted;
-    }
-    public void setLaptopMounted(Boolean laptopMounted) {
-        this.laptopMounted = laptopMounted;
-    }
+
     public Boolean getCart() {
         return cart;
     }

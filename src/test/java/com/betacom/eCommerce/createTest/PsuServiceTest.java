@@ -4,7 +4,6 @@ package com.betacom.eCommerce.createTest;
 import com.betacom.eCommerce.classes.dto.request.PsuRequest;
 import com.betacom.eCommerce.classes.dto.view.PsuView;
 import com.betacom.eCommerce.interfaces.iService.iPsuService;
-import jakarta.transaction.Transactional;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,6 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.fail;
 
 @SpringBootTest
-@Transactional
 @Commit
 public class PsuServiceTest {
     @Autowired
@@ -27,18 +25,20 @@ public class PsuServiceTest {
 
     public void createPsuTest(iPsuService service) {
         PsuRequest request= new PsuRequest();
-        request.setIdProduct(4);
+        request.setId(1);
+        request.setIdProduct(5);
         request.setQuantity(1);
         request.setCart(false);
-        request.setContained(true);
-        request.setLaptopMounted(true);
+        request.setContained(false);
 
         try {
             service.create(request);
+            service.getById(request.getId());
             List<PsuView> list=service.list();
             Assertions.assertThat(list.size()).isEqualTo(1);
         } catch (Exception e) {
             e.printStackTrace();
-            fail("errore nella creazione della psu" +e.getMessage());        }
+            fail("errore nella creazione della psu" +e.getMessage());
+        }
     }
 }

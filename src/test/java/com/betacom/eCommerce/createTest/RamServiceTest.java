@@ -34,10 +34,10 @@ public class RamServiceTest {
 
     public void createRamTest(iRamService service) {
         RamRequest request= new RamRequest();
-        request.setIdProduct(5);
+        request.setIdProduct(4);
         request.setQuantity(1);
         request.setCart(false);
-        request.setContained(true);
+        request.setContained(false);
         request.setLaptopMounted(true);
 
         try {

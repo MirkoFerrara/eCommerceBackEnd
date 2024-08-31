@@ -4,15 +4,8 @@ public class GpuView extends ProductView{
     private Integer id;
     private Boolean cart;
     private Boolean contained;
-    private Boolean laptopMounted;
 
 
-    public Boolean getLaptopMounted() {
-        return laptopMounted;
-    }
-    public void setLaptopMounted(Boolean laptopMounted) {
-        this.laptopMounted = laptopMounted;
-    }
     public Integer getId() {
         return id;
     }

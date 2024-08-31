@@ -5,11 +5,12 @@ public class CartView {
     private String username;
     private Integer idProduct;
     private String errorMSG;
-    private Boolean confirm;
+    private Boolean selected;
     private Integer idItem;
     private String url ;
     private String description;
     private Integer price;
+    private Boolean confirm;
 
     public Integer getPrice() {
         return price;
@@ -41,14 +42,6 @@ public class CartView {
 
     public void setIdItem(Integer idItem) {
         this.idItem = idItem;
-    }
-
-    public Boolean getConfirm() {
-        return confirm;
-    }
-
-    public void setConfirm(Boolean confirm) {
-        this.confirm = confirm;
     }
 
     public String getErrorMSG() {
@@ -83,4 +76,19 @@ public class CartView {
         this.id = id;
     }
 
+    public Boolean getSelected() {
+        return selected;
+    }
+
+    public void setSelected(Boolean selected) {
+        this.selected = selected;
+    }
+
+    public Boolean getConfirm() {
+        return confirm;
+    }
+
+    public void setConfirm(Boolean confirm) {
+        this.confirm = confirm;
+    }
 }

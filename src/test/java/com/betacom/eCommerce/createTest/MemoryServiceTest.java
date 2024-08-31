@@ -30,10 +30,10 @@ public class MemoryServiceTest {
 
     public void createMemoryTest(iMemoryService service) {
         MemoryRequest request=new MemoryRequest();
-        request.setIdProduct(8);
+        request.setIdProduct(6);
         request.setQuantity(1);
         request.setCart(false);
-        request.setContained(true);
+        request.setContained(false);
         request.setLaptopMounted(true);
 
         try {
