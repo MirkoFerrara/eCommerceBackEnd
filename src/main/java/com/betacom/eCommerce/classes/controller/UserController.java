@@ -81,20 +81,6 @@ public class UserController {
         return resp;
     }
 
-
-    @GetMapping("/getById")
-    public ResponseObject<UserView> getById(Integer id){
-        ResponseObject<UserView> res = new ResponseObject<UserView>();
-        res.setRc(true);
-        try {
-            res.setDati(service.getById(id));
-        } catch (Exception e) {
-            res.setRc(false);
-            res.setMsg(e.getMessage());
-        }
-        return res;
-    }
-
     @GetMapping("/getByUsername")
     public ResponseObject<UserView> getByUsername(String username){
         ResponseObject<UserView> res = new ResponseObject<UserView>();

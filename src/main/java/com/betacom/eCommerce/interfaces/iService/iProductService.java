@@ -13,6 +13,6 @@ public interface iProductService {
     public void create(ProductRequest req) throws Exception;
     public void update(ProductRequest req) throws Exception;
     public void remove(Integer id) throws Exception;
-    public List<ProductView> list();
+    public List<ProductView> list(String item);
     public ProductView getById(Integer id);
 }

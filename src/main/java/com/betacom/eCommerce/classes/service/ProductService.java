@@ -196,8 +196,12 @@ public class ProductService implements iProductService{
     }
 
     @Override
-    public List<ProductView> list() {
-        return transformInView( productRepo.findAll());
+    public List<ProductView> list(String item) {
+        List<ProductPojo> filteredList = productRepo
+                .findAll()
+                .stream()
+                .filter(pojo -> pojo.getItem().equalsIgnoreCase(item)).toList();
+        return transformInView( filteredList );
     }
 
     @Override
@@ -232,6 +236,7 @@ public class ProductService implements iProductService{
             view.setDescription(s.getDescription());
             view.setPrice(s.getPrice());
             view.setModel(s.getModel());
+            view.setUrl(s.getUrl());
             return view;
         }).toList();
     }

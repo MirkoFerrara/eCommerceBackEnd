@@ -27,19 +27,21 @@ public class UserService implements iUserService {
         pojo.setAddress(req.getAddress());
         pojo.setUsername(req.getUsername());
         pojo.setPassword(req.getPassword()); // Codifica la password qui
-        pojo.setRole(req.getRole().equalsIgnoreCase("ADMIN"));
+        pojo.setRole(req.getRole().equalsIgnoreCase("USER"));
         userRepo.save(pojo);
     }
 
     @Override
     public void update(UserRequest req) {
+
         UserPojo pojo = userRepo.findById(req.getId()).get();
+
         pojo.setUsername(req.getUsername());
         if (req.getPassword() != null && !req.getPassword().isEmpty()) {
             pojo.setPassword(req.getPassword()); // Codifica la password qui
         }
-        pojo.setRole(req.getRole().equalsIgnoreCase("ADMIN"));
         pojo.setAddress(req.getAddress());
+
         userRepo.save(pojo);
     }
     @Override
