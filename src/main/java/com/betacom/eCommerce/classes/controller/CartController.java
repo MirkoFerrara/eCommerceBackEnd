@@ -2,6 +2,7 @@ package com.betacom.eCommerce.classes.controller;
 
 import com.betacom.eCommerce.classes.dto.request.CartRequest;
 import com.betacom.eCommerce.classes.dto.view.CartView;
+import com.betacom.eCommerce.classes.dto.view.UserView;
 import com.betacom.eCommerce.interfaces.iService.iCartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +14,19 @@ public class CartController {
 
     @Autowired
     private iCartService service;
+
+    @GetMapping("/getById")
+    public ResponseObject<CartView> getById(@RequestParam(required = true)Integer id){
+        ResponseObject<CartView> res = new ResponseObject<CartView>();
+        res.setRc(true);
+        try {
+            res.setDati(service.getById(id));
+        } catch (Exception e) {
+            res.setRc(false);
+            res.setMsg(e.getMessage());
+        }
+        return res;
+    }
 
     @PostMapping("/create")
     public ResponseBase create(@RequestBody(required = true) CartRequest req){

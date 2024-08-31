@@ -1,10 +1,7 @@
 package com.betacom.eCommerce.classes.controller;
 
 import com.betacom.eCommerce.classes.dto.request.ProductRequest;
-import com.betacom.eCommerce.classes.dto.request.RamRequest;
-import com.betacom.eCommerce.classes.dto.view.PcView;
 import com.betacom.eCommerce.classes.dto.view.ProductView;
-import com.betacom.eCommerce.classes.dto.view.RamView;
 import com.betacom.eCommerce.classes.response.Response;
 import com.betacom.eCommerce.classes.response.ResponseBase;
 import com.betacom.eCommerce.classes.response.ResponseObject;
@@ -33,11 +30,11 @@ public class ProductController {
     }
 
     @GetMapping("/list")
-    public Response<ProductView> listAll(){
+    public Response<ProductView> listAll(@RequestParam (required = true ) String item){
         Response<ProductView> resp = new Response<ProductView>();
         resp.setRc (true);
         try{
-            resp.setDati (service.list());
+            resp.setDati (service.list(item));
         }catch(Exception e){
             resp.setRc(false);
             resp.setMsg(e.getMessage());

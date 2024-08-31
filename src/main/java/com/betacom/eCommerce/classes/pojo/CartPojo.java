@@ -10,6 +10,8 @@ public class CartPojo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id ;
 
+    private Integer idItem ;
+
     @ManyToOne
     @JoinColumn(name = "idProduct")
     private ProductPojo product ;
@@ -42,4 +44,10 @@ public class CartPojo {
         this.product = product;
     }
 
+    public Integer getIdItem() {
+        return idItem;
+    }
+    public void setIdItem(Integer idItem) {
+        this.idItem = idItem;
+    }
 }

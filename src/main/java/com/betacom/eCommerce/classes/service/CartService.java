@@ -53,68 +53,207 @@ public class CartService implements iCartService{
         public void create(CartRequest req ) throws Exception {
 
             CartPojo pojo = new CartPojo();
-
             Optional<ProductPojo> optProduct = productRepo.findById(req.getIdProduct());
-
             Optional<UserPojo> optUser = userRepo.findByUsername(req.getUsername());
 
-            updateRepo( req.getIdItem() , req.getItem() , true );
-            pojo.setProduct(optProduct.get());
-            pojo.setUser(optUser.get());
-            cartRepo.save(pojo);
+            if( updateRepo( optProduct.get() , true , pojo) ){
+                pojo.setProduct(optProduct.get());
+                pojo.setUser(optUser.get());
+                cartRepo.save(pojo);
+            } else
+                throw new Exception("Articolo esaurito") ;
         }
 
-        public void updateRepo( Integer id , String item , boolean value ){
+        public boolean updateRepo( ProductPojo productPojo , boolean value , CartPojo cartPojo){
+            if (productPojo.getItem().equalsIgnoreCase("psu")) {
+                if(!value){
+                    psuRepo.findById(cartPojo.getIdItem()).get().setCart(value);
+                    return true;
+                }
+                List<PsuPojo> filteredList =  productPojo.getPsu().stream()
+                        .filter(pojo -> !pojo.getCart())
+                        .toList();
+                if (!filteredList.isEmpty()) {
+                    PsuPojo lastPojo = filteredList.get(filteredList.size() - 1);
+                    lastPojo.setCart(value);
+                    psuRepo.save(lastPojo);
+                    cartPojo.setIdItem(lastPojo.getId());
+                    return true;
+                }
+            } else if ( productPojo.getItem().equalsIgnoreCase("monitor") ){
 
-            if ( item.equalsIgnoreCase("psu")) {
-                PsuPojo pojo = psuRepo.findById(id).get();
-                pojo.setCart(value);
-                psuRepo.save(pojo);
-            } else if ( item.equalsIgnoreCase("monitor") ){
-                MonitorPojo pojo = monitorRepo.findById(id).get();
-                pojo.setCart(value);
-                monitorRepo.save(pojo);
-            } else if ( item.equalsIgnoreCase("ram") ) {
-                RamPojo pojo = ramRepo.findById(id).get();
-                pojo.setCart(value);
-                ramRepo.save(pojo);
-            } else if ( item.equalsIgnoreCase("memory") ) {
-                MemoryPojo pojo = memoryRepo.findById(id).get();
-                pojo.setCart(value);
-                memoryRepo.save(pojo);
-            } else if ( item.equalsIgnoreCase("keyboard") ) {
-                KeyboardPojo pojo = keyboardRepo.findById(id).get();
-                pojo.setCart(value);
-                keyboardRepo.save(pojo);
-            } else if ( item.equalsIgnoreCase("gpu") ) {
-                GpuPojo pojo = gpuRepo.findById(id).get();
-                pojo.setCart(value);
-                gpuRepo.save(pojo);
-            } else if (item.equalsIgnoreCase("cooler")){
-                CoolerPojo pojo = coolerRepo.findById(id).get();
-                pojo.setCart(value);
-                coolerRepo.save(pojo);
-            } else if ( item.equalsIgnoreCase("cpu") ) {
-                CpuPojo pojo = cpuRepo.findById(id).get();
-                pojo.setCart(value);
-                cpuRepo.save(pojo);
-            } else if ( item.equalsIgnoreCase("mouse") ) {
-                MousePojo pojo = mouseRepo.findById(id).get();
-                pojo.setCart(value);
-                mouseRepo.save(pojo);
-            } else if ( item.equalsIgnoreCase("motherboard") ) {
-                MotherboardPojo pojo = motherboardRepo.findById(id).get();
-                pojo.setCart(value);
-                motherboardRepo.save(pojo);
-            } else if ( item.equalsIgnoreCase("laptop") ) {
-                LaptopPojo pojo = laptopRepo.findById(id).get();
-                pojo.setCart(value);
-                laptopRepo.save(pojo);
-            } else if ( item.equalsIgnoreCase("pc") ) {
-                PcPojo pojo = pcRepo.findById(id).get();
-                pojo.setCart(value);
-                pcRepo.save(pojo);
+                if(!value){
+
+                    System.out.println(cartPojo.getProduct().getUrl());
+                    System.out.println(cartPojo.getIdItem()+ "idItem");
+                    System.out.println("QUEL PORCO DI DIO");
+
+                    monitorRepo.findById(cartPojo.getIdItem()).get().setCart(value);
+                    return true;
+                }
+                List<MonitorPojo> filteredList =  productPojo.getMonitor().stream()
+                        .filter(pojo -> !pojo.getCart())
+                        .toList();
+                System.out.println(filteredList.size() +" SIZE ");
+                if (!filteredList.isEmpty()) {
+                    MonitorPojo lastPojo = filteredList.get(filteredList.size() - 1);
+                    lastPojo.setCart(value);
+                    monitorRepo.save(lastPojo);
+                    cartPojo.setIdItem(lastPojo.getId());
+                    return true;
+                }
+            } else if (  productPojo.getItem().equalsIgnoreCase("ram") ) {
+                if(!value){
+                    ramRepo.findById(cartPojo.getIdItem()).get().setCart(value);
+                    return true;
+                }
+                List<RamPojo> filteredList =  productPojo.getRam().stream()
+                        .filter(pojo -> !pojo.getCart())
+                        .toList();
+                if (!filteredList.isEmpty()) {
+                    RamPojo lastPojo = filteredList.get(filteredList.size() - 1);
+                    lastPojo.setCart(value);
+                    ramRepo.save(lastPojo);
+                    cartPojo.setIdItem(lastPojo.getId());
+                    return true;
+                }
+            } else if (  productPojo.getItem().equalsIgnoreCase("memory") ) {
+                if(!value){
+                    memoryRepo.findById(cartPojo.getIdItem()).get().setCart(value);
+                    return true;
+                }
+                List<MemoryPojo> filteredList =  productPojo.getMemory().stream()
+                        .filter(pojo -> !pojo.getCart())
+                        .toList();
+                if (!filteredList.isEmpty()) {
+                    MemoryPojo lastPojo = filteredList.get(filteredList.size() - 1);
+                    lastPojo.setCart(value);
+                    memoryRepo.save(lastPojo);
+                    cartPojo.setIdItem(lastPojo.getId());
+                    return true;
+                }
+            } else if (  productPojo.getItem().equalsIgnoreCase("keyboard") ) {
+                if(!value){
+                    keyboardRepo.findById(cartPojo.getIdItem()).get().setCart(value);
+                    return true;
+                }
+                List<KeyboardPojo> filteredList =  productPojo.getKeyboard().stream()
+                        .filter(pojo -> !pojo.getCart())
+                        .toList();
+                if (!filteredList.isEmpty()) {
+                    KeyboardPojo lastPojo = filteredList.get(filteredList.size() - 1);
+                    lastPojo.setCart(value);
+                    keyboardRepo.save(lastPojo);
+                    cartPojo.setIdItem(lastPojo.getId());
+                    return true;
+                }
+            } else if (  productPojo.getItem().equalsIgnoreCase("gpu") ) {
+                if(!value){
+                    gpuRepo.findById(cartPojo.getIdItem()).get().setCart(value);
+                    return true;
+                }
+                List<GpuPojo> filteredList =  productPojo.getGpu().stream()
+                        .filter(pojo -> !pojo.getCart())
+                        .toList();
+                if (!filteredList.isEmpty()) {
+                    GpuPojo lastPojo = filteredList.get(filteredList.size() - 1);
+                    lastPojo.setCart(value);
+                    gpuRepo.save(lastPojo);
+                    cartPojo.setIdItem(lastPojo.getId());
+                    return true;
+                }
+            } else if ( productPojo.getItem().equalsIgnoreCase("cooler")){
+                if(!value){
+                    coolerRepo.findById(cartPojo.getIdItem()).get().setCart(value);
+                    return true;
+                }
+                List<CoolerPojo> filteredList =  productPojo.getCooler().stream()
+                        .filter(pojo -> !pojo.getCart())
+                        .toList();
+                if (!filteredList.isEmpty()) {
+                    CoolerPojo lastPojo = filteredList.get(filteredList.size() - 1);
+                    lastPojo.setCart(value);
+                    coolerRepo.save(lastPojo);
+                    cartPojo.setIdItem(lastPojo.getId());
+                    return true;
+                }
+            } else if (  productPojo.getItem().equalsIgnoreCase("cpu") ) {
+                if(!value){
+                    cpuRepo.findById(cartPojo.getIdItem()).get().setCart(value);
+                    return true;
+                }
+                List<CpuPojo> filteredList =  productPojo.getCpu().stream()
+                        .filter(pojo -> !pojo.getCart())
+                        .toList();
+                if (!filteredList.isEmpty()) {
+                    CpuPojo lastPojo = filteredList.get(filteredList.size() - 1);
+                    lastPojo.setCart(value);
+                    cpuRepo.save(lastPojo);
+                    cartPojo.setIdItem(lastPojo.getId());
+                    return true;
+                }
+            } else if (  productPojo.getItem().equalsIgnoreCase("mouse") ) {
+                if(!value){
+                    mouseRepo.findById(cartPojo.getIdItem()).get().setCart(value);
+                    return true;
+                }
+                List<MousePojo> filteredList =  productPojo.getMouse().stream()
+                        .filter(pojo -> !pojo.getCart())
+                        .toList();
+                if (!filteredList.isEmpty()) {
+                    MousePojo lastPojo = filteredList.get(filteredList.size() - 1);
+                    lastPojo.setCart(value);
+                    mouseRepo.save(lastPojo);
+                    cartPojo.setIdItem(lastPojo.getId());
+                    return true;
+                }
+            } else if (  productPojo.getItem().equalsIgnoreCase("motherboard") ) {
+                if(!value){
+                    motherboardRepo.findById(cartPojo.getIdItem()).get().setCart(value);
+                    return true;
+                }
+                List<MotherboardPojo> filteredList =  productPojo.getMotherboard().stream()
+                        .filter(pojo -> !pojo.getCart())
+                        .toList();
+                if (!filteredList.isEmpty()) {
+                    MotherboardPojo lastPojo = filteredList.get(filteredList.size() - 1);
+                    lastPojo.setCart(value);
+                    motherboardRepo.save(lastPojo);
+                    cartPojo.setIdItem(lastPojo.getId());
+                    return true;
+                }
+            } else if (  productPojo.getItem().equalsIgnoreCase("laptop") ) {
+                if(!value){
+                    laptopRepo.findById(cartPojo.getIdItem()).get().setCart(value);
+                    return true;
+                }
+                List<LaptopPojo> filteredList =  productPojo.getLaptop().stream()
+                        .filter(pojo -> !pojo.getCart())
+                        .toList();
+                if (!filteredList.isEmpty()) {
+                    LaptopPojo lastPojo = filteredList.get(filteredList.size() - 1);
+                    lastPojo.setCart(value);
+                    laptopRepo.save(lastPojo);
+                    cartPojo.setIdItem(lastPojo.getId());
+                    return true;
+                }
+            } else if (  productPojo.getItem().equalsIgnoreCase("pc") ) {
+                if(!value){
+                    pcRepo.findById(cartPojo.getIdItem()).get().setCart(value);
+                    return true;
+                }
+                List<PcPojo> filteredList =  productPojo.getPc().stream()
+                        .filter(pojo -> !pojo.getCart())
+                        .toList();
+                if (!filteredList.isEmpty()) {
+                    PcPojo lastPojo = filteredList.get(filteredList.size() - 1);
+                    lastPojo.setCart(value);
+                    pcRepo.save(lastPojo);
+                    cartPojo.setIdItem(lastPojo.getId());
+                    return true;
+                }
             }
+            return false;
         }
 
     public void deleteRepo( Integer id , String item ) throws Exception {
@@ -167,26 +306,52 @@ public class CartService implements iCartService{
     *           il campo che indica se un prodotto è all'interno del carrello
     * */
     @Override
-    public void removeFromCart(CartRequest req) throws Exception {
+    public void removeFromCart(CartRequest req ) throws Exception {
+
+        System.out.println(req.getConfirm());
+        System.out.println(req.getIdProduct());
+        System.out.println(req.getUsername());
+        System.out.println(req.getId());
+
+
+        ProductPojo productPojo = productRepo.findById(req.getIdProduct()).get();
+        CartPojo cartPojo = cartRepo.findById(req.getId()).get();
 
         if (req.getConfirm())
             deleteRepo(req.getIdItem(),req.getItem()); // (es.) id nella tabella smartphone e stringa contenente "smartphone"
         else
-            updateRepo(req.getIdItem(),req.getItem() , false);
+            updateRepo( productPojo , false ,  cartPojo);
 
         remove(req.getId());
     }
 
+    @Override
+    public CartView getById(Integer id) {
+        return transformInView(cartRepo.findById(id).get()) ;
+    }
+    private CartView transformInView(CartPojo pojo) {
+            CartView view = new CartView();
+            view.setId(pojo.getId());
+            view.setIdProduct(pojo.getProduct().getId());
+            view.setUsername(pojo.getUser().getUsername());
+            view.setIdItem(pojo.getIdItem());
+            view.setDescription(pojo.getProduct().getDescription());
+            view.setUrl(pojo.getProduct().getUrl());
+            view.setPrice(pojo.getProduct().getPrice().intValue());
+            return view;
+    }
     private List<CartView> transformInView(List<CartPojo> cart) {
         return cart.stream().map(s -> {
             CartView view = new CartView();
             view.setId(s.getId());
-            view.setIdUser(s.getUser().getId());
-            view.setBrand(s.getProduct().getBrand());
-            view.setColour(s.getProduct().getColour());
+            view.setUsername(s.getUser().getUsername());
+            view.setIdProduct(s.getProduct().getId());
+            view.setUsername(s.getUser().getUsername());
+            view.setIdItem(s.getIdItem());
+            view.setUrl(s.getProduct().getUrl());
             view.setDescription(s.getProduct().getDescription());
-            view.setPrice(s.getProduct().getPrice());
-            view.setModel(s.getProduct().getModel());
+            view.setUrl(s.getProduct().getUrl());
+            view.setPrice(s.getProduct().getPrice().intValue());
             return view;
         }).collect(Collectors.toList());
     }
@@ -203,10 +368,8 @@ public class CartService implements iCartService{
         List<CartPojo> filteredList = cart.stream()
                 .filter(item -> item.getUser().getUsername().equalsIgnoreCase(username)  )
                 .toList();
-
         if(filteredList.isEmpty())
             throw new Exception("La lista è vuota");
-
         return transformInView(filteredList);
     }
 }

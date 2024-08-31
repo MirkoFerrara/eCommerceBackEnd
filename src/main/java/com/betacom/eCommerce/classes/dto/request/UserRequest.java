@@ -45,4 +45,5 @@ public class UserRequest {
     public void setRole(String role) {
         this.role = role;
     }
+
 }
