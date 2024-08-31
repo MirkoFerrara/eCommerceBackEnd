@@ -8,7 +8,7 @@ public class ProductView {
     private Float price;
     private String description;
     private String colour;
-    private String url;
+//    private String url;
     private String item;
 
     public String getItem() {
@@ -19,13 +19,13 @@ public class ProductView {
         this.item = item;
     }
 
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
+//    public String getUrl() {
+//        return url;
+//    }
+//
+//    public void setUrl(String url) {
+//        this.url = url;
+//    }
 
     public Integer getIdProduct() {
         return idProduct;

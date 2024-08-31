@@ -2,15 +2,22 @@ package com.betacom.eCommerce.createTest;
 
 import com.betacom.eCommerce.classes.dto.request.UserRequest;
 import com.betacom.eCommerce.classes.dto.view.UserView;
+import jakarta.transaction.Transactional;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import com.betacom.eCommerce.interfaces.iService.iUserService;
+import org.springframework.test.annotation.Commit;
+import org.springframework.test.context.ContextConfiguration;
+
 import java.util.List;
 import static org.assertj.core.api.Fail.fail;
 
 @SpringBootTest
+@Transactional
+@Commit
+@ContextConfiguration
 public class UserServiceTest {
     @Autowired
     iUserService service;

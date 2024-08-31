@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Commit;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
@@ -20,6 +21,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 @SpringBootTest
 @Transactional
 @Commit
+@ContextConfiguration
 public class RamServiceTest {
 
     @Autowired
@@ -36,6 +38,8 @@ public class RamServiceTest {
         request.setQuantity(1);
         request.setCart(false);
         request.setContained(true);
+        request.setLaptopMounted(true);
+
         try {
             service.create(request);
             List<RamView> list=service.list();

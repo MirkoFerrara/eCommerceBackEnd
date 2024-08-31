@@ -34,7 +34,7 @@ public class GpuController {
         Response<GpuView> resp = new Response<GpuView>();
         resp.setRc (true);
         try{
-            resp.setDati (service.list());
+            resp.setDati (service.listAll());
         }catch(Exception e){
             resp.setRc(false);
             resp.setMsg(e.getMessage());

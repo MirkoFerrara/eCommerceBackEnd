@@ -1,10 +1,7 @@
 package com.betacom.eCommerce.classes.service;
 
 import com.betacom.eCommerce.classes.dto.request.GpuRequest;
-import com.betacom.eCommerce.classes.dto.view.CoolerView;
-import com.betacom.eCommerce.classes.dto.view.CpuView;
-import com.betacom.eCommerce.classes.dto.view.GpuView;
-import com.betacom.eCommerce.classes.dto.view.MotherboardView;
+import com.betacom.eCommerce.classes.dto.view.*;
 import com.betacom.eCommerce.classes.pojo.*;
 import com.betacom.eCommerce.interfaces.iRepository.iGpuRepository;
 import com.betacom.eCommerce.interfaces.iRepository.iProductRepository;
@@ -25,21 +22,21 @@ public class GpuService implements iGpuService {
     private iGpuRepository gpuRepo;
     @Autowired
     private iProductRepository productRepo;
-    @Autowired
-    private iProductService productService;
+
 
     @Override
     public void create(GpuRequest req) throws Exception {
-
         GpuPojo pojo = null ;
+        Optional<ProductPojo> product = productRepo.findById(req.getIdProduct());
         for(int i=0; i< req.getQuantity();i++ ) {
             pojo = new GpuPojo();
-            Optional<ProductPojo> product = productRepo.findById(req.getIdProduct());
+            pojo.setId(req.getId());
             pojo.setProduct(product.get());
             pojo.setCart(req.getCart());
             pojo.setContained(req.getContained());
+            pojo.setLaptopMounted(req.getLaptopMounted());
+            gpuRepo.save(pojo);
         }
-        gpuRepo.save(pojo);
     }
 
     @Override
@@ -68,6 +65,12 @@ public class GpuService implements iGpuService {
         return transformInView(filteredPojo);
     }
 
+    @Override
+    public List<GpuView> listAll() {
+        return transformInView( gpuRepo.findAll());
+    }
+
+
     public List<GpuView> transformInView(List<GpuPojo> pojo) {
         return pojo.stream().map(s -> {
             GpuView view = new GpuView();
@@ -78,8 +81,11 @@ public class GpuService implements iGpuService {
             view.setDescription(s.getProduct().getDescription());
             view.setPrice(s.getProduct().getPrice());
             view.setModel(s.getProduct().getModel());
+            view.setContained(s.getContained());
+            view.setLaptopMounted(s.getLaptopMounted());
+            view.setCart(s.getCart());
             return view;
-        }).collect(Collectors.toList());
+        }).toList();
     }
 
     @Override
@@ -88,15 +94,15 @@ public class GpuService implements iGpuService {
     }
 
     public GpuView transformInView(GpuPojo pojo) {
-            GpuView view = new GpuView();
-            view.setId(pojo.getId());
-            view.setIdProduct(pojo.getProduct().getId());
-            view.setBrand(pojo.getProduct().getBrand());
-            view.setColour(pojo.getProduct().getColour());
-            view.setDescription(pojo.getProduct().getDescription());
-            view.setPrice(pojo.getProduct().getPrice());
-            view.setModel(pojo.getProduct().getModel());
-            return view;
+        GpuView view = new GpuView();
+        view.setId(pojo.getId());
+        view.setIdProduct(pojo.getProduct().getId());
+        view.setBrand(pojo.getProduct().getBrand());
+        view.setColour(pojo.getProduct().getColour());
+        view.setDescription(pojo.getProduct().getDescription());
+        view.setPrice(pojo.getProduct().getPrice());
+        view.setModel(pojo.getProduct().getModel());
+        return view;
     }
 
-    }
+}

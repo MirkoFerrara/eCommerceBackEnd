@@ -10,12 +10,15 @@ import com.betacom.eCommerce.interfaces.iService.iMemoryService;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Commit;
 import org.assertj.core.api.Assertions;
+import org.springframework.test.context.ContextConfiguration;
+
 import java.util.List;
 
 
 @SpringBootTest
 @Transactional
 @Commit
+@ContextConfiguration
 public class MemoryServiceTest {
 
     @Autowired
@@ -31,6 +34,8 @@ public class MemoryServiceTest {
         request.setQuantity(1);
         request.setCart(false);
         request.setContained(true);
+        request.setLaptopMounted(true);
+
         try {
             service.create(request);
             List<MemoryView> list = service.list();

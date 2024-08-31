@@ -15,16 +15,17 @@ public class PsuPojo {
     @JoinColumn(name = "idProduct")
     private ProductPojo product ;
 
-    private Boolean cart ;
-
-    private Boolean contained ;
-
     @OneToMany(mappedBy="idPsu", fetch = FetchType.EAGER)
     private List<LaptopPojo> laptop ;
 
     @OneToMany(mappedBy="idPsu", fetch = FetchType.EAGER)
     private List<PcPojo> pc ;
+
     private Boolean laptopMounted ; // true , false if mounted on pc
+
+    private Boolean cart ;
+
+    private Boolean contained ;
 
     public Boolean getLaptopMounted() {
         return laptopMounted;

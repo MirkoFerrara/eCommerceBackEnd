@@ -10,9 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Commit;
-
 import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.fail;
 
 @SpringBootTest
@@ -33,6 +31,8 @@ public class PsuServiceTest {
         request.setQuantity(1);
         request.setCart(false);
         request.setContained(true);
+        request.setLaptopMounted(true);
+
         try {
             service.create(request);
             List<PsuView> list=service.list();

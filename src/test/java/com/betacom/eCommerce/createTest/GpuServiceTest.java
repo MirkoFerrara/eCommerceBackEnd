@@ -8,8 +8,9 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.jdbc.core.JdbcOperations;
 import org.springframework.test.annotation.Commit;
-import org.springframework.test.context.junit4.SpringRunner;
+
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -23,7 +24,7 @@ public class GpuServiceTest {
 
         @Test
         public void createGpuTest() {
-            createGpuTest(service);  ;
+            createGpuTest(service);
         }
 
     public void createGpuTest(iGpuService service) {
@@ -32,8 +33,11 @@ public class GpuServiceTest {
         request.setQuantity(1);
         request.setCart(false);
         request.setContained(true);
+        request.setLaptopMounted(true);
+
         try {
             service.create(request);
+            System.out.print(request);
             List<GpuView> list=service.list();
             Assertions.assertThat(list.size()).isEqualTo(1);
         } catch (Exception e) {

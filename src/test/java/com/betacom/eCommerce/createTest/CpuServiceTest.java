@@ -1,6 +1,7 @@
 package com.betacom.eCommerce.createTest;
 
 
+import com.betacom.eCommerce.ECommerceApplication;
 import com.betacom.eCommerce.classes.dto.request.CpuRequest;
 import com.betacom.eCommerce.classes.dto.view.CpuView;
 import com.betacom.eCommerce.interfaces.iService.iCpuService;
@@ -10,12 +11,18 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Commit;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.ContextConfiguration;
+
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.fail;
 
 @SpringBootTest
 @Transactional
 @Commit
+@ContextConfiguration(classes = ECommerceApplication.class)
+@ActiveProfiles("test")
+
 public class CpuServiceTest {
 
     @Autowired
@@ -28,12 +35,12 @@ public class CpuServiceTest {
 
     public void createCpuTest(iCpuService service) {
         CpuRequest request= new CpuRequest();
+        request.setId(1);
         request.setIdProduct(12);
         request.setQuantity(1);
         request.setCart(false);
         request.setContained(true);
-
-
+        request.setLaptopMounted(false);
         try {
             service.create(request);
             List<CpuView> list=service.list();

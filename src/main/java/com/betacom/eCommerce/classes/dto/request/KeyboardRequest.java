@@ -3,7 +3,6 @@ package com.betacom.eCommerce.classes.dto.request;
 public class KeyboardRequest extends ProductRequest {
 
     private Integer id;
-
     private Boolean cart;
 
     public Boolean getCart() {

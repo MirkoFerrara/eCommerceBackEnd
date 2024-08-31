@@ -3,15 +3,20 @@ package com.betacom.eCommerce.createTest;
 import com.betacom.eCommerce.classes.dto.request.CartRequest;
 import com.betacom.eCommerce.classes.dto.view.CartView;
 import com.betacom.eCommerce.interfaces.iService.iCartService;
+import jakarta.transaction.Transactional;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.junit4.SpringRunner;
-
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Commit;
+import org.springframework.test.context.ContextConfiguration;
 import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.fail;
 
+@SpringBootTest
+@Transactional
+@Commit
+@ContextConfiguration
 public class CartServiceTest {
 
     @Autowired

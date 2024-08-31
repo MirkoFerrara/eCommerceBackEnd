@@ -44,7 +44,6 @@ public class ProductServiceTest {
             List<ProductView> list = service.list();
             Assertions.assertThat(list.size()).isEqualTo(1);
 
-
             request.setItem("Laptop");
             request.setBrand("MSI");
             request.setDescription("Pc Msi 144Hz");
@@ -143,7 +142,6 @@ public class ProductServiceTest {
 
             list = service.list();
             Assertions.assertThat(list.size()).isEqualTo(10);
-            System.out.println(list.size());
 
             request.setItem("GPU");
             request.setBrand("Nvidia");
@@ -167,11 +165,10 @@ public class ProductServiceTest {
             list = service.list();
             Assertions.assertThat(list.size()).isEqualTo(12);
 
-            ProductView product = service.list().get(9);
-            Assertions.assertThat(product).isNotNull();
 
         }catch(Exception e){
             e.printStackTrace();
-            fail("errore nella creazione del prodotto" +e.getMessage());        }
+            fail("errore nella creazione del prodotto" +e.getMessage());
+        }
     }
 }

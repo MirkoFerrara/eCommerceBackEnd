@@ -1,9 +1,9 @@
 package com.betacom.eCommerce.classes.dto.view;
 
 public class PsuView extends ProductView{
+    private Integer id;
     private Boolean cart;
     private Boolean contained;
-    private Integer id;
 
     public Integer getId() {
         return id;
@@ -14,15 +14,12 @@ public class PsuView extends ProductView{
     public Boolean getContained() {
         return contained;
     }
-
     public void setContained(Boolean contained) {
         this.contained = contained;
     }
-
     public Boolean getCart() {
         return cart;
     }
-
     public void setCart(Boolean cart) {
         this.cart = cart;
     }

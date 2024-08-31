@@ -32,6 +32,7 @@ public class CpuService implements iCpuService {
         for(int i=0; i< req.getQuantity();i++ ) {
             pojo = new CpuPojo();
             Optional<ProductPojo> product = productRepo.findById(req.getIdProduct());
+            pojo.setId(product.get().getId());
             pojo.setProduct(product.get());
             pojo.setCart(req.getCart());
             pojo.setContained(req.getContained());
