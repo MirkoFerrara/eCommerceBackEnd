@@ -5,13 +5,14 @@ public class UserRequest {
     private String username;
     private String password;
     private String role;
-    private String Address;
+    private String address;
 
-    public String getAddress(){return Address;}
+    public String getAddress() {
+        return address;
+    }
 
-    public void setAddress(String Address)
-    {
-        this.Address=Address;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public Integer getId() {

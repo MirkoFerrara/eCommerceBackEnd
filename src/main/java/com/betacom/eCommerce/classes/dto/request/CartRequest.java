@@ -6,7 +6,6 @@ public class CartRequest {
     private Integer idUser;
     private Integer idItem;
     private String item ;
-    private Boolean confirm;
     private Boolean selected;
     private String username;
 
@@ -25,15 +24,6 @@ public class CartRequest {
     public void setSelected(Boolean selected) {
         this.selected = selected;
     }
-
-    public Boolean getConfirm() {
-        return confirm;
-    }
-
-    public void setConfirm(Boolean confirm) {
-        this.confirm = confirm;
-    }
-
     public Integer getIdItem() {
         return idItem;
     }

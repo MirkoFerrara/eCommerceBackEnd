@@ -12,6 +12,8 @@ public class CartPojo {
 
     private Integer idItem ;
 
+    private Boolean selected;
+
     @ManyToOne
     @JoinColumn(name = "idProduct")
     private ProductPojo product ;
@@ -19,6 +21,14 @@ public class CartPojo {
     @ManyToOne
     @JoinColumn(name = "idUser")
     private UserPojo user ;
+
+    public Boolean getSelected() {
+        return selected;
+    }
+
+    public void setSelected(Boolean selected) {
+        this.selected = selected;
+    }
 
     public UserPojo getUser() {
         return user;
