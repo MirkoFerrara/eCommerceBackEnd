@@ -1,6 +1,6 @@
 package com.betacom.eCommerce.classes.response;
 
-public class ResponseObject<T> extends ResponseBase{
+public class ResponseObject<T> extends ResponseBase {
     private T dati;
 
     public T getDati() {
@@ -10,5 +10,4 @@ public class ResponseObject<T> extends ResponseBase{
     public void setDati(T dati) {
         this.dati = dati;
     }
-
 }

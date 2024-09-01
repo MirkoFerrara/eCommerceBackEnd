@@ -10,7 +10,19 @@ public class CartView {
     private String url ;
     private String description;
     private Integer price;
+<<<<<<< HEAD
     private Boolean confirm;
+=======
+    private Boolean selected;
+
+    public Boolean getSelected() {
+        return selected;
+    }
+
+    public void setSelected(Boolean selected) {
+        this.selected = selected;
+    }
+>>>>>>> 6c7a3a189393518eb46e71cfb74971944bd4bc7f
 
     public Integer getPrice() {
         return price;

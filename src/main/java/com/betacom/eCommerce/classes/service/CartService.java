@@ -55,6 +55,7 @@ public class CartService implements iCartService{
             if( updateRepo( optProduct.get() , true , pojo) ){
                 pojo.setProduct(optProduct.get());
                 pojo.setUser(optUser.get());
+                pojo.setSelected(req.getSelected());
                 cartRepo.save(pojo);
             } else
                 throw new Exception("Articolo esaurito") ;
@@ -255,41 +256,29 @@ public class CartService implements iCartService{
     public void deleteRepo( Integer id , String item ) throws Exception {
 
         if ( item.equalsIgnoreCase("psu")) {
-            PsuPojo pojo = psuRepo.findById(id).get() ;
-            psuRepo.delete(pojo);
+            psuRepo.delete(psuRepo.findById(id).get());
         } else if ( item.equalsIgnoreCase("monitor") ){
-            MonitorPojo pojo = monitorRepo.findById(id).get() ;
-            monitorRepo.delete(pojo);
+            monitorRepo.delete(monitorRepo.findById(id).get());
         } else if ( item.equalsIgnoreCase("ram") ) {
-            RamPojo pojo = ramRepo.findById(id).get() ;
-            ramRepo.delete(pojo);
+            ramRepo.delete(ramRepo.findById(id).get());
         } else if ( item.equalsIgnoreCase("memory") ) {
-            MemoryPojo pojo = memoryRepo.findById(id).get() ;
-            memoryRepo.delete(pojo);
+            memoryRepo.delete(memoryRepo.findById(id).get());
         } else if ( item.equalsIgnoreCase("keyboard") ) {
-            KeyboardPojo pojo = keyboardRepo.findById(id).get() ;
-            keyboardRepo.delete(pojo);
+            keyboardRepo.delete(keyboardRepo.findById(id).get());
         } else if ( item.equalsIgnoreCase("gpu") ) {
-            GpuPojo pojo = gpuRepo.findById(id).get() ;
-            gpuRepo.delete(pojo);
+            gpuRepo.delete(gpuRepo.findById(id).get());
         } else if (item.equalsIgnoreCase("cooler")){
-            CoolerPojo pojo = coolerRepo.findById(id).get();
-            coolerRepo.delete(pojo);
+            coolerRepo.delete(coolerRepo.findById(id).get());
         } else if ( item.equalsIgnoreCase("cpu") ) {
-            CpuPojo pojo = cpuRepo.findById(id).get() ;
-            cpuRepo.delete(pojo);
+             cpuRepo.delete(cpuRepo.findById(id).get());
         } else if ( item.equalsIgnoreCase("mouse") ) {
-            MousePojo pojo = mouseRepo.findById(id).get() ;
-            mouseRepo.delete(pojo);
+            mouseRepo.delete(mouseRepo.findById(id).get());
         } else if ( item.equalsIgnoreCase("motherboard") ) {
-            MotherboardPojo pojo = motherboardRepo.findById(id).get() ;
-            motherboardRepo.delete(pojo);
+            motherboardRepo.delete( motherboardRepo.findById(id).get());
         } else if ( item.equalsIgnoreCase("laptop") ) {
-            LaptopPojo pojo = laptopRepo.findById(id).get() ;
-            laptopRepo.delete(pojo);
+            laptopRepo.delete(laptopRepo.findById(id).get());
         } else if ( item.equalsIgnoreCase("pc") ) {
-            PcPojo pojo = pcRepo.findById(id).get() ;
-            pcRepo.delete(pojo);
+            pcRepo.delete(pcRepo.findById(id).get() );
         }
     }
 
@@ -303,21 +292,9 @@ public class CartService implements iCartService{
     * */
     @Override
     public void removeFromCart(CartRequest req ) throws Exception {
-
-        System.out.println(req.getConfirm());
-        System.out.println(req.getIdProduct());
-        System.out.println(req.getUsername());
-        System.out.println(req.getId());
-
-
         ProductPojo productPojo = productRepo.findById(req.getIdProduct()).get();
         CartPojo cartPojo = cartRepo.findById(req.getId()).get();
-
-        if (req.getConfirm())
-            deleteRepo(req.getIdItem(),req.getItem()); // (es.) id nella tabella smartphone e stringa contenente "smartphone"
-        else
-            updateRepo( productPojo , false ,  cartPojo);
-
+        updateRepo( productPojo , false ,  cartPojo);
         remove(req.getId());
     }
 
@@ -325,6 +302,7 @@ public class CartService implements iCartService{
     public CartView getById(Integer id) {
         return transformInView(cartRepo.findById(id).get()) ;
     }
+
     private CartView transformInView(CartPojo pojo) {
             CartView view = new CartView();
             view.setId(pojo.getId());
@@ -336,6 +314,7 @@ public class CartService implements iCartService{
             view.setPrice(pojo.getProduct().getPrice().intValue());
             return view;
     }
+
     private List<CartView> transformInView(List<CartPojo> cart) {
         return cart.stream().map(s -> {
             CartView view = new CartView();
@@ -348,6 +327,7 @@ public class CartService implements iCartService{
             view.setDescription(s.getProduct().getDescription());
             view.setUrl(s.getProduct().getUrl());
             view.setPrice(s.getProduct().getPrice().intValue());
+            view.setSelected(s.getSelected());
             return view;
         }).collect(Collectors.toList());
     }
@@ -367,5 +347,42 @@ public class CartService implements iCartService{
         if(filteredList.isEmpty())
             throw new Exception("La lista è vuota");
         return transformInView(filteredList);
+    }
+
+    @Override
+    public List<CartView> listSelectedProducts(String username) throws Exception {
+
+        List<CartPojo> filteredList = cartRepo.findAll().stream()
+                .filter(item -> item.getUser().getUsername().equalsIgnoreCase(username)  )
+                .filter(CartPojo::getSelected)
+                .toList();
+
+        if(filteredList.isEmpty())
+            throw new Exception("La lista è vuota");
+
+        return transformInView(filteredList);
+    }
+
+    @Override
+    public void select(Integer id) {
+        CartPojo pojo = cartRepo.findById(id).get();
+        pojo.setSelected(!pojo.getSelected());
+        cartRepo.save(pojo);
+    }
+
+    @Override
+    public void purchaseConfirmed(String username) {
+        List<CartPojo> filteredList = cartRepo.findAll().stream()
+                .filter(item -> item.getUser().getUsername().equalsIgnoreCase(username))
+                .filter(CartPojo::getSelected)
+                .toList();
+        for (CartPojo cartPojo : filteredList) {
+            try {
+                deleteRepo(cartPojo.getIdItem(), cartPojo.getProduct().getItem());
+                cartRepo.delete(cartPojo);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

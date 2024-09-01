@@ -7,6 +7,7 @@ import com.betacom.eCommerce.interfaces.iService.iCartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.betacom.eCommerce.classes.response.*;
+import org.springframework.web.servlet.ModelAndView;
 
 @RestController
 @RequestMapping("/cart")
@@ -64,5 +65,44 @@ public class CartController {
             resp.setMsg(e.getMessage());
         }
         return resp;
+    }
+
+    @GetMapping("/listSelectedProducts")
+    public Response<CartView>listSelectedProducts(@RequestParam (required = true) String username){
+        Response<CartView> resp = new Response<CartView>();
+        resp.setRc(true);
+        try {
+            resp.setDati(service.listSelectedProducts(username)); // id dello user
+        } catch (Exception e) {
+            resp.setRc(false);
+            resp.setMsg(e.getMessage());
+        }
+        return resp;
+    }
+
+    @GetMapping("/select")
+    public ResponseBase select(@RequestParam (required = true) Integer id) {
+        ResponseBase res = new ResponseBase();
+        res.setRc(true);
+        try {
+            service.select(id);
+        } catch (Exception e) {
+            res.setRc(false);
+            res.setMsg(e.getMessage());
+        }
+        return res;
+    }
+
+    @GetMapping("/purchaseConfirmed")
+    public ResponseBase purchaseConfirmed(@RequestParam (required = true) String username ) {
+        ResponseBase res = new ResponseBase();
+        res.setRc(true);
+        try {
+            service.purchaseConfirmed(username);
+        } catch (Exception e) {
+            res.setRc(false);
+            res.setMsg(e.getMessage());
+        }
+        return res;
     }
 }

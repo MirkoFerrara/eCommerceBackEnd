@@ -7,11 +7,20 @@ public class UserRequest {
     private String role;
     private String address;
 
+<<<<<<< HEAD
     @Override
     public String toString() {
         return "UserRequest{" +
                 "id=" + id +
                 '}';
+=======
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+>>>>>>> 6c7a3a189393518eb46e71cfb74971944bd4bc7f
     }
 
     public String getAddress() {
