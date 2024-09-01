@@ -47,8 +47,6 @@ public class GpuServiceTest {
 
         try {
             service.create(request);
-            System.out.print(service.getById(request.getId()));
-            System.out.print(request);
             List<GpuView> list=service.list();
             Assertions.assertThat(list.size()).isEqualTo(1);
         } catch (Exception e) {

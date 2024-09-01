@@ -23,6 +23,9 @@ public class CartPojo {
     private Boolean selected;
 
 
+
+
+
     public Boolean getSelected() {
         return selected;
     }

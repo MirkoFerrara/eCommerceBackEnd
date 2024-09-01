@@ -147,7 +147,7 @@ public class ProductService implements iProductService{
                     .toList();
             if(filteredList.isEmpty())
                 productRepo.delete(pojo);
-        } else if(pojo.getItem().equals("Keyboard")){
+        } else if(pojo.getItem().equalsIgnoreCase("Keyboard")){
             List<KeyboardPojo>  listPojo =  keyboardRepo.findAll() ;
             List<KeyboardPojo> filteredList = listPojo.stream()
                     .filter(s -> s.getProduct().getColour().equalsIgnoreCase(colour)
@@ -156,7 +156,7 @@ public class ProductService implements iProductService{
                     .toList();
             if(filteredList.isEmpty())
                 productRepo.delete(pojo);
-        } else if(pojo.getItem().equals("Laptop")){
+        } else if(pojo.getItem().equalsIgnoreCase("Laptop")){
             List<LaptopPojo>  listPojo =  laptopRepo.findAll() ;
             List<LaptopPojo> filteredList = listPojo.stream()
                     .filter(s -> s.getProduct().getColour().equalsIgnoreCase(colour)
@@ -165,7 +165,7 @@ public class ProductService implements iProductService{
                     .toList();
             if(filteredList.isEmpty())
                 productRepo.delete(pojo);
-        } else if(pojo.getItem().equals("Gpu")){
+        } else if(pojo.getItem().equalsIgnoreCase("Gpu")){
             List<GpuPojo>  listPojo =  gpuRepo.findAll() ;
             List<GpuPojo> filteredList = listPojo.stream()
                     .filter(s -> s.getProduct().getColour().equalsIgnoreCase(colour)
@@ -174,7 +174,7 @@ public class ProductService implements iProductService{
                     .toList();
             if(filteredList.isEmpty())
                 productRepo.delete(pojo);
-        } else if(pojo.getItem().equals("Cpu")){
+        } else if(pojo.getItem().equalsIgnoreCase("Cpu")){
             List<CpuPojo>  listPojo =  cpuRepo.findAll() ;
             List<CpuPojo> filteredList = listPojo.stream()
                     .filter(s -> s.getProduct().getColour().equalsIgnoreCase(colour)
@@ -183,7 +183,7 @@ public class ProductService implements iProductService{
                     .toList();
             if(filteredList.isEmpty())
                 productRepo.delete(pojo);
-        }else if(pojo.getItem().equals("Memory")){
+        }else if(pojo.getItem().equalsIgnoreCase("Memory")){
             List<MemoryPojo>  listPojo =  memoryRepo.findAll() ;
             List<MemoryPojo> filteredList = listPojo.stream()
                     .filter(s -> s.getProduct().getColour().equalsIgnoreCase(colour)

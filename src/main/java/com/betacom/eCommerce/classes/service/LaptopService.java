@@ -120,7 +120,6 @@ public class LaptopService implements iLaptopService{
     @Override
     public void remove(Integer id) {
         laptopRepo.delete(laptopRepo.findById(id).get());
-
     }
 
     @Override

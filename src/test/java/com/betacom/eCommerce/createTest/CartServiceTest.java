@@ -29,8 +29,9 @@ public class CartServiceTest {
 
     public void createCartTest(iCartService service) {
         CartRequest request= new CartRequest();
-        request.setIdProduct(10);
+        request.setIdProduct(4);
         request.setUsername("Marco");
+
         try {
             service.create(request);
             List<CartView> list=service.list("Marco");

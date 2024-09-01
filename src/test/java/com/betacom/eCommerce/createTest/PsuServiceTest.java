@@ -33,7 +33,6 @@ public class PsuServiceTest {
 
         try {
             service.create(request);
-            service.getById(request.getId());
             List<PsuView> list=service.list();
             Assertions.assertThat(list.size()).isEqualTo(1);
         } catch (Exception e) {
