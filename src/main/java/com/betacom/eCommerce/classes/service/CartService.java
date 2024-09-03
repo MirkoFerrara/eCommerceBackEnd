@@ -254,7 +254,6 @@ public class CartService implements iCartService{
         }
 
     public void deleteRepo( Integer id , String item ) throws Exception {
-
         if ( item.equalsIgnoreCase("psu")) {
             psuRepo.delete(psuRepo.findById(id).get());
         } else if ( item.equalsIgnoreCase("monitor") ){
@@ -369,6 +368,7 @@ public class CartService implements iCartService{
         pojo.setSelected(!pojo.getSelected());
         cartRepo.save(pojo);
     }
+
 
     @Override
     public void purchaseConfirmed(String username) {

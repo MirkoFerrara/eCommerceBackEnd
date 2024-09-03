@@ -9,6 +9,8 @@ import com.betacom.eCommerce.classes.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/product")
 public class ProductController {
@@ -74,6 +76,19 @@ public class ProductController {
         res.setRc(true);
         try {
             res.setDati(service.getById(id));
+        } catch (Exception e) {
+            res.setRc(false);
+            res.setMsg(e.getMessage());
+        }
+        return res;
+    }
+
+    @GetMapping("/search")
+    public Response<ProductView> search(@RequestParam(required=true) String search){
+        Response<ProductView> res = new Response<ProductView>();
+        res.setRc(true);
+        try {
+            res.setDati(service.search(search));
         } catch (Exception e) {
             res.setRc(false);
             res.setMsg(e.getMessage());

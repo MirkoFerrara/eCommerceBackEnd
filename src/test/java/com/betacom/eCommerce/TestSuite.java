@@ -41,6 +41,5 @@ import org.junit.platform.suite.api.Suite;
                 CartServiceRemoveTest.class,
                 ProductRemoveServiceTest.class,
                 UserServiceRemoveTest.class
-
 })
 public class TestSuite {}

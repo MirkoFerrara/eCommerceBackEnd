@@ -108,4 +108,10 @@ public class UserService implements iUserService {
                 })
                 .toList();
     }
+
+    // se è true allora è vuota , altrimenti falso è piena
+    @Override
+    public boolean checkIfExists(String username) {
+        return ( !userRepo.findByUsername(username).isEmpty() ) ;
+    }
 }

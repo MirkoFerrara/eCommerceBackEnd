@@ -1,22 +1,18 @@
 package com.betacom.eCommerce.classes.service;
 
 import com.betacom.eCommerce.classes.dto.request.ProductRequest;
-import com.betacom.eCommerce.classes.dto.view.PcView;
 import com.betacom.eCommerce.classes.dto.view.ProductView;
 import com.betacom.eCommerce.classes.pojo.*;
 import com.betacom.eCommerce.interfaces.iRepository.*;
 import com.betacom.eCommerce.interfaces.iService.iProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class ProductService implements iProductService{
+public class ProductService implements iProductService {
 
     @Autowired
     private iProductRepository productRepo;
@@ -64,8 +60,8 @@ public class ProductService implements iProductService{
 
     @Override
     public void update(ProductRequest req) throws Exception {
-        Optional<ProductPojo> opt=productRepo.findById(req.getIdProduct());
-        if(opt.isEmpty())
+        Optional<ProductPojo> opt = productRepo.findById(req.getIdProduct());
+        if (opt.isEmpty())
             throw new Exception("il prodotto non esiste");
 
         opt.get().setPrice(req.getPrice());
@@ -82,117 +78,131 @@ public class ProductService implements iProductService{
         ProductPojo pojo = productRepo.findById(id).get();
         String colour = pojo.getColour();
         String model = pojo.getModel();
-        String brand = pojo.getBrand() ;
+        String brand = pojo.getBrand();
 
-        if(pojo.getItem().equalsIgnoreCase("Cooler")) {
-            List<CoolerPojo>  listPojo =  coolerRepo.findAll() ;
+        if (pojo.getItem().equalsIgnoreCase("Cooler")) {
+            List<CoolerPojo> listPojo = coolerRepo.findAll();
             List<CoolerPojo> filteredList = listPojo.stream()
                     .filter(s -> s.getProduct().getColour().equalsIgnoreCase(colour)
                             && s.getProduct().getModel().equalsIgnoreCase(model)
                             && s.getProduct().getBrand().equalsIgnoreCase(brand))
                     .toList();
-            if(filteredList.isEmpty())
+            if (filteredList.isEmpty())
                 productRepo.delete(pojo);
-        } else if(pojo.getItem().equalsIgnoreCase("Psu")){
-            List<PsuPojo>  listPojo =  psuRepo.findAll() ;
+        } else if (pojo.getItem().equalsIgnoreCase("Psu")) {
+            List<PsuPojo> listPojo = psuRepo.findAll();
             List<PsuPojo> filteredList = listPojo.stream()
                     .filter(s -> s.getProduct().getColour().equalsIgnoreCase(colour)
                             && s.getProduct().getModel().equalsIgnoreCase(model)
                             && s.getProduct().getBrand().equalsIgnoreCase(brand))
                     .toList();
-            if(filteredList.isEmpty())
+            if (filteredList.isEmpty())
                 productRepo.delete(pojo);
-        } else if(pojo.getItem().equalsIgnoreCase("Pc")){
-            List<PcPojo>  listPojo =  pcRepo.findAll() ;
+        } else if (pojo.getItem().equalsIgnoreCase("Pc")) {
+            List<PcPojo> listPojo = pcRepo.findAll();
             List<PcPojo> filteredList = listPojo.stream()
                     .filter(s -> s.getProduct().getColour().equalsIgnoreCase(colour)
                             && s.getProduct().getModel().equalsIgnoreCase(model)
                             && s.getProduct().getBrand().equalsIgnoreCase(brand))
                     .toList();
-            if(filteredList.isEmpty())
+            if (filteredList.isEmpty())
                 productRepo.delete(pojo);
-        } else if(pojo.getItem().equalsIgnoreCase("Ram")){
-            List<RamPojo>  listPojo =  ramRepo.findAll() ;
+        } else if (pojo.getItem().equalsIgnoreCase("Ram")) {
+            List<RamPojo> listPojo = ramRepo.findAll();
             List<RamPojo> filteredList = listPojo.stream()
                     .filter(s -> s.getProduct().getColour().equalsIgnoreCase(colour)
                             && s.getProduct().getModel().equalsIgnoreCase(model)
                             && s.getProduct().getBrand().equalsIgnoreCase(brand))
                     .toList();
-            if(filteredList.isEmpty())
+            if (filteredList.isEmpty())
                 productRepo.delete(pojo);
-        } else if(pojo.getItem().equalsIgnoreCase("Mouse")){
-            List<MousePojo>  listPojo =  mouseRepo.findAll() ;
-            List<MousePojo> filteredList = listPojo.stream()
+        } else if (pojo.getItem().equalsIgnoreCase("Mouse")) {
+            List<MousePojo> filteredList = mouseRepo.findAll().stream()
                     .filter(s -> s.getProduct().getColour().equalsIgnoreCase(colour)
                             && s.getProduct().getModel().equalsIgnoreCase(model)
                             && s.getProduct().getBrand().equalsIgnoreCase(brand))
                     .toList();
-            if(filteredList.isEmpty())
+            if (filteredList.isEmpty())
                 productRepo.delete(pojo);
-        } else if(pojo.getItem().equalsIgnoreCase("Monitor")){
-            List<MonitorPojo>  listPojo =  monitorRepo.findAll() ;
+        } else if (pojo.getItem().equalsIgnoreCase("Monitor")) {
+            List<MonitorPojo> listPojo = monitorRepo.findAll();
             List<MonitorPojo> filteredList = listPojo.stream()
                     .filter(s -> s.getProduct().getColour().equalsIgnoreCase(colour)
                             && s.getProduct().getModel().equalsIgnoreCase(model)
                             && s.getProduct().getBrand().equalsIgnoreCase(brand))
                     .toList();
-            if(filteredList.isEmpty())
+            if (filteredList.isEmpty())
                 productRepo.delete(pojo);
-        } else if(pojo.getItem().equalsIgnoreCase("Motherboard")){
-            List<MotherboardPojo>  listPojo =  motherboardRepo.findAll() ;
+        } else if (pojo.getItem().equalsIgnoreCase("Motherboard")) {
+            List<MotherboardPojo> listPojo = motherboardRepo.findAll();
             List<MotherboardPojo> filteredList = listPojo.stream()
                     .filter(s -> s.getProduct().getColour().equalsIgnoreCase(colour)
                             && s.getProduct().getModel().equalsIgnoreCase(model)
                             && s.getProduct().getBrand().equalsIgnoreCase(brand))
                     .toList();
-            if(filteredList.isEmpty())
+            if (filteredList.isEmpty())
                 productRepo.delete(pojo);
-        } else if(pojo.getItem().equalsIgnoreCase("Keyboard")){
-            List<KeyboardPojo>  listPojo =  keyboardRepo.findAll() ;
+        } else if (pojo.getItem().equalsIgnoreCase("Keyboard")) {
+            List<KeyboardPojo> listPojo = keyboardRepo.findAll();
             List<KeyboardPojo> filteredList = listPojo.stream()
                     .filter(s -> s.getProduct().getColour().equalsIgnoreCase(colour)
                             && s.getProduct().getModel().equalsIgnoreCase(model)
                             && s.getProduct().getBrand().equalsIgnoreCase(brand))
                     .toList();
-            if(filteredList.isEmpty())
+            if (filteredList.isEmpty())
                 productRepo.delete(pojo);
-        } else if(pojo.getItem().equalsIgnoreCase("Laptop")){
-            List<LaptopPojo>  listPojo =  laptopRepo.findAll() ;
+        } else if (pojo.getItem().equalsIgnoreCase("Laptop")) {
+            List<LaptopPojo> listPojo = laptopRepo.findAll();
             List<LaptopPojo> filteredList = listPojo.stream()
                     .filter(s -> s.getProduct().getColour().equalsIgnoreCase(colour)
                             && s.getProduct().getModel().equalsIgnoreCase(model)
                             && s.getProduct().getBrand().equalsIgnoreCase(brand))
                     .toList();
-            if(filteredList.isEmpty())
+            if (filteredList.isEmpty())
                 productRepo.delete(pojo);
-        } else if(pojo.getItem().equalsIgnoreCase("Gpu")){
-            List<GpuPojo>  listPojo =  gpuRepo.findAll() ;
+        } else if (pojo.getItem().equalsIgnoreCase("Gpu")) {
+            List<GpuPojo> listPojo = gpuRepo.findAll();
             List<GpuPojo> filteredList = listPojo.stream()
                     .filter(s -> s.getProduct().getColour().equalsIgnoreCase(colour)
                             && s.getProduct().getModel().equalsIgnoreCase(model)
                             && s.getProduct().getBrand().equalsIgnoreCase(brand))
                     .toList();
-            if(filteredList.isEmpty())
+            if (filteredList.isEmpty())
                 productRepo.delete(pojo);
-        } else if(pojo.getItem().equalsIgnoreCase("Cpu")){
-            List<CpuPojo>  listPojo =  cpuRepo.findAll() ;
+        } else if (pojo.getItem().equalsIgnoreCase("Cpu")) {
+            List<CpuPojo> listPojo = cpuRepo.findAll();
             List<CpuPojo> filteredList = listPojo.stream()
                     .filter(s -> s.getProduct().getColour().equalsIgnoreCase(colour)
                             && s.getProduct().getModel().equalsIgnoreCase(model)
                             && s.getProduct().getBrand().equalsIgnoreCase(brand))
                     .toList();
-            if(filteredList.isEmpty())
+            if (filteredList.isEmpty())
                 productRepo.delete(pojo);
-        }else if(pojo.getItem().equalsIgnoreCase("Memory")){
-            List<MemoryPojo>  listPojo =  memoryRepo.findAll() ;
+        } else if (pojo.getItem().equalsIgnoreCase("Memory")) {
+            List<MemoryPojo> listPojo = memoryRepo.findAll();
             List<MemoryPojo> filteredList = listPojo.stream()
                     .filter(s -> s.getProduct().getColour().equalsIgnoreCase(colour)
                             && s.getProduct().getModel().equalsIgnoreCase(model)
                             && s.getProduct().getBrand().equalsIgnoreCase(brand))
                     .toList();
-            if(filteredList.isEmpty())
+            if (filteredList.isEmpty())
                 productRepo.delete(pojo);
         }
+    }
+
+
+    @Override
+    public List<ProductView> search(String search) {
+        List<ProductPojo> filteredList =  productRepo.findAll().stream()
+                .filter(s -> s.getItem().toLowerCase().contains(search.toLowerCase()) ||
+                        s.getModel().toLowerCase().contains(search.toLowerCase()) ||
+                        s.getBrand().toLowerCase().contains(search.toLowerCase()) ||
+                        s.getColour().toLowerCase().contains(search.toLowerCase()) ||
+                        s.getDescription().toLowerCase().contains(search.toLowerCase()) ||
+                        s.getPrice().toString().contains(search))
+                .collect(Collectors.toList());
+
+        return transformInView(filteredList);
     }
 
     @Override
@@ -201,7 +211,7 @@ public class ProductService implements iProductService{
                 .findAll()
                 .stream()
                 .filter(pojo -> pojo.getItem().equalsIgnoreCase(item)).toList();
-        return transformInView( filteredList );
+        return transformInView(filteredList);
     }
 
     @Override
@@ -209,7 +219,7 @@ public class ProductService implements iProductService{
         return transformInView(productRepo.findById(id).get());
     }
 
-    public ProductView transformInView( ProductPojo pojo) {
+    public ProductView transformInView(ProductPojo pojo) {
         ProductView view = new ProductView();
         view.setIdProduct(pojo.getId());
         view.setBrand(pojo.getBrand());
@@ -235,4 +245,7 @@ public class ProductService implements iProductService{
             return view;
         }).toList();
     }
+
+
+
 }

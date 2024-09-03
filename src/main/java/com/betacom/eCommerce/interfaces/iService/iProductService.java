@@ -15,4 +15,5 @@ public interface iProductService {
     public void remove(Integer id) throws Exception;
     public List<ProductView> list(String item);
     public ProductView getById(Integer id);
+    public List<ProductView> search(String search);
 }

@@ -10,13 +10,10 @@ public class CartPojo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id ;
 
-<<<<<<< HEAD
-=======
     private Integer idItem ;
 
     private Boolean selected;
 
->>>>>>> 6c7a3a189393518eb46e71cfb74971944bd4bc7f
     @ManyToOne
     @JoinColumn(name = "idProduct")
     private ProductPojo product ;
@@ -25,22 +22,7 @@ public class CartPojo {
     @JoinColumn(name = "idUser")
     private UserPojo user ;
 
-<<<<<<< HEAD
-    private Integer idItem ;
 
-    private Boolean selected;
-
-
-
-
-
-    public Boolean getSelected() {
-        return selected;
-    }
-    public void setSelected(Boolean selected) {
-        this.selected = selected;
-    }
-=======
     public Boolean getSelected() {
         return selected;
     }
@@ -48,8 +30,6 @@ public class CartPojo {
     public void setSelected(Boolean selected) {
         this.selected = selected;
     }
-
->>>>>>> 6c7a3a189393518eb46e71cfb74971944bd4bc7f
     public UserPojo getUser() {
         return user;
     }

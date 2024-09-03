@@ -15,5 +15,5 @@ public interface iUserService {
     public List<UserView> listUser();
     public UserView getById(Integer id);
     public UserView getByUsername(String username);
-
+    public boolean checkIfExists(String username);
 }

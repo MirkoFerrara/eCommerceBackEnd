@@ -93,4 +93,16 @@ public class UserController {
         }
         return res;
     }
+
+    @GetMapping("/checkByUsername")
+    public ResponseObject<Boolean> check(@RequestParam String username) {
+        ResponseObject<Boolean> res = new ResponseObject<>();
+        try {
+            res.setDati(service.checkIfExists(username));
+        } catch (Exception e) {
+            res.setRc(false);
+            res.setMsg(e.getMessage());
+        }
+        return res;
+    }
 }
