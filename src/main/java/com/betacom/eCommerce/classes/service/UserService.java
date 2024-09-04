@@ -41,6 +41,7 @@ public class UserService implements iUserService {
 
         userRepo.save(pojo);
     }
+
     @Override
     public void remove(Integer id) {
         userRepo.delete(userRepo.findById(id).get());
@@ -48,38 +49,38 @@ public class UserService implements iUserService {
 
     @Override
     public List<UserView> listAdmin() {
-        return transformInView(userRepo.findAll(),"ADMIN");
+        return transformInView(userRepo.findAll(), "ADMIN");
     }
 
     @Override
     public List<UserView> listUser() {
-        return transformInView(userRepo.findAll(),"USER");
+        return transformInView(userRepo.findAll(), "USER");
     }
 
     @Override
-    public  UserView getById(Integer id) {
+    public UserView getById(Integer id) {
         return transformInView(userRepo.findById(id).get());
     }
 
     @Override
-    public  UserView getByUsername(String username) {
+    public UserView getByUsername(String username) {
         return transformInView(userRepo.findByUsername(username).get());
     }
 
     // se è true allora è vuota , altrimenti falso è piena
     @Override
     public boolean checkIfExists(String username) {
-        return (userRepo.findByUsername(username).isPresent()) ;
+        return (userRepo.findByUsername(username).isPresent());
     }
 
-    public UserView transformInView( UserPojo pojo ) {
-            UserView view = new UserView();
-            view.setId(pojo.getId());
-            view.setUsername(pojo.getUsername());
-            view.setAddress(pojo.getAddress());
-            view.setPassword(pojo.getPassword());
-            view.setRole((pojo.getRole()) ? "ADMIN" : "USER");
-            return view;
+    public UserView transformInView(UserPojo pojo) {
+        UserView view = new UserView();
+        view.setId(pojo.getId());
+        view.setUsername(pojo.getUsername());
+        view.setAddress(pojo.getAddress());
+        view.setPassword(pojo.getPassword());
+        view.setRole((pojo.getRole()) ? "ADMIN" : "USER");
+        return view;
     }
 
     public List<UserView> transformInView(List<UserPojo> pojo) {
@@ -112,9 +113,4 @@ public class UserService implements iUserService {
                 .toList();
     }
 
-    // se è true allora è vuota , altrimenti falso è piena
-    @Override
-    public boolean checkIfExists(String username) {
-        return ( !userRepo.findByUsername(username).isEmpty() ) ;
-    }
 }
