@@ -1,10 +1,7 @@
 package com.betacom.eCommerce.classes.controller;
 
-import com.betacom.eCommerce.classes.dto.request.MotherboardRequest;
-import com.betacom.eCommerce.classes.dto.request.MouseRequest;
-import com.betacom.eCommerce.classes.dto.request.PcRequest;
+import com.betacom.eCommerce.classes.dto.request.ProductRequest;
 import com.betacom.eCommerce.classes.dto.view.MouseView;
-import com.betacom.eCommerce.classes.dto.view.PcView;
 import com.betacom.eCommerce.classes.response.Response;
 import com.betacom.eCommerce.classes.response.ResponseBase;
 import com.betacom.eCommerce.classes.response.ResponseObject;
@@ -20,7 +17,7 @@ public class MouseController {
     private iMouseService service;
 
     @PostMapping("/create")
-    public ResponseBase create(@RequestBody(required=true)MouseRequest req){
+    public ResponseBase create(@RequestBody(required=true) ProductRequest req){
         ResponseBase resp = new ResponseBase();
         resp.setRc(true);
         try{
@@ -57,7 +54,7 @@ public class MouseController {
         return resp;
     }
     @PostMapping("/update")
-    public ResponseBase update(@RequestBody(required = true) MouseRequest req){
+    public ResponseBase update(@RequestBody(required = true) ProductRequest req){
         ResponseBase resp=new ResponseBase();
         resp.setRc(true);
         try {

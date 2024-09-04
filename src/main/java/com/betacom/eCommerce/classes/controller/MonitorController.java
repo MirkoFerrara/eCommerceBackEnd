@@ -1,6 +1,6 @@
 package com.betacom.eCommerce.classes.controller;
 
-import com.betacom.eCommerce.classes.dto.request.MonitorRequest;
+import com.betacom.eCommerce.classes.dto.request.ProductRequest;
 import com.betacom.eCommerce.classes.dto.view.MonitorView;
 import com.betacom.eCommerce.classes.response.Response;
 import com.betacom.eCommerce.classes.response.ResponseBase;
@@ -17,7 +17,7 @@ public class MonitorController {
     private iMonitorService service;
 
     @PostMapping("/create")
-    public ResponseBase create(@RequestBody(required=true)MonitorRequest req) {
+    public ResponseBase create(@RequestBody(required=true) ProductRequest req) {
         ResponseBase resp = new ResponseBase();
         resp.setRc(true);
         try{
@@ -56,7 +56,7 @@ public class MonitorController {
     }
 
     @PostMapping("/update")
-    public ResponseBase update(@RequestBody(required = true) MonitorRequest req) {
+    public ResponseBase update(@RequestBody(required = true) ProductRequest req) {
         ResponseBase resp=new ResponseBase();
         resp.setRc(true);
         try {

@@ -1,19 +1,14 @@
 package com.betacom.eCommerce.interfaces.iService;
 
-import com.betacom.eCommerce.classes.dto.request.PsuRequest;
-import com.betacom.eCommerce.classes.dto.view.CoolerView;
-import com.betacom.eCommerce.classes.dto.view.GpuView;
-import com.betacom.eCommerce.classes.dto.view.MemoryView;
+import com.betacom.eCommerce.classes.dto.request.ProductRequest;
 import com.betacom.eCommerce.classes.dto.view.PsuView;
-import com.betacom.eCommerce.classes.pojo.GpuPojo;
 import com.betacom.eCommerce.classes.pojo.PsuPojo;
-import com.betacom.eCommerce.classes.pojo.RamPojo;
 
 import java.util.List;
 
 public interface iPsuService {
-    public void create(PsuRequest req) throws Exception;
-    public void update(PsuRequest req)  throws Exception;
+    public void create(ProductRequest req) throws Exception;
+    public void update(ProductRequest req)  throws Exception;
     public void remove(Integer id)  throws Exception;
     public List<PsuView> list();
     public PsuView getById(Integer id);

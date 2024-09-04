@@ -2,6 +2,7 @@ package com.betacom.eCommerce.classes.dto.view;
 
 public class ProductView {
 
+    private Integer id ;
     private Integer idProduct;
     private String model;
     private String brand;
@@ -10,6 +11,23 @@ public class ProductView {
     private String colour;
     private String url;
     private String item;
+    private Integer quantity ;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
 
     public String getItem() {
         return item;

@@ -1,14 +1,11 @@
 package com.betacom.eCommerce.classes.service;
 
-import com.betacom.eCommerce.classes.dto.request.MonitorRequest;
-import com.betacom.eCommerce.classes.dto.view.LaptopView;
+import com.betacom.eCommerce.classes.dto.request.ProductRequest;
 import com.betacom.eCommerce.classes.dto.view.MonitorView;
-import com.betacom.eCommerce.classes.dto.view.MouseView;
 import com.betacom.eCommerce.classes.pojo.*;
 import com.betacom.eCommerce.interfaces.iRepository.iMonitorRepository;
 import com.betacom.eCommerce.interfaces.iRepository.iProductRepository;
 import com.betacom.eCommerce.interfaces.iService.iMonitorService;
-import com.betacom.eCommerce.interfaces.iService.iProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +21,7 @@ public class MonitorService implements iMonitorService{
     private iProductRepository productRepo;
 
     @Override
-    public void create(MonitorRequest req) throws Exception{
+    public void create(ProductRequest req) throws Exception{
         MonitorPojo pojo = null ;
         for(int i=0; i< req.getQuantity();i++ ) {
             pojo = new MonitorPojo();
@@ -36,7 +33,7 @@ public class MonitorService implements iMonitorService{
     }
 
     @Override
-    public void update(MonitorRequest req) throws Exception{
+    public void update(ProductRequest req) throws Exception{
         Optional<MonitorPojo> opt= monitorRepo.findById(req.getId());
         opt.get().setCart(req.getCart());
         if(req.getIdProduct()!=null) {

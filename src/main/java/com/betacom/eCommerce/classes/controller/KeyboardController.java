@@ -1,10 +1,7 @@
 package com.betacom.eCommerce.classes.controller;
 
-import com.betacom.eCommerce.classes.dto.request.GpuRequest;
-import com.betacom.eCommerce.classes.dto.request.KeyboardRequest;
-import com.betacom.eCommerce.classes.dto.view.GpuView;
+import com.betacom.eCommerce.classes.dto.request.ProductRequest;
 import com.betacom.eCommerce.classes.dto.view.KeyboardView;
-import com.betacom.eCommerce.classes.dto.view.LaptopView;
 import com.betacom.eCommerce.classes.response.Response;
 import com.betacom.eCommerce.classes.response.ResponseBase;
 import com.betacom.eCommerce.classes.response.ResponseObject;
@@ -20,7 +17,7 @@ public class KeyboardController {
     private iKeyboardService service;
 
     @PostMapping("/create")
-    public ResponseBase create(@RequestBody(required=true)KeyboardRequest req){
+    public ResponseBase create(@RequestBody(required=true) ProductRequest req){
         ResponseBase resp = new ResponseBase();
         resp.setRc(true);
         try{
@@ -58,7 +55,7 @@ public class KeyboardController {
     }
 
     @PostMapping("/update")
-    public ResponseBase update(@RequestBody(required = true) KeyboardRequest req){
+    public ResponseBase update(@RequestBody(required = true) ProductRequest req){
         ResponseBase resp=new ResponseBase();
         resp.setRc(true);
         try {

@@ -1,6 +1,6 @@
 package com.betacom.eCommerce.classes.controller;
 
-import com.betacom.eCommerce.classes.dto.request.CoolerRequest;
+import com.betacom.eCommerce.classes.dto.request.ProductRequest;
 import com.betacom.eCommerce.classes.dto.view.CoolerView;
 import com.betacom.eCommerce.classes.response.Response;
 import com.betacom.eCommerce.classes.response.ResponseBase;
@@ -17,7 +17,7 @@ public class CoolerController {
     private CoolerService service;
 
     @PostMapping("/create")
-    public ResponseBase create(@RequestBody(required=true)CoolerRequest req){
+    public ResponseBase create(@RequestBody(required=true) ProductRequest req){
         ResponseBase resp = new ResponseBase();
         resp.setRc(true);
         try{
@@ -56,7 +56,7 @@ public class CoolerController {
     }
 
     @PostMapping("/update")
-    public ResponseBase update(@RequestBody(required = true) CoolerRequest req){
+    public ResponseBase update(@RequestBody(required = true) ProductRequest req){
         ResponseBase resp=new ResponseBase();
         resp.setRc(true);
         try {

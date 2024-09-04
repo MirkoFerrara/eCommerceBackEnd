@@ -1,11 +1,7 @@
 package com.betacom.eCommerce.interfaces.iService;
 
-import com.betacom.eCommerce.classes.dto.request.CartRequest;
 import com.betacom.eCommerce.classes.dto.request.ProductRequest;
-import com.betacom.eCommerce.classes.dto.request.RamRequest;
-import com.betacom.eCommerce.classes.dto.view.CartView;
 import com.betacom.eCommerce.classes.dto.view.ProductView;
-import com.betacom.eCommerce.classes.dto.view.RamView;
 
 import java.util.List;
 
@@ -15,4 +11,5 @@ public interface iProductService {
     public void remove(Integer id) throws Exception;
     public List<ProductView> list(String item);
     public ProductView getById(Integer id);
+    public List<ProductView> search(String search);
 }

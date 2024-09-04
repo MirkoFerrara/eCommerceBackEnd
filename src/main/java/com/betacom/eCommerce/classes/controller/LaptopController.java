@@ -1,10 +1,7 @@
 package com.betacom.eCommerce.classes.controller;
 
-import com.betacom.eCommerce.classes.dto.request.KeyboardRequest;
 import com.betacom.eCommerce.classes.dto.request.LaptopRequest;
-import com.betacom.eCommerce.classes.dto.view.KeyboardView;
 import com.betacom.eCommerce.classes.dto.view.LaptopView;
-import com.betacom.eCommerce.classes.dto.view.MemoryView;
 import com.betacom.eCommerce.classes.response.Response;
 import com.betacom.eCommerce.classes.response.ResponseBase;
 import com.betacom.eCommerce.classes.response.ResponseObject;

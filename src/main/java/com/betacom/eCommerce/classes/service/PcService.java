@@ -31,7 +31,6 @@ public class PcService implements iPcService{
     private iPsuService psuService;
     @Autowired
     private iCoolerService coolerService;
-
     @Autowired
     private iPcRepository pcRepo;
     @Autowired
@@ -67,6 +66,11 @@ public class PcService implements iPcService{
     }
 
     @Override
+    public PcView getById(Integer id) {
+        return transformInView(pcRepo.findById(id).get());
+    }
+
+    @Override
     public List<PcView> list() {
         return transformInView( pcRepo.findAll());
     }
@@ -91,11 +95,6 @@ public class PcService implements iPcService{
             return view;
         }).toList();
     }
-    @Override
-    public PcView getById(Integer id) {
-        return transformInView(pcRepo.findById(id).get());
-    }
-
     public PcView transformInView( PcPojo pojo) {
         PcView view = new PcView();
         view.setId(pojo.getId());
@@ -112,7 +111,6 @@ public class PcService implements iPcService{
         view.setMotherboard( motherboardService.transformInView( pojo.getIdMotherboard()));
         view.setCooler( coolerService.transformInView(pojo.getIdCooler()));
         view.setPsu(psuService.transformInView(pojo.getIdPsu()));
-
         return view;
     }
 }

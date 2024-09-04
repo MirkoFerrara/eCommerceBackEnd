@@ -3,6 +3,7 @@ package com.betacom.eCommerce.classes.dto.request;
 
 public class ProductRequest {
 
+    private Integer id;
     private Integer quantity ;
     private Integer idProduct;
     private String model ;
@@ -11,6 +12,41 @@ public class ProductRequest {
     private String description ;
     private String colour ;
     private String item ;
+    private Boolean contained;
+    private Boolean cart ;
+    private String errorMSG;
+
+    public String getErrorMSG() {
+        return errorMSG;
+    }
+
+    public void setErrorMSG(String errorMSG) {
+        this.errorMSG = errorMSG;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Boolean getCart() {
+        return cart;
+    }
+
+    public void setCart(Boolean cart) {
+        this.cart = cart;
+    }
+
+    public Boolean getContained() {
+        return contained;
+    }
+
+    public void setContained(Boolean contained) {
+        this.contained = contained;
+    }
 
     public Integer getQuantity() {
         return quantity;

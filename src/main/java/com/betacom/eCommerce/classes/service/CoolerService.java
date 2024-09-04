@@ -1,8 +1,7 @@
 package com.betacom.eCommerce.classes.service;
 
-import com.betacom.eCommerce.classes.dto.request.CoolerRequest;
+import com.betacom.eCommerce.classes.dto.request.ProductRequest;
 import com.betacom.eCommerce.classes.dto.view.CoolerView;
-import com.betacom.eCommerce.classes.dto.view.UserView;
 import com.betacom.eCommerce.classes.pojo.*;
 import com.betacom.eCommerce.interfaces.iRepository.iCoolerRepository;
 import com.betacom.eCommerce.interfaces.iRepository.iProductRepository;
@@ -27,35 +26,32 @@ public class CoolerService implements iCoolerService {
     private iProductService productService;
 
     @Override
-    public void update(CoolerRequest req)throws Exception
+    public void create(ProductRequest req) throws Exception {
+//        CoolerPojo pojo = null ;
+//        for(int i=0; i< req.getQuantity();i++ ) {
+//            pojo = new CoolerPojo();
+//            Optional<ProductPojo> product = productRepo.findById(req.getIdProduct());
+//            pojo.setProduct(product.get());
+//            pojo.setCart(req.getCart());
+//            pojo.setContained(req.getContained());
+//        }
+//        coolerRepo.save(pojo);
+    }
+
+    @Override
+    public void update(ProductRequest req)throws Exception
     {
         CoolerPojo pojo = coolerRepo.findById(req.getId()).get();
         pojo.setCart(req.getCart());
-        ProductPojo product=productRepo.findById(req.getId()).get();
+        ProductPojo product=productRepo.findById(req.getIdProduct()).get();
         pojo.setProduct(product);
         pojo.setContained(req.getContained());
-        coolerRepo.save(pojo);
-    }
-
-    
-
-    @Override
-    public void create(CoolerRequest req) throws Exception {
-        CoolerPojo pojo = null ;
-        for(int i=0; i< req.getQuantity();i++ ) {
-            pojo = new CoolerPojo();
-            Optional<ProductPojo> product = productRepo.findById(req.getIdProduct());
-            pojo.setProduct(product.get());
-            pojo.setCart(req.getCart());
-            pojo.setContained(req.getContained());
-        }
         coolerRepo.save(pojo);
     }
 
     @Override
     public void remove(Integer id) throws Exception {
         coolerRepo.delete(coolerRepo.findById(id).get());
-
     }
 
     @Override

@@ -1,13 +1,12 @@
 package com.betacom.eCommerce.classes.service;
 
-import com.betacom.eCommerce.classes.dto.request.PsuRequest;
+import com.betacom.eCommerce.classes.dto.request.ProductRequest;
 import com.betacom.eCommerce.classes.dto.view.PsuView;
-import com.betacom.eCommerce.classes.dto.view.RamView;
 import com.betacom.eCommerce.classes.pojo.ProductPojo;
 import com.betacom.eCommerce.classes.pojo.PsuPojo;
-import com.betacom.eCommerce.classes.pojo.RamPojo;
 import com.betacom.eCommerce.interfaces.iRepository.iPsuRepository;
 import com.betacom.eCommerce.interfaces.iRepository.iProductRepository;
+import com.betacom.eCommerce.interfaces.iService.iProductService;
 import com.betacom.eCommerce.interfaces.iService.iPsuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,23 +20,33 @@ public class PsuService implements iPsuService {
     private iPsuRepository psuRepo;
     @Autowired
     private iProductRepository productRepo;
+    @Autowired
+    iProductService productService;
+
 
     @Override
-    public void create(PsuRequest req) throws Exception{
-        PsuPojo pojo = null ;
-        for(int i=0; i< req.getQuantity();i++ ) {
-            pojo = new PsuPojo();
-            Optional<ProductPojo> product = productRepo.findById(req.getIdProduct());
-            pojo.setProduct(product.get());
-            pojo.setCart(req.getCart());
-        }
-        psuRepo.save(pojo);
+    public void create(ProductRequest req) throws Exception{
+//
+//        ProductPojo product ;
+//
+//        if(req.getIdProduct()== null){
+//            productService.create(req);
+//            //findByOgniCaratteristiaDellaRigaDelProdotto();
+//            product = productRepo.findById(req.getIdProduct()).get();
+//        }
+//        else
+//             product = productRepo.findById(req.getIdProduct()).get();
+//
+//        PsuPojo pojo = null ;
+//            for(int i=0; i< req.getQuantity();i++ ) {
+//                pojo = new PsuPojo();
+//                pojo.setProduct(product);
+//                pojo.setCart(req.getCart());
+//            }
     }
 
-
-
     @Override
-    public void update(PsuRequest req) throws Exception {
+    public void update(ProductRequest req) throws Exception {
         Optional<PsuPojo> opt= psuRepo.findById(req.getId());
         opt.get().setCart(req.getCart());
         if(req.getIdProduct()!=null) {

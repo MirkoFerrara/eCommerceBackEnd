@@ -1,14 +1,10 @@
 package com.betacom.eCommerce.classes.service;
 
-import com.betacom.eCommerce.classes.dto.request.GpuRequest;
-import com.betacom.eCommerce.classes.dto.view.CoolerView;
-import com.betacom.eCommerce.classes.dto.view.CpuView;
+import com.betacom.eCommerce.classes.dto.request.ProductRequest;
 import com.betacom.eCommerce.classes.dto.view.GpuView;
-import com.betacom.eCommerce.classes.dto.view.MotherboardView;
 import com.betacom.eCommerce.classes.pojo.*;
 import com.betacom.eCommerce.interfaces.iRepository.iGpuRepository;
 import com.betacom.eCommerce.interfaces.iRepository.iProductRepository;
-import com.betacom.eCommerce.interfaces.iRepository.iUserRepository;
 import com.betacom.eCommerce.interfaces.iService.iGpuService;
 import com.betacom.eCommerce.interfaces.iService.iProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,22 +25,22 @@ public class GpuService implements iGpuService {
     private iProductService productService;
 
     @Override
-    public void create(GpuRequest req) throws Exception {
-
-        GpuPojo pojo = null ;
-        Optional<ProductPojo> product = productRepo.findById(req.getIdProduct());
-
-        for(int i=0; i< req.getQuantity();i++ ) {
-            pojo = new GpuPojo();
-            pojo.setProduct(product.get());
-            pojo.setCart(req.getCart());
-            pojo.setContained(req.getContained());
-        }
-        gpuRepo.save(pojo);
+    public void create(ProductRequest req) throws Exception {
+//
+//        GpuPojo pojo = null ;
+//        Optional<ProductPojo> product = productRepo.findById(req.getIdProduct());
+//
+//        for(int i=0; i< req.getQuantity();i++ ) {
+//            pojo = new GpuPojo();
+//            pojo.setProduct(product.get());
+//            pojo.setCart(req.getCart());
+//            pojo.setContained(req.getContained());
+//        }
+//        gpuRepo.save(pojo);
     }
 
     @Override
-    public void update(GpuRequest req) throws Exception {
+    public void update(ProductRequest req) throws Exception {
         GpuPojo pojo = gpuRepo.findById(req.getId()).get();
         pojo.setCart(req.getCart());
         ProductPojo product=productRepo.findById(req.getId()).get();

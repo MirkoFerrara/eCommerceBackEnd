@@ -1,9 +1,7 @@
 package com.betacom.eCommerce.classes.service;
 
-import com.betacom.eCommerce.classes.dto.request.KeyboardRequest;
-import com.betacom.eCommerce.classes.dto.view.CpuView;
+import com.betacom.eCommerce.classes.dto.request.ProductRequest;
 import com.betacom.eCommerce.classes.dto.view.KeyboardView;
-import com.betacom.eCommerce.classes.dto.view.MemoryView;
 import com.betacom.eCommerce.classes.pojo.*;
 import com.betacom.eCommerce.interfaces.iRepository.iProductRepository;
 import com.betacom.eCommerce.interfaces.iRepository.iKeyboardRepository;
@@ -13,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class KeyboardService implements iKeyboardService {
@@ -23,21 +20,21 @@ public class KeyboardService implements iKeyboardService {
     @Autowired
     private iProductRepository productRepo;
     @Override
-    public void create(KeyboardRequest req) throws Exception{
-        KeyboardPojo pojo = null ;
-        for(int i=0;i<req.getQuantity();i++){
-            pojo=new KeyboardPojo();
-
-            Optional<ProductPojo> product=productRepo.findById(req.getId());
-
-            pojo.setProduct(product.get());
-            pojo.setCart(req.getCart());
-        }
-        keyboardRepo.save(pojo);
+    public void create(ProductRequest req) throws Exception{
+//        KeyboardPojo pojo = null ;
+//        for(int i=0;i<req.getQuantity();i++){
+//            pojo=new KeyboardPojo();
+//
+//            Optional<ProductPojo> product=productRepo.findById(req.getId());
+//
+//            pojo.setProduct(product.get());
+//            pojo.setCart(req.getCart());
+//        }
+//        keyboardRepo.save(pojo);
     }
 
     @Override
-    public void update(KeyboardRequest req) throws Exception {
+    public void update(ProductRequest req) throws Exception {
         Optional<KeyboardPojo> opt=keyboardRepo.findById(req.getId());
         opt.get().setCart(req.getCart());
         if(req.getIdProduct()!=null) {

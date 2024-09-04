@@ -1,12 +1,11 @@
 package com.betacom.eCommerce.classes.controller;
 
-import com.betacom.eCommerce.classes.dto.view.CoolerView;
+import com.betacom.eCommerce.classes.dto.request.ProductRequest;
 import com.betacom.eCommerce.classes.dto.view.RamView;
 import com.betacom.eCommerce.classes.response.Response;
 import com.betacom.eCommerce.classes.response.ResponseBase;
 import com.betacom.eCommerce.classes.response.ResponseObject;
 import com.betacom.eCommerce.interfaces.iService.iRamService;
-import com.betacom.eCommerce.classes.dto.request.RamRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +17,7 @@ public class RamController {
     private iRamService service;
 
     @PostMapping("/create")
-    public ResponseBase create(@RequestBody(required=true)RamRequest req){
+    public ResponseBase create(@RequestBody(required=true) ProductRequest req){
         ResponseBase resp = new ResponseBase();
         resp.setRc(true);
         try{
@@ -58,7 +57,7 @@ public class RamController {
     }
 
     @PostMapping("/update")
-    public ResponseBase update(@RequestBody(required = true) RamRequest req){
+    public ResponseBase update(@RequestBody(required = true) ProductRequest req){
         ResponseBase resp=new ResponseBase();
         resp.setRc(true);
         try {

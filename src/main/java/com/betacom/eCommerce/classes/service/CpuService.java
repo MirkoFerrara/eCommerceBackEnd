@@ -1,9 +1,7 @@
 package com.betacom.eCommerce.classes.service;
 
-import com.betacom.eCommerce.classes.dto.request.CpuRequest;
-import com.betacom.eCommerce.classes.dto.view.CoolerView;
+import com.betacom.eCommerce.classes.dto.request.ProductRequest;
 import com.betacom.eCommerce.classes.dto.view.CpuView;
-import com.betacom.eCommerce.classes.dto.view.KeyboardView;
 import com.betacom.eCommerce.classes.pojo.*;
 import com.betacom.eCommerce.interfaces.iRepository.iCpuRepository;
 import com.betacom.eCommerce.interfaces.iRepository.iProductRepository;
@@ -27,21 +25,22 @@ public class CpuService implements iCpuService {
     private iProductService productService;
 
     @Override
-    public void create(CpuRequest req) throws Exception {
-        CpuPojo pojo = null ;
-        for(int i=0; i< req.getQuantity();i++ ) {
-            pojo = new CpuPojo();
-            Optional<ProductPojo> product = productRepo.findById(req.getIdProduct());
-            pojo.setProduct(product.get());
-            pojo.setCart(req.getCart());
-            pojo.setContained(req.getContained());
-        }
-        cpuRepo.save(pojo);
+    public void create(ProductRequest req) throws Exception {
+//
+//        ProductPojo product = productRepo.findById(req.getIdProduct()).get();
+//        CpuPojo pojo = null ;
+//        for(int i=0; i< req.getQuantity();i++ ) {
+//            pojo = new CpuPojo();
+//            pojo.setProduct(product);
+//            pojo.setCart(req.getCart());
+//            pojo.setContained(req.getContained());
+//        }
+//        cpuRepo.save(pojo);
     }
 
 
     @Override
-    public void update(CpuRequest req) throws Exception {
+    public void update(ProductRequest req) throws Exception {
         CpuPojo pojo = cpuRepo.findById(req.getId()).get();
         pojo.setCart(req.getCart());
         ProductPojo product=productRepo.findById(req.getId()).get();

@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class UserService implements iUserService {
@@ -33,9 +32,7 @@ public class UserService implements iUserService {
 
     @Override
     public void update(UserRequest req) {
-
         UserPojo pojo = userRepo.findById(req.getId()).get();
-
         pojo.setUsername(req.getUsername());
         if (req.getPassword() != null && !req.getPassword().isEmpty()) {
             pojo.setPassword(req.getPassword()); // Codifica la password qui
@@ -69,6 +66,12 @@ public class UserService implements iUserService {
         return transformInView(userRepo.findByUsername(username).get());
     }
 
+    // se è true allora è vuota , altrimenti falso è piena
+    @Override
+    public boolean checkIfExists(String username) {
+        return (userRepo.findByUsername(username).isPresent()) ;
+    }
+
     public UserView transformInView( UserPojo pojo ) {
             UserView view = new UserView();
             view.setId(pojo.getId());
@@ -88,7 +91,7 @@ public class UserService implements iUserService {
             view.setPassword(s.getPassword());
             view.setRole((s.getRole()) ? "ADMIN" : "USER");
             return view;
-        }).collect(Collectors.toList());
+        }).toList();
     }
 
     public List<UserView> transformInView(List<UserPojo> pojo, String role) {

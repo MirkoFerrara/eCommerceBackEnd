@@ -1,11 +1,7 @@
 package com.betacom.eCommerce.classes.controller;
 
-import com.betacom.eCommerce.classes.dto.request.LaptopRequest;
-import com.betacom.eCommerce.classes.dto.request.MemoryRequest;
-import com.betacom.eCommerce.classes.dto.view.GpuView;
-import com.betacom.eCommerce.classes.dto.view.LaptopView;
+import com.betacom.eCommerce.classes.dto.request.ProductRequest;
 import com.betacom.eCommerce.classes.dto.view.MemoryView;
-import com.betacom.eCommerce.classes.dto.view.MonitorView;
 import com.betacom.eCommerce.classes.response.Response;
 import com.betacom.eCommerce.classes.response.ResponseBase;
 import com.betacom.eCommerce.classes.response.ResponseObject;
@@ -21,7 +17,7 @@ public class MemoryController {
     private iMemoryService service;
 
     @PostMapping("/create")
-    public ResponseBase create(@RequestBody(required=true)MemoryRequest req){
+    public ResponseBase create(@RequestBody(required=true) ProductRequest req){
         ResponseBase resp = new ResponseBase();
         resp.setRc(true);
         try{
@@ -61,7 +57,7 @@ public class MemoryController {
     }
 
     @PostMapping("/update")
-    public ResponseBase update(@RequestBody(required = true) MemoryRequest req){
+    public ResponseBase update(@RequestBody(required = true) ProductRequest req){
         ResponseBase resp=new ResponseBase();
         resp.setRc(true);
         try {

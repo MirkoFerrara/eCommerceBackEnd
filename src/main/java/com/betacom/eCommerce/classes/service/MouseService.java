@@ -1,9 +1,7 @@
 package com.betacom.eCommerce.classes.service;
 
-import com.betacom.eCommerce.classes.dto.request.MouseRequest;
-import com.betacom.eCommerce.classes.dto.view.MonitorView;
+import com.betacom.eCommerce.classes.dto.request.ProductRequest;
 import com.betacom.eCommerce.classes.dto.view.MouseView;
-import com.betacom.eCommerce.classes.dto.view.PcView;
 import com.betacom.eCommerce.classes.pojo.*;
 import com.betacom.eCommerce.interfaces.iRepository.iMouseRepository;
 import com.betacom.eCommerce.interfaces.iRepository.iProductRepository;
@@ -23,19 +21,19 @@ public class MouseService implements iMouseService{
     private iProductRepository productRepo;
 
     @Override
-    public void create(MouseRequest req) {
-        MousePojo pojo = null ;
-        for(int i=0; i< req.getQuantity();i++ ) {
-            pojo = new MousePojo();
-            Optional<ProductPojo> product = productRepo.findById(req.getIdProduct());
-            pojo.setProduct(product.get());
-            pojo.setCart(req.getCart());
-        }
-        mouseRepo.save(pojo);
+    public void create(ProductRequest req) {
+//        MousePojo pojo = null ;
+//        for(int i=0; i< req.getQuantity();i++ ) {
+//            pojo = new MousePojo();
+//            Optional<ProductPojo> product = productRepo.findById(req.getIdProduct());
+//            pojo.setProduct(product.get());
+//            pojo.setCart(req.getCart());
+//        }
+//        mouseRepo.save(pojo);
     }
 
     @Override
-    public void update(MouseRequest req) {
+    public void update(ProductRequest req) {
         Optional<MousePojo> opt= mouseRepo.findById(req.getId());
         opt.get().setCart(req.getCart());
         if(req.getIdProduct()!=null) {

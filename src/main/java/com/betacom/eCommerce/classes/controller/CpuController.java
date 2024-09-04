@@ -1,10 +1,7 @@
 package com.betacom.eCommerce.classes.controller;
 
-import com.betacom.eCommerce.classes.dto.request.CpuRequest;
-import com.betacom.eCommerce.classes.dto.view.CoolerView;
+import com.betacom.eCommerce.classes.dto.request.ProductRequest;
 import com.betacom.eCommerce.classes.dto.view.CpuView;
-import com.betacom.eCommerce.classes.dto.view.GpuView;
-import com.betacom.eCommerce.classes.dto.view.UserView;
 import com.betacom.eCommerce.classes.response.Response;
 import com.betacom.eCommerce.classes.response.ResponseBase;
 import com.betacom.eCommerce.classes.response.ResponseObject;
@@ -20,7 +17,7 @@ public class CpuController {
     private iCpuService service;
 
     @PostMapping("/create")
-    public ResponseBase create(@RequestBody(required=true)CpuRequest req){
+    public ResponseBase create(@RequestBody(required=true) ProductRequest req){
         ResponseBase resp = new ResponseBase();
         resp.setRc(true);
         try{
@@ -60,7 +57,7 @@ public class CpuController {
     }
 
     @PostMapping("/update")
-    public ResponseBase update(@RequestBody(required = true) CpuRequest req){
+    public ResponseBase update(@RequestBody(required = true) ProductRequest req){
         ResponseBase resp=new ResponseBase();
         resp.setRc(true);
         try {

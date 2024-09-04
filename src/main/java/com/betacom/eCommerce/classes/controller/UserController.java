@@ -1,7 +1,5 @@
 package com.betacom.eCommerce.classes.controller;
 
-import com.betacom.eCommerce.classes.dto.request.CartRequest;
-import com.betacom.eCommerce.classes.dto.request.RamRequest;
 import com.betacom.eCommerce.classes.dto.view.UserView;
 import com.betacom.eCommerce.classes.response.Response;
 import com.betacom.eCommerce.classes.response.ResponseBase;
@@ -82,11 +80,25 @@ public class UserController {
     }
 
     @GetMapping("/getByUsername")
-    public ResponseObject<UserView> getByUsername(String username){
+    public ResponseObject<UserView> getByUsername(@RequestParam String username){
         ResponseObject<UserView> res = new ResponseObject<UserView>();
         res.setRc(true);
         try {
             res.setDati(service.getByUsername(username));
+        } catch (Exception e) {
+            res.setRc(false);
+            res.setMsg(e.getMessage());
+        }
+        return res;
+    }
+
+    @GetMapping("/checkByUsername")
+    public ResponseObject<Boolean> check(@RequestParam String username) {
+
+        ResponseObject<Boolean> res = new ResponseObject<>();
+        res.setRc(true);
+        try {
+            res.setDati(service.checkIfExists(username));
         } catch (Exception e) {
             res.setRc(false);
             res.setMsg(e.getMessage());

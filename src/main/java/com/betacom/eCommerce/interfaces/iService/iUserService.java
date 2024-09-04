@@ -1,8 +1,6 @@
 package com.betacom.eCommerce.interfaces.iService;
 
-import com.betacom.eCommerce.classes.dto.request.KeyboardRequest;
 import com.betacom.eCommerce.classes.dto.request.UserRequest;
-import com.betacom.eCommerce.classes.dto.view.KeyboardView;
 import com.betacom.eCommerce.classes.dto.view.UserView;
 
 import java.util.List;
@@ -15,5 +13,5 @@ public interface iUserService {
     public List<UserView> listUser();
     public UserView getById(Integer id);
     public UserView getByUsername(String username);
-
+    public boolean checkIfExists(String username);
 }

@@ -1,8 +1,7 @@
 package com.betacom.eCommerce.classes.service;
 
-import com.betacom.eCommerce.classes.dto.request.MotherboardRequest;
+import com.betacom.eCommerce.classes.dto.request.ProductRequest;
 import com.betacom.eCommerce.classes.dto.view.MotherboardView;
-import com.betacom.eCommerce.classes.dto.view.RamView;
 import com.betacom.eCommerce.classes.pojo.*;
 import com.betacom.eCommerce.interfaces.iRepository.iMotherboardRepository;
 import com.betacom.eCommerce.interfaces.iRepository.iProductRepository;
@@ -22,20 +21,19 @@ public class MotherboardService implements iMotherboardService{
     private iProductRepository productRepo;
 
     @Override
-    public void create(MotherboardRequest req) throws Exception{
-        MotherboardPojo pojo = null ;
-        for(int i=0; i< req.getQuantity();i++ ) {
-            pojo = new MotherboardPojo();
-            Optional<ProductPojo> product = productRepo.findById(req.getIdProduct());
-            pojo.setProduct(product.get());
-            pojo.setCart(req.getCart());
-        }
-        motherboardRepo.save(pojo);
+    public void create(ProductRequest req) throws Exception{
+//        Optional<ProductPojo> product = productRepo.findById(req.getIdProduct());
+//        MotherboardPojo pojo = null ;
+//        for(int i=0; i< req.getQuantity();i++ ) {
+//            pojo = new MotherboardPojo();
+//            pojo.setProduct(product.get());
+//            pojo.setCart(req.getCart());
+//        }
+//        motherboardRepo.save(pojo);
     }
 
-
     @Override
-    public void update(MotherboardRequest req) throws Exception{
+    public void update(ProductRequest req) throws Exception{
         MotherboardPojo pojo = motherboardRepo.findById(req.getId()).get();
         pojo.setCart(req.getCart());
         ProductPojo product=productRepo.findById(req.getId()).get();
