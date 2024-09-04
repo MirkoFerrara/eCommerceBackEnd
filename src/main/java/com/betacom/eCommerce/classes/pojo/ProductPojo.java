@@ -23,13 +23,9 @@ public class ProductPojo {
 
     private String colour ;
 
-    public String getItem() {
-        return item;
-    }
+    private String url ;
 
-    public void setItem(String item) {
-        this.item = item;
-    }
+
 
     @OneToMany(mappedBy="product", fetch = FetchType.EAGER)
     private List<MousePojo> mouse ;
@@ -70,7 +66,7 @@ public class ProductPojo {
     @OneToMany(mappedBy="product", fetch = FetchType.EAGER)
     private List<LaptopPojo> laptop ;
 
-    private String url ;
+
 
     public List<CoolerPojo> getCooler() {
         return cooler;
@@ -87,143 +83,114 @@ public class ProductPojo {
     public Integer getId() {
         return id;
     }
-
     public void setId(Integer id) {
         this.id = id;
     }
-
     public List<MousePojo> getMouse() {
         return mouse;
     }
-
     public void setMouse(List<MousePojo> mouse) {
         this.mouse = mouse;
     }
-
     public List<RamPojo> getRam() {
         return ram;
     }
-
     public void setRam(List<RamPojo> ram) {
         this.ram = ram;
     }
-
     public List<CpuPojo> getCpu() {
         return cpu;
     }
-
     public void setCpu(List<CpuPojo> cpu) {
         this.cpu = cpu;
     }
-
     public List<GpuPojo> getGpu() {
         return gpu;
     }
-
     public void setGpu(List<GpuPojo> gpu) {
         this.gpu = gpu;
     }
-
     public List<PcPojo> getPc() {
         return pc;
     }
-
     public void setPc(List<PcPojo> pc) {
         this.pc = pc;
     }
-
     public List<MonitorPojo> getMonitor() {
         return monitor;
     }
-
     public void setMonitor(List<MonitorPojo> monitor) {
         this.monitor = monitor;
     }
-
     public List<MotherboardPojo> getMotherboard() {
         return motherboard;
     }
-
     public void setMotherboard(List<MotherboardPojo> motherboard) {
         this.motherboard = motherboard;
     }
-
     public List<CartPojo> getCart() {
         return cart;
     }
-
     public void setCart(List<CartPojo> cart) {
         this.cart = cart;
     }
-
     public List<KeyboardPojo> getKeyboard() {
         return keyboard;
     }
-
     public void setKeyboard(List<KeyboardPojo> keyboard) {
         this.keyboard = keyboard;
     }
-
     public List<MemoryPojo> getMemory() {
         return memory;
     }
-
     public void setMemory(List<MemoryPojo> memory) {
         this.memory = memory;
     }
-
     public List<LaptopPojo> getLaptop() {
         return laptop;
     }
-
     public void setLaptop(List<LaptopPojo> laptop) {
         this.laptop = laptop;
     }
-
     public String getModel() {
         return model;
     }
-
     public void setModel(String model) {
         this.model = model;
     }
-
     public String getBrand() {
         return brand;
     }
-
     public void setBrand(String brand) {
         this.brand = brand;
     }
-
     public Float getPrice() {
         return price;
     }
-
     public void setPrice(Float price) {
         this.price = price;
     }
-
     public String getDescription() {
         return description;
     }
-
     public void setDescription(String description) {
         this.description = description;
     }
-
     public String getColour() {
         return colour;
     }
-
     public void setColour(String colour) {
         this.colour = colour;
     }
-
+    public String getItem() {
+        return item;
+    }
+    public void setItem(String item) {
+        this.item = item;
+    }
     public String getUrl() {
         return url;
     }
-
     public void setUrl(String url) {
         this.url = url;
     }

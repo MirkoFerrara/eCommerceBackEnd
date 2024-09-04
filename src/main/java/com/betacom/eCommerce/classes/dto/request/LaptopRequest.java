@@ -1,5 +1,7 @@
 package com.betacom.eCommerce.classes.dto.request;
 
+import jakarta.persistence.criteria.CriteriaBuilder;
+
 public class LaptopRequest extends ProductRequest{
     private Integer id;
     private Integer idRam;
@@ -7,8 +9,23 @@ public class LaptopRequest extends ProductRequest{
     private Integer idGPU;
     private Integer idMemory;
     private Integer idMotherboard;
+    private Integer idCooler;
+    private Integer idPsu;
     private Boolean cart;
 
+
+    public Integer getIdPsu() {
+        return idPsu;
+    }
+    public void setIdPsu(Integer idPsu) {
+        this.idPsu = idPsu;
+    }
+    public Integer getIdCooler() {
+        return idCooler;
+    }
+    public void setIdCooler(Integer idCooler) {
+        this.idCooler = idCooler;
+    }
     public Boolean getCart() {
         return cart;
     }

@@ -14,5 +14,4 @@ public interface iPcService {
     public void remove(Integer id)throws Exception;
     public List<PcView> list();
     public PcView getById(Integer id);
-
 }

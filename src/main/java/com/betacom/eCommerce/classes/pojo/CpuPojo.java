@@ -18,6 +18,7 @@ public class CpuPojo {
     private Boolean cart ;
 
     private Boolean contained ;
+
     private Boolean laptopMounted ; // true , false if mounted on pc
 
     public Boolean getLaptopMounted() {

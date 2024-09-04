@@ -29,6 +29,14 @@ public class ProductView {
         this.quantity = quantity;
     }
 
+
+    @Override
+    public String toString() {
+        return "ProductView{" +
+                "idProduct=" + idProduct +
+                '}';
+    }
+
     public String getItem() {
         return item;
     }

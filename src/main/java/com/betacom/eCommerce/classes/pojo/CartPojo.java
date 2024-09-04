@@ -22,6 +22,7 @@ public class CartPojo {
     @JoinColumn(name = "idUser")
     private UserPojo user ;
 
+
     public Boolean getSelected() {
         return selected;
     }
@@ -29,31 +30,24 @@ public class CartPojo {
     public void setSelected(Boolean selected) {
         this.selected = selected;
     }
-
     public UserPojo getUser() {
         return user;
     }
-
     public void setUser(UserPojo user) {
         this.user = user;
     }
-
     public Integer getId() {
         return id;
     }
-
     public void setId(Integer id) {
         this.id = id;
     }
-
     public ProductPojo getProduct() {
         return product;
     }
-
     public void setProduct(ProductPojo product) {
         this.product = product;
     }
-
     public Integer getIdItem() {
         return idItem;
     }

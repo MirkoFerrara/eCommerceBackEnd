@@ -1,11 +1,10 @@
 package com.betacom.eCommerce.classes.service;
 
 import com.betacom.eCommerce.classes.dto.request.LaptopRequest;
+import com.betacom.eCommerce.classes.dto.request.PcRequest;
 import com.betacom.eCommerce.classes.dto.view.LaptopView;
-import com.betacom.eCommerce.classes.pojo.LaptopPojo;
-import com.betacom.eCommerce.classes.pojo.ProductPojo;
-import com.betacom.eCommerce.interfaces.iRepository.iLaptopRepository;
-import com.betacom.eCommerce.interfaces.iRepository.iProductRepository;
+import com.betacom.eCommerce.classes.pojo.*;
+import com.betacom.eCommerce.interfaces.iRepository.*;
 import com.betacom.eCommerce.interfaces.iService.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,19 +29,81 @@ public class LaptopService implements iLaptopService{
     private iPsuService psuService;
     @Autowired
     private iCoolerService coolerService;
-
     @Autowired
-    private iLaptopRepository laptopRepo;
+    iCpuRepository cpuRepo;
+    @Autowired
+    iGpuRepository gpuRepo;
+    @Autowired
+    iRamRepository ramRepo;
+    @Autowired
+    iMotherboardRepository motherboardRepo;
+    @Autowired
+    iCoolerRepository coolerRepo;
+    @Autowired
+    iPsuRepository psuRepo;
+    @Autowired
+    iMemoryRepository memoryRepo;
     @Autowired
     private iProductRepository productRepo;
-    @Override
-    public void create(LaptopRequest req) throws Exception{
-        LaptopPojo pojo=new LaptopPojo();
-        Optional<ProductPojo> product=productRepo.findById(req.getId());
-        pojo.setProduct(product.get());
-        pojo.setCart(req.getCart());
+    @Autowired
+    private  iLaptopRepository laptopRepo;
 
-        laptopRepo.save(pojo);
+    @Override
+    public void create(LaptopRequest req) throws Exception {
+        for (int i = 0; i < req.getQuantity(); i++) {
+            LaptopPojo pojo = new LaptopPojo();
+
+            Optional<ProductPojo> product = productRepo.findById(req.getIdProduct());
+            if (product.isEmpty()) {
+                throw new Exception("Product not found with ID: " + req.getIdProduct());
+            }
+            pojo.setProduct(product.get());
+
+            Optional<CpuPojo> cpu = cpuRepo.findById(req.getIdCPU());
+            if (cpu.isEmpty()) {
+                throw new Exception("CPU not found with ID: " + req.getIdCPU());
+            }
+            pojo.setIdCpu(cpu.get());
+
+            Optional<GpuPojo> gpu = gpuRepo.findById(req.getIdGPU());
+            if (gpu.isEmpty()) {
+                throw new Exception("GPU not found with ID: " + req.getIdGPU());
+            }
+            pojo.setIdGpu(gpu.get());
+
+            Optional<MemoryPojo> memory = memoryRepo.findById(req.getIdMemory());
+            if (memory.isEmpty()) {
+                throw new Exception("Memory not found with ID: " + req.getIdMemory());
+            }
+            pojo.setIdMemory(memory.get());
+
+            Optional<RamPojo> ram = ramRepo.findById(req.getIdRam());
+            if (ram.isEmpty()) {
+                throw new Exception("RAM not found with ID: " + req.getIdRam());
+            }
+            pojo.setIdRam(ram.get());
+
+            Optional<MotherboardPojo> motherboard = motherboardRepo.findById(req.getIdMotherboard());
+            if (motherboard.isEmpty()) {
+                throw new Exception("Motherboard not found with ID: " + req.getIdMotherboard());
+            }
+            pojo.setIdMotherboard(motherboard.get());
+
+            Optional<CoolerPojo> cooler = coolerRepo.findById(req.getIdCooler());
+            if (cooler.isEmpty()) {
+                throw new Exception("Cooler not found with ID: " + req.getIdCooler());
+            }
+            pojo.setIdCooler(cooler.get());
+
+            Optional<PsuPojo> psu = psuRepo.findById(req.getIdPsu());
+            if (psu.isEmpty()) {
+                throw new Exception("PSU not found with ID: " + req.getIdPsu());
+            }
+            pojo.setIdPsu(psu.get());
+
+            pojo.setCart(req.getCart());
+            laptopRepo.save(pojo);
+        }
     }
 
     @Override
@@ -59,7 +120,6 @@ public class LaptopService implements iLaptopService{
     @Override
     public void remove(Integer id) {
         laptopRepo.delete(laptopRepo.findById(id).get());
-
     }
 
     @Override

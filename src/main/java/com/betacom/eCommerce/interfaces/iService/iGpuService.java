@@ -15,5 +15,4 @@ public interface iGpuService {
     public List<GpuView>list();
     public GpuView getById(Integer id);
     public GpuView transformInView(GpuPojo pojo);
-
 }
