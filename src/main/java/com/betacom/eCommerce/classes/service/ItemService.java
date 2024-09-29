@@ -26,7 +26,7 @@ public class ItemService {
             case "ram" -> new RamPojo();
             case "memory" -> new MemoryPojo();
             case "product" -> new ProductPojo();
-            default -> null;
+            default -> null ;
         };
     }
 
