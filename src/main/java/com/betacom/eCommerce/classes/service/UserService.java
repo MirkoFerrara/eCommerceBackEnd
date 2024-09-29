@@ -19,11 +19,15 @@ public class UserService implements iUserService {
     @Override
     public void create(UserRequest req) {
         UserPojo pojo = new UserPojo();
+        setUserPojo(req,pojo);
+        userRepo.save(pojo);
+    }
+
+    private void setUserPojo(UserRequest req , UserPojo pojo){
         pojo.setAddress(req.getAddress());
         pojo.setUsername(req.getUsername());
         pojo.setPassword(req.getPassword()); // Codifica la password qui
         pojo.setRole(req.getRole().equalsIgnoreCase("USER"));
-        userRepo.save(pojo);
     }
 
     @Override
@@ -68,7 +72,7 @@ public class UserService implements iUserService {
         return (userRepo.findByUsername(username).isPresent());
     }
 
-    public UserView transformInView(UserPojo pojo) {
+    private UserView transformInView(UserPojo pojo) {
         UserView view = new UserView();
         view.setId(pojo.getId());
         view.setUsername(pojo.getUsername());
@@ -78,7 +82,7 @@ public class UserService implements iUserService {
         return view;
     }
 
-    public List<UserView> transformInView(List<UserPojo> pojo) {
+    private List<UserView> transformInView(List<UserPojo> pojo) {
         return pojo.stream().map(s -> {
             UserView view = new UserView();
             view.setId(s.getId());
@@ -107,5 +111,4 @@ public class UserService implements iUserService {
                 })
                 .toList();
     }
-
 }
