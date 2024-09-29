@@ -1,10 +1,11 @@
 package com.betacom.eCommerce.classes.pojo;
 
+import com.betacom.eCommerce.interfaces.iPojo.iPojoSon.iPojoItem;
 import jakarta.persistence.*;
 
 @Entity
 @Table(name="mouse")
-public class MousePojo {
+public class MousePojo  implements iPojoItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id ;

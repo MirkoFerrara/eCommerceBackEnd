@@ -1,12 +1,13 @@
 package com.betacom.eCommerce.classes.pojo;
 
+import com.betacom.eCommerce.interfaces.iPojo.iPojoSon.iPojoComponent.iPojoComponent;
 import jakarta.persistence.*;
 
 import java.util.List;
 
 @Entity
 @Table(name="gpu")
-public class GpuPojo {
+public class GpuPojo  implements iPojoComponent {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id ;
@@ -22,11 +23,8 @@ public class GpuPojo {
     private List<PcPojo> pc ;
 
     private Boolean laptopMounted ; // true , false if mounted on pc
-
     private Boolean cart ;
-
     private Boolean contained ;
-
 
     public Boolean getLaptopMounted() {
         return laptopMounted;

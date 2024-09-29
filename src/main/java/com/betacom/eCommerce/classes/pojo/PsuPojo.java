@@ -1,12 +1,13 @@
 package com.betacom.eCommerce.classes.pojo;
 
+import com.betacom.eCommerce.interfaces.iPojo.iPojoSon.iPojoComponent.iPojoComponent;
 import jakarta.persistence.*;
 
 import java.util.List;
 
 @Entity
 @Table(name="psu")
-public class PsuPojo {
+public class PsuPojo implements iPojoComponent {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id ;
@@ -69,4 +70,5 @@ public class PsuPojo {
     public void setProduct(ProductPojo product) {
         this.product = product;
     }
+
 }

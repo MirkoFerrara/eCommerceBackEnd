@@ -4,7 +4,6 @@ import com.betacom.eCommerce.classes.dto.request.UserRequest;
 import com.betacom.eCommerce.classes.dto.view.UserView;
 import com.betacom.eCommerce.classes.pojo.UserPojo;
 import com.betacom.eCommerce.interfaces.iRepository.iUserRepository;
-import com.betacom.eCommerce.interfaces.iRepository.iProductRepository;
 import com.betacom.eCommerce.interfaces.iService.iUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,9 +15,6 @@ public class UserService implements iUserService {
 
     @Autowired
     private iUserRepository userRepo;
-    @Autowired
-    private iProductRepository productRepo;
-
 
     @Override
     public void create(UserRequest req) {
@@ -38,7 +34,6 @@ public class UserService implements iUserService {
             pojo.setPassword(req.getPassword()); // Codifica la password qui
         }
         pojo.setAddress(req.getAddress());
-
         userRepo.save(pojo);
     }
 

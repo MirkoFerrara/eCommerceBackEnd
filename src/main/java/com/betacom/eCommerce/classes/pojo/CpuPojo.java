@@ -1,25 +1,26 @@
 package com.betacom.eCommerce.classes.pojo;
 
+import com.betacom.eCommerce.interfaces.iPojo.iPojoSon.iPojoComponent.iPojoComponent;
 import jakarta.persistence.*;
 
 import java.util.List;
 
 @Entity
 @Table(name="cpu")
-public class CpuPojo {
+public class CpuPojo implements iPojoComponent {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id ;
-
     @ManyToOne
     @JoinColumn(name = "idProduct")
     private ProductPojo product ;
-
     private Boolean cart ;
-
     private Boolean contained ;
-
     private Boolean laptopMounted ; // true , false if mounted on pc
+    @OneToMany(mappedBy="idCpu", fetch = FetchType.EAGER)
+    private List<LaptopPojo> laptop ;
+    @OneToMany(mappedBy="idCpu", fetch = FetchType.EAGER)
+    private List<PcPojo> pc ;
 
     public Boolean getLaptopMounted() {
         return laptopMounted;
@@ -27,12 +28,6 @@ public class CpuPojo {
     public void setLaptopMounted(Boolean laptopMounted) {
         this.laptopMounted = laptopMounted;
     }
-    @OneToMany(mappedBy="idCpu", fetch = FetchType.EAGER)
-    private List<LaptopPojo> laptop ;
-
-    @OneToMany(mappedBy="idCpu", fetch = FetchType.EAGER)
-    private List<PcPojo> pc ;
-
     public List<PcPojo> getPc() {
         return pc;
     }

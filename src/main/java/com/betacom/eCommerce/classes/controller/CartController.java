@@ -2,12 +2,10 @@ package com.betacom.eCommerce.classes.controller;
 
 import com.betacom.eCommerce.classes.dto.request.CartRequest;
 import com.betacom.eCommerce.classes.dto.view.CartView;
-import com.betacom.eCommerce.classes.dto.view.UserView;
 import com.betacom.eCommerce.interfaces.iService.iCartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.betacom.eCommerce.classes.response.*;
-import org.springframework.web.servlet.ModelAndView;
 
 @RestController
 @RequestMapping("/cart")

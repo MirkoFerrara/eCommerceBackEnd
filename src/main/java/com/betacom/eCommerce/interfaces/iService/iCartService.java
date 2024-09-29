@@ -10,12 +10,12 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 public interface iCartService {
-    public void create(CartRequest req) throws Exception;
-    public void remove(Integer id) throws Exception;
-    public List<CartView>list(String username) throws Exception;
-    public List<CartView>listSelectedProducts(String username) throws Exception;
-    public void removeFromCart(CartRequest req) throws Exception;
-    public CartView getById(Integer id);
-    public void select(Integer id);
-    public void purchaseConfirmed(String username);
+    void create(CartRequest req) throws Exception;
+    void remove(Integer id) throws Exception;
+    List<CartView>list(String username) throws Exception;
+    List<CartView>listSelectedProducts(String username) throws Exception;
+    void removeFromCart(CartRequest req) throws Exception;
+    CartView getById(Integer id);
+    void select(Integer id);
+    void purchaseConfirmed(String username);
 }

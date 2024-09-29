@@ -1,12 +1,13 @@
 package com.betacom.eCommerce.classes.pojo;
 
+import com.betacom.eCommerce.interfaces.iPojo.iPojoSon.iPojoProduct;
 import jakarta.persistence.*;
 
 import java.util.List;
 
 @Entity
 @Table(name="product")
-public class ProductPojo {
+public class ProductPojo implements iPojoProduct {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id ;
@@ -167,24 +168,18 @@ public class ProductPojo {
     public Float getPrice() {
         return price;
     }
-    public void setPrice(Float price) {
-        this.price = price;
-    }
+    public void setPrice(Float price) {this.price = price;}
     public String getDescription() {
         return description;
     }
-    public void setDescription(String description) {
-        this.description = description;
-    }
+    public void setDescription(String description) {this.description = description;}
     public String getColour() {
         return colour;
     }
     public void setColour(String colour) {
         this.colour = colour;
     }
-    public String getItem() {
-        return item;
-    }
+    public String getItem() {return item;}
     public void setItem(String item) {
         this.item = item;
     }

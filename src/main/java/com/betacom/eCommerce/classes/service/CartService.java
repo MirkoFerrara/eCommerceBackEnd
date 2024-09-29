@@ -81,11 +81,6 @@ public class CartService implements iCartService{
             } else if ( productPojo.getItem().equalsIgnoreCase("monitor") ){
 
                 if(!value){
-
-                    System.out.println(cartPojo.getProduct().getUrl());
-                    System.out.println(cartPojo.getIdItem()+ "idItem");
-                    System.out.println("QUEL PORCO DI DIO");
-
                     monitorRepo.findById(cartPojo.getIdItem()).get().setCart(value);
                     return true;
                 }
@@ -340,7 +335,6 @@ public class CartService implements iCartService{
 
     @Override
     public List<CartView> list(String username) throws Exception {
-
         List<CartPojo>cart = cartRepo.findAll();
         List<CartPojo> filteredList = cart.stream()
                 .filter(item -> item.getUser().getUsername().equalsIgnoreCase(username)  )
@@ -352,15 +346,12 @@ public class CartService implements iCartService{
 
     @Override
     public List<CartView> listSelectedProducts(String username) throws Exception {
-
         List<CartPojo> filteredList = cartRepo.findAll().stream()
                 .filter(item -> item.getUser().getUsername().equalsIgnoreCase(username)  )
                 .filter(CartPojo::getSelected)
                 .toList();
-
         if(filteredList.isEmpty())
             throw new Exception("La lista è vuota");
-
         return transformInView(filteredList);
     }
 
