@@ -22,23 +22,6 @@ public class ProductService implements iProductService {
     @Autowired
     private ItemService itemService;
 
-    private iPojoParent getPojo(String item ){
-        return switch (item.toLowerCase()) {
-            case "psu" -> new PsuPojo();
-            case "mouse" -> new MousePojo();
-            case "monitor" -> new MonitorPojo();
-            case "cpu" -> new CpuPojo();
-            case "gpu" -> new GpuPojo();
-            case "motherboard" ->new MotherboardPojo();
-            case "keyboard" -> new KeyboardPojo();
-            case "cooler" -> new CoolerPojo();
-            case "ram" -> new RamPojo();
-            case "memory" -> new MemoryPojo();
-            case "product" -> new ProductPojo();
-            default -> null;
-        };
-    }
-
     /******************************************************************************************
      ******************************************************************************************/
 
@@ -52,10 +35,8 @@ public class ProductService implements iProductService {
         itemService.createItem( productPojo, req);
     }
 
-
-    @SuppressWarnings("unchecked")
     public ProductPojo createProduct(ProductRequest req) {
-        ProductPojo productPojo = (ProductPojo) getPojo("product") ; assert productPojo != null;
+        ProductPojo productPojo = new ProductPojo() ;
         setProduct(req,productPojo);
         saveProduct(productPojo,req);
         return productPojo;
@@ -88,6 +69,7 @@ public class ProductService implements iProductService {
         String brand = pojo.getBrand();
 
         JpaRepository<iPojoItem, Integer> repository = repositorySingleton.getRepo(pojo.getItem());
+
         List<iPojoItem> filteredList = repository.findAll().stream()
                 .filter(s -> s.getProduct().getColour().equalsIgnoreCase(colour)
                         && s.getProduct().getModel().equalsIgnoreCase(model)
@@ -100,6 +82,7 @@ public class ProductService implements iProductService {
 
     /******************************************************************************************
      ******************************************************************************************/
+
     @Override
     public void update(ProductRequest req) throws Exception {
 
@@ -118,11 +101,11 @@ public class ProductService implements iProductService {
     @Override
     public List<ProductView> list(String item) {
         JpaRepository<ProductPojo, Integer> repo = repositorySingleton.getRepo("product");
-        List<ProductPojo> filteredList = repo
+
+        return transformInView(repo
                 .findAll()
                 .stream()
-                .filter(pojo -> pojo.getItem().equalsIgnoreCase(item)).toList();
-        return transformInView(filteredList);
+                .filter(pojo -> pojo.getItem().equalsIgnoreCase(item)).toList());
     }
 
     /******************************************************************************************
