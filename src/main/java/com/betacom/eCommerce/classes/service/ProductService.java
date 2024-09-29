@@ -4,7 +4,6 @@ import com.betacom.eCommerce.classes.dto.request.ProductRequest;
 import com.betacom.eCommerce.classes.dto.view.ProductView;
 import com.betacom.eCommerce.classes.pojo.*;
 import com.betacom.eCommerce.interfaces.iPojo.iPojoParent;
-import com.betacom.eCommerce.interfaces.iPojo.iPojoSon.iPojoComponent.iPojoComponent;
 import com.betacom.eCommerce.interfaces.iPojo.iPojoSon.iPojoItem;
 import com.betacom.eCommerce.interfaces.iService.iProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,6 +78,7 @@ public class ProductService implements iProductService {
     /***********************************************************************************
      ***********************************************************************************/
 
+    @Override
     public void remove(Integer id) {
 
         JpaRepository<ProductPojo, Integer> repo = repositorySingleton.getRepo("product");
@@ -100,7 +100,7 @@ public class ProductService implements iProductService {
 
     /******************************************************************************************
      ******************************************************************************************/
-
+    @Override
     public void update(ProductRequest req) throws Exception {
 
         JpaRepository<ProductPojo, Integer> repo = repositorySingleton.getRepo(req.getItem());
