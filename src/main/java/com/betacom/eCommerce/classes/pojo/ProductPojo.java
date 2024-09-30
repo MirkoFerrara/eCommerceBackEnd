@@ -27,7 +27,6 @@ public class ProductPojo implements iPojoProduct {
     private String url ;
 
 
-
     @OneToMany(mappedBy="product", fetch = FetchType.EAGER)
     private List<MousePojo> mouse ;
 
@@ -189,4 +188,5 @@ public class ProductPojo implements iPojoProduct {
     public void setUrl(String url) {
         this.url = url;
     }
+
 }

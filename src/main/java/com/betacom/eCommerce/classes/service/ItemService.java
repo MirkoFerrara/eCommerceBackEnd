@@ -5,6 +5,7 @@ import com.betacom.eCommerce.classes.pojo.*;
 import com.betacom.eCommerce.interfaces.iPojo.iPojoParent;
 import com.betacom.eCommerce.interfaces.iPojo.iPojoSon.iPojoComponent.iPojoComponent;
 import com.betacom.eCommerce.interfaces.iPojo.iPojoSon.iPojoItem;
+import com.betacom.eCommerce.interfaces.iRepository.iRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
@@ -15,7 +16,7 @@ public class ItemService {
     @Autowired
     private RepositorySingleton repositorySingleton;
 
-    private iPojoParent getPojo(String item ){
+    public iPojoParent getPojo(String item ){
         return switch (item.toLowerCase()) {
             case "psu" -> new PsuPojo();
             case "mouse" -> new MousePojo();
@@ -36,34 +37,42 @@ public class ItemService {
      ******************************************************************************************/
 
     @SuppressWarnings("unchecked")
-    public <T extends iPojoItem> void createItem(ProductPojo productPojo, ProductRequest req) {
-        for (int i = 0; i < req.getQuantity(); i++) {
-            T item = (T) getPojo(req.getItem());
+    public <T extends iPojoItem> void createItem(ProductPojo productPojo, ProductRequest productRequest) {
+        for (int i = 0; i < productRequest.getQuantity(); i++) {
+            T item = (T) getPojo(productRequest.getItem());
             assert item != null;
-            setItem(item, productPojo, req);
-            saveItem(item, req);
+            setItem(item, productPojo, productRequest);
+            saveItem(item, productRequest);
         }
     }
     /*----------------------------------------------------------------------------------*/
-    private <T extends iPojoItem> void setItem(T item , ProductPojo productPojo, ProductRequest req){
+    private <T extends iPojoItem> void setItem(T item , ProductPojo productPojo, ProductRequest productRequest){
         item.setCart(false);
         item.setProduct(productPojo);
-        if( ! req.getItem().equalsIgnoreCase("pc") &&
-                ! req.getItem().equalsIgnoreCase("laptop") &&
-                ! req.getItem().equalsIgnoreCase("mouse") &&
-                ! req.getItem().equalsIgnoreCase("monitor") &&
-                ! req.getItem().equalsIgnoreCase("keyboard")
+        if( ! productRequest.getItem().equalsIgnoreCase("pc") &&
+                ! productRequest.getItem().equalsIgnoreCase("laptop") &&
+                ! productRequest.getItem().equalsIgnoreCase("mouse") &&
+                ! productRequest.getItem().equalsIgnoreCase("monitor") &&
+                ! productRequest.getItem().equalsIgnoreCase("keyboard")
         )
-            setContained((iPojoComponent)item,req);
+            setContained((iPojoComponent)item,productRequest);
     }
     /*----------------------------------------------------------------------------------*/
-    private <T extends iPojoItem> void saveItem(T item , ProductRequest req ){
-        JpaRepository<T, Integer> repo = repositorySingleton.getRepo(req.getItem());
+    private void saveItem(iPojoParent item , ProductRequest productRequest ){
+        JpaRepository<iPojoParent, Integer> repo = repositorySingleton.getRepo(productRequest.getItem());
         repo.save(item);
     }
     /*----------------------------------------------------------------------------------*/
     private void setContained(iPojoComponent item , ProductRequest req){
         item.setContained(req.getContained());
     }
-
+    /*----------------------------------------------------------------------------------*/
+    public <T extends iPojoItem> Integer getCount(String item, Integer idProduct) {
+        JpaRepository<T, Integer> repo = repositorySingleton.getRepo(item);
+        if (repo instanceof iRepository specificRepo) {
+            return specificRepo.countByProduct_Id(idProduct);
+        } else {
+            throw new IllegalArgumentException("Item type does not support count by product: " + item);
+        }
+    }
 }

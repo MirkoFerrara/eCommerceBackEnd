@@ -22,11 +22,9 @@ public class CartPojo {
     @JoinColumn(name = "idUser")
     private UserPojo user ;
 
-
     public Boolean getSelected() {
         return selected;
     }
-
     public void setSelected(Boolean selected) {
         this.selected = selected;
     }

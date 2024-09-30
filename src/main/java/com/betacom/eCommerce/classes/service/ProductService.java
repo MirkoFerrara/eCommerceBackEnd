@@ -3,7 +3,6 @@ package com.betacom.eCommerce.classes.service;
 import com.betacom.eCommerce.classes.dto.request.ProductRequest;
 import com.betacom.eCommerce.classes.dto.view.ProductView;
 import com.betacom.eCommerce.classes.pojo.*;
-import com.betacom.eCommerce.interfaces.iPojo.iPojoParent;
 import com.betacom.eCommerce.interfaces.iPojo.iPojoSon.iPojoItem;
 import com.betacom.eCommerce.interfaces.iService.iProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +40,6 @@ public class ProductService implements iProductService {
         saveProduct(productPojo,req);
         return productPojo;
     }
-
     private void setProduct(ProductRequest productRequest , ProductPojo productPojo){
         productPojo.setItem(productRequest.getItem());
         productPojo.setBrand(productRequest.getBrand());
@@ -49,8 +47,7 @@ public class ProductService implements iProductService {
         productPojo.setModel(productRequest.getModel());
         productPojo.setPrice(productRequest.getPrice());
         productPojo.setColour(productRequest.getColour());
-    }
-
+        }
     private void saveProduct(ProductPojo productPojo,ProductRequest req){
         JpaRepository<ProductPojo, Integer> repo = repositorySingleton.getRepo(req.getItem());
         repo.save(productPojo);
@@ -116,6 +113,7 @@ public class ProductService implements iProductService {
         return transformInView((ProductPojo) repositorySingleton.getRepo("product").findById(id).get());
     }
 
+
     /******************************************************************************************
      ******************************************************************************************/
 
@@ -142,6 +140,8 @@ public class ProductService implements iProductService {
             view.setPrice(s.getPrice());
             view.setModel(s.getModel());
             view.setUrl(s.getUrl());
+            view.setQuantity(itemService.getCount(s.getItem(),s.getId()));
+            System.out.println("STAMPA DI QUANTITY" +   view.getQuantity());
             return view;
         }).toList();
     }

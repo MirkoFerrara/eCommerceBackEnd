@@ -41,17 +41,18 @@ public class ProductController {
         return resp;
     }
 
-    @PostMapping("/remove")
-    public ResponseBase remove(@RequestParam(required = true) Integer id,@RequestParam(required=true)String item){
-        ResponseBase resp=new ResponseBase();
-        resp.setRc(true);
+    @GetMapping("/getById")
+    public ResponseObject<ProductView> getById(@RequestParam(required=true)Integer id){
+        ResponseObject<ProductView> res = new ResponseObject<ProductView>();
+        res.setRc(true);
         try {
-            service.remove(id);
+            res.setDati(service.getById(id));
+            System.out.println("\n\n"+service.getById(id).getItem()+"\n\n");
         } catch (Exception e) {
-            resp.setRc(false);
-            resp.setMsg(e.getMessage());
+            res.setRc(false);
+            res.setMsg(e.getMessage());
         }
-        return resp;
+        return res;
     }
 
     @PostMapping("/update")
@@ -67,17 +68,18 @@ public class ProductController {
         return resp;
     }
 
-    @GetMapping("/getById")
-    public ResponseObject<ProductView> getById(@RequestParam(required=true)Integer id){
-        ResponseObject<ProductView> res = new ResponseObject<ProductView>();
-        res.setRc(true);
+
+    @PostMapping("/remove")
+    public ResponseBase remove(@RequestParam(required = true) Integer id,@RequestParam(required=true)String item){
+        ResponseBase resp=new ResponseBase();
+        resp.setRc(true);
         try {
-            res.setDati(service.getById(id));
+            service.remove(id);
         } catch (Exception e) {
-            res.setRc(false);
-            res.setMsg(e.getMessage());
+            resp.setRc(false);
+            resp.setMsg(e.getMessage());
         }
-        return res;
+        return resp;
     }
 
     @GetMapping("/search")

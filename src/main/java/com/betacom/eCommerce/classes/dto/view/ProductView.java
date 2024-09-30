@@ -2,16 +2,27 @@ package com.betacom.eCommerce.classes.dto.view;
 
 public class ProductView {
 
-    private Integer id ;
-    private Integer idProduct;
-    private String model;
-    private String brand;
-    private Float price;
-    private String description;
-    private String colour;
-    private String url;
-    private String item;
+    private Integer id;
     private Integer quantity ;
+    private Integer idProduct;
+    private String model ;
+    private String brand ;
+    private Float price ;
+    private String description ;
+    private String colour ;
+    private String item ;
+    private Boolean contained;
+    private Boolean cart ;
+    private String errorMSG;
+    private String url;
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
     public Integer getId() {
         return id;
@@ -27,30 +38,6 @@ public class ProductView {
 
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
-    }
-
-
-    @Override
-    public String toString() {
-        return "ProductView{" +
-                "idProduct=" + idProduct +
-                '}';
-    }
-
-    public String getItem() {
-        return item;
-    }
-
-    public void setItem(String item) {
-        this.item = item;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
     }
 
     public Integer getIdProduct() {
@@ -99,5 +86,37 @@ public class ProductView {
 
     public void setColour(String colour) {
         this.colour = colour;
+    }
+
+    public String getItem() {
+        return item;
+    }
+
+    public void setItem(String item) {
+        this.item = item;
+    }
+
+    public Boolean getContained() {
+        return contained;
+    }
+
+    public void setContained(Boolean contained) {
+        this.contained = contained;
+    }
+
+    public Boolean getCart() {
+        return cart;
+    }
+
+    public void setCart(Boolean cart) {
+        this.cart = cart;
+    }
+
+    public String getErrorMSG() {
+        return errorMSG;
+    }
+
+    public void setErrorMSG(String errorMSG) {
+        this.errorMSG = errorMSG;
     }
 }

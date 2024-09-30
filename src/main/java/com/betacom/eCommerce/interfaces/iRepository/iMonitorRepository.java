@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface iMonitorRepository extends JpaRepository<MonitorPojo,Integer> {
+public interface iMonitorRepository extends JpaRepository<MonitorPojo,Integer>,iRepository {
 }
