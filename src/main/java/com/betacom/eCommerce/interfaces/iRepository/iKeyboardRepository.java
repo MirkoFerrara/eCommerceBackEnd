@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface iKeyboardRepository extends JpaRepository<KeyboardPojo,Integer> {
+public interface iKeyboardRepository extends JpaRepository<KeyboardPojo,Integer>,iRepository  {
 }

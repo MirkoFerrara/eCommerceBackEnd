@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface iMotherboardRepository extends JpaRepository<MotherboardPojo,Integer> {
+public interface iMotherboardRepository extends JpaRepository<MotherboardPojo,Integer>,iRepository  {
 }

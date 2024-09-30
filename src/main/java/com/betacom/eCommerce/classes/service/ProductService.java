@@ -27,10 +27,13 @@ public class ProductService implements iProductService {
     @Override
     public void create(ProductRequest req) throws Exception {
         ProductPojo productPojo;
+
         if (req.getIdProduct() == null)
             productPojo = createProduct(req);
         else
             productPojo = (ProductPojo) repositorySingleton.getRepo(req.getItem()).findById(req.getIdProduct()).get();
+
+
         itemService.createItem( productPojo, req);
     }
 
@@ -41,6 +44,8 @@ public class ProductService implements iProductService {
         return productPojo;
     }
     private void setProduct(ProductRequest productRequest , ProductPojo productPojo){
+
+
         productPojo.setItem(productRequest.getItem());
         productPojo.setBrand(productRequest.getBrand());
         productPojo.setDescription(productRequest.getDescription());
@@ -49,6 +54,7 @@ public class ProductService implements iProductService {
         productPojo.setColour(productRequest.getColour());
         }
     private void saveProduct(ProductPojo productPojo,ProductRequest req){
+
         JpaRepository<ProductPojo, Integer> repo = repositorySingleton.getRepo(req.getItem());
         repo.save(productPojo);
     }
@@ -58,23 +64,18 @@ public class ProductService implements iProductService {
 
     @Override
     public void remove(Integer id) {
-
         JpaRepository<ProductPojo, Integer> repo = repositorySingleton.getRepo("product");
         ProductPojo pojo = repo.findById(id).get();
         String colour = pojo.getColour();
         String model = pojo.getModel();
         String brand = pojo.getBrand();
-
         JpaRepository<iPojoItem, Integer> repository = repositorySingleton.getRepo(pojo.getItem());
-
-        List<iPojoItem> filteredList = repository.findAll().stream()
-                .filter(s -> s.getProduct().getColour().equalsIgnoreCase(colour)
-                        && s.getProduct().getModel().equalsIgnoreCase(model)
-                        && s.getProduct().getBrand().equalsIgnoreCase(brand))
+        List<iPojoItem> filteredList = repository.findAll().stream().filter(s ->
+                        s.getProduct().getColour().equalsIgnoreCase(colour) &&
+                        s.getProduct().getModel().equalsIgnoreCase(model) &&
+                        s.getProduct().getBrand().equalsIgnoreCase(brand))
                 .toList();
-
-        if (filteredList.isEmpty())
-            repo.delete(pojo);
+        if (filteredList.isEmpty()) repo.delete(pojo);
     }
 
     /******************************************************************************************
@@ -83,11 +84,9 @@ public class ProductService implements iProductService {
     @Override
     public void update(ProductRequest req) throws Exception {
 
-        JpaRepository<ProductPojo, Integer> repo = repositorySingleton.getRepo(req.getItem());
+        JpaRepository<ProductPojo, Integer> repo = repositorySingleton.getRepo("product");
         Optional<ProductPojo> opt = repo.findById(req.getIdProduct());
-
         if (opt.isEmpty()) throw new Exception("il prodotto non esiste");
-
         setProduct(req,opt.get());
         repo.save(opt.get());
     }
@@ -113,7 +112,6 @@ public class ProductService implements iProductService {
         return transformInView((ProductPojo) repositorySingleton.getRepo("product").findById(id).get());
     }
 
-
     /******************************************************************************************
      ******************************************************************************************/
 
@@ -127,6 +125,7 @@ public class ProductService implements iProductService {
         view.setModel(pojo.getModel());
         view.setUrl(pojo.getUrl());
         view.setItem(pojo.getItem());
+        view.setQuantity(itemService.getCount(pojo.getItem(),pojo.getId()));
         return view;
     }
 
@@ -141,7 +140,6 @@ public class ProductService implements iProductService {
             view.setModel(s.getModel());
             view.setUrl(s.getUrl());
             view.setQuantity(itemService.getCount(s.getItem(),s.getId()));
-            System.out.println("STAMPA DI QUANTITY" +   view.getQuantity());
             return view;
         }).toList();
     }

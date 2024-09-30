@@ -47,7 +47,6 @@ public class ProductController {
         res.setRc(true);
         try {
             res.setDati(service.getById(id));
-            System.out.println("\n\n"+service.getById(id).getItem()+"\n\n");
         } catch (Exception e) {
             res.setRc(false);
             res.setMsg(e.getMessage());
@@ -70,7 +69,7 @@ public class ProductController {
 
 
     @PostMapping("/remove")
-    public ResponseBase remove(@RequestParam(required = true) Integer id,@RequestParam(required=true)String item){
+    public ResponseBase remove(@RequestParam(required = true) Integer id ){
         ResponseBase resp=new ResponseBase();
         resp.setRc(true);
         try {

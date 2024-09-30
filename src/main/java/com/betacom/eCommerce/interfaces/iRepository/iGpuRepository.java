@@ -10,5 +10,5 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface iGpuRepository extends JpaRepository<GpuPojo,Integer> {
+public interface iGpuRepository extends JpaRepository<GpuPojo,Integer>,iRepository  {
 }

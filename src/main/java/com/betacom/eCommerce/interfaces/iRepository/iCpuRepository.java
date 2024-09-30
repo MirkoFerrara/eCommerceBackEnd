@@ -10,5 +10,5 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface iCpuRepository extends JpaRepository<CpuPojo,Integer> {
+public interface iCpuRepository extends JpaRepository<CpuPojo,Integer>,iRepository  {
 }

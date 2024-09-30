@@ -10,6 +10,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface iRamRepository extends JpaRepository<RamPojo,Integer> {
+public interface iRamRepository extends JpaRepository<RamPojo,Integer>,iRepository  {
 
 }
