@@ -32,10 +32,8 @@ public class ItemService {
             default -> null ;
         };
     }
-
     /******************************************************************************************
      ******************************************************************************************/
-
     @SuppressWarnings("unchecked")
     public <T extends iPojoItem> void createItem(ProductPojo productPojo, ProductRequest productRequest) {
         for (int i = 0; i < productRequest.getQuantity(); i++) {
@@ -59,20 +57,17 @@ public class ItemService {
     }
     /*----------------------------------------------------------------------------------*/
     private void saveItem(iPojoParent item , ProductRequest productRequest ){
-        JpaRepository<iPojoParent, Integer> repo = repositorySingleton.getRepo(productRequest.getItem());
-        repo.save(item);
+         repositorySingleton.getRepo(productRequest.getItem()).save(item);
     }
     /*----------------------------------------------------------------------------------*/
     private void setContained(iPojoComponent item , ProductRequest req){
         item.setContained(req.getContained());
     }
     /*----------------------------------------------------------------------------------*/
-    public <T extends iPojoItem> Integer getCount(String item, Integer idProduct) {
-        JpaRepository<T, Integer> repo = repositorySingleton.getRepo(item);
-        if (repo instanceof iRepository specificRepo) {
+    public Integer getCount(String item, Integer idProduct) {
+        if (repositorySingleton.getRepo(item) instanceof iRepository specificRepo)
             return specificRepo.countByProduct_Id(idProduct);
-        } else {
+        else
             throw new IllegalArgumentException("Item type does not support count by product: " + item);
-        }
     }
 }

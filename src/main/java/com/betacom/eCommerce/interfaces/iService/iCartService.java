@@ -2,10 +2,6 @@ package com.betacom.eCommerce.interfaces.iService;
 
 import com.betacom.eCommerce.classes.dto.request.CartRequest;
 import com.betacom.eCommerce.classes.dto.view.CartView;
-import com.betacom.eCommerce.classes.dto.view.CpuView;
-import com.betacom.eCommerce.classes.pojo.CpuPojo;
-import com.betacom.eCommerce.classes.pojo.ProductPojo;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 

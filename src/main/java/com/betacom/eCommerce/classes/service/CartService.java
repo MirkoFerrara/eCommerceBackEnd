@@ -87,7 +87,6 @@ public class CartService implements iCartService{
                 List<MonitorPojo> filteredList =  productPojo.getMonitor().stream()
                         .filter(pojo -> !pojo.getCart())
                         .toList();
-                System.out.println(filteredList.size() +" SIZE ");
                 if (!filteredList.isEmpty()) {
                     MonitorPojo lastPojo = filteredList.get(filteredList.size() - 1);
                     lastPojo.setCart(value);

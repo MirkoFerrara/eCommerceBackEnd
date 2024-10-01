@@ -5,6 +5,7 @@ import com.betacom.eCommerce.classes.dto.view.ProductView;
 import com.betacom.eCommerce.classes.pojo.*;
 import com.betacom.eCommerce.interfaces.iPojo.iPojoSon.iPojoItem;
 import com.betacom.eCommerce.interfaces.iService.iProductService;
+import jakarta.persistence.criteria.CriteriaBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
@@ -32,8 +33,6 @@ public class ProductService implements iProductService {
             productPojo = createProduct(req);
         else
             productPojo = (ProductPojo) repositorySingleton.getRepo(req.getItem()).findById(req.getIdProduct()).get();
-
-
         itemService.createItem( productPojo, req);
     }
 
@@ -159,5 +158,18 @@ public class ProductService implements iProductService {
                         s.getPrice().toString().contains(search) )
                 .toList();
         return transformInView(filteredList);
+    }
+
+    @Override
+    public void addProduct(Integer idProduct, Integer value ) throws Exception {
+        JpaRepository<ProductPojo, Integer> repo = repositorySingleton.getRepo("product");
+        Optional<ProductPojo> opt = repo.findById(idProduct);
+        if (opt.isEmpty()) throw new Exception("il prodotto non esiste");
+        ProductRequest productRequest = new ProductRequest();
+        productRequest.setIdProduct(idProduct);
+        productRequest.setItem(opt.get().getItem());
+        productRequest.setQuantity(value);
+        productRequest.setContained(false);
+        itemService.createItem(opt.get(),productRequest);
     }
 }

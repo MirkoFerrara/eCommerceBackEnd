@@ -12,4 +12,5 @@ public interface iProductService {
      List<ProductView> list(String item);
      ProductView getById(Integer id);
      List<ProductView> search(String search);
+     void addProduct(Integer id , Integer value) throws Exception;
 }

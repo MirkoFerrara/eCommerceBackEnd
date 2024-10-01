@@ -27,7 +27,6 @@ public class ProductController {
         }
         return resp;
     }
-
     @GetMapping("/list")
     public Response<ProductView> listAll(@RequestParam (required = true ) String item){
         Response<ProductView> resp = new Response<>();
@@ -40,7 +39,6 @@ public class ProductController {
         }
         return resp;
     }
-
     @GetMapping("/getById")
     public ResponseObject<ProductView> getById(@RequestParam(required=true)Integer id){
         ResponseObject<ProductView> res = new ResponseObject<ProductView>();
@@ -53,7 +51,6 @@ public class ProductController {
         }
         return res;
     }
-
     @PostMapping("/update")
     public ResponseBase update(@RequestBody(required = true) ProductRequest req){
         ResponseBase resp=new ResponseBase();
@@ -66,8 +63,6 @@ public class ProductController {
         }
         return resp;
     }
-
-
     @PostMapping("/remove")
     public ResponseBase remove(@RequestParam(required = true) Integer id ){
         ResponseBase resp=new ResponseBase();
@@ -80,7 +75,6 @@ public class ProductController {
         }
         return resp;
     }
-
     @GetMapping("/search")
     public Response<ProductView> search(@RequestParam(required=true) String search){
         Response<ProductView> res = new Response<ProductView>();
@@ -92,5 +86,18 @@ public class ProductController {
             res.setMsg(e.getMessage());
         }
         return res;
+    }
+
+    @GetMapping("/addProduct")
+    public ResponseBase addProduct(@RequestParam (required = true ) Integer id , @RequestParam (required = true) Integer value){
+        ResponseBase resp=new ResponseBase();
+        resp.setRc(true);
+        try {
+            service.addProduct(id,value);
+        } catch (Exception e) {
+            resp.setRc(false);
+            resp.setMsg(e.getMessage());
+        }
+        return resp;
     }
 }
